@@ -1,25 +1,25 @@
 import React from 'react';
-import { View, Text, TouchableHighlight, Alert } from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
+import { View, Text, TouchableHighlight, Alert, StyleSheet } from 'react-native';
 
 import styles from './styles';
 
-class GradientButton extends React.Component {
+class ColorButton extends React.Component {
   _standardTouch() {
     Alert.alert('You tapped the button!');
   }
   render() {
     const buttonPressHandler = (this.props.onPress) ? this.props.onPress : this._standardTouch;
+    const buttonStyle = (this.props.color) ? [styles.buttonContainer, {backgroundColor: this.props.color}] : styles.buttonContainer;
     return (
       <View style={this.props.style}>
         <TouchableHighlight onPress={buttonPressHandler} style={styles.touchable}>
-          <LinearGradient colors={this.props.colors} start={{x:0, y:0.5}} end={{x:1, y:0.5}} style={styles.buttonContainer}>
+          <View style={buttonStyle}>
             <Text style={styles.buttonText}>{this.props.value}</Text>
-          </LinearGradient>
+          </View>
         </TouchableHighlight>
       </View>
     )
   }
 };
 
-export default GradientButton;
+export default ColorButton;
