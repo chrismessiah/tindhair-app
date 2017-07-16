@@ -21,20 +21,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#A09E9E',
     borderRadius: 10,
   },
-  fbLogin: {
+  fbButton: {
     alignSelf: 'center',
-    justifyContent: 'center',
-    height: 40,
-    width: 200,
     marginTop: 350,
-    //backgroundColor: '#265BFF',
-    borderRadius: 10,
   },
-  buttonText: {
-    color: 'white',
-    textAlign: 'center',
-    backgroundColor: 'transparent',
-    // fontWeight: 'bold'
+  emailButton: {
+    alignSelf: 'center',
+    marginTop: 20,
   }
 });
 

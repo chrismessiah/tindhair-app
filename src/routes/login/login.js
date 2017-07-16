@@ -1,8 +1,8 @@
 import React from 'react';
-import { Text, View, Image, TouchableWithoutFeedback } from 'react-native';
+import { Text, View, Image, Alert } from 'react-native';
 import { StackNavigator } from 'react-navigation';
-import LinearGradient from 'react-native-linear-gradient';
 
+import GradientButton from '../../components/buttons/gradient-button/';
 import styles from './styles';
 
 class Foo extends React.Component {
@@ -10,13 +10,9 @@ class Foo extends React.Component {
     return (
       <Image source={require('../../assets/images/login-bg.jpg')} style={styles.backgroundImage} >
         <Image source={require('../../assets/images/logo.png')} style={styles.logo} />
-        <TouchableWithoutFeedback>
-          <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']} style={styles.fbLogin}><Text style={styles.buttonText}>Log in with Facebook</Text></LinearGradient>
-        </TouchableWithoutFeedback>
-
-        <TouchableWithoutFeedback>
-          <View style={styles.login}><Text style={styles.buttonText}>Use email instead</Text></View>
-        </TouchableWithoutFeedback>
+        <GradientButton style={styles.fbButton} colors={['#1B4DFF', '#5CA1FF']} value={"Log in with Facebook"}/>
+        <GradientButton style={styles.emailButton} colors={['#A09E9E', '#BDBDBD']} value={"Use email instead"}/>
+        <GradientButton onPress={function() {Alert.alert('You passed a custom function!')}} style={styles.emailButton} colors={['#FF5E00', '#FBB869']} value={"Orange button"}/>
       </Image>
     );
   }
