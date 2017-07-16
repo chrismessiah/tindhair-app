@@ -43,7 +43,7 @@ const App = StackNavigator(
     Next: {
       screen: Next,
       navigationOptions: {
-        headerStyle: {backgroundColor: '#ffc0b1' },
+        headerStyle: {backgroundColor: '#FF8B70' },
       }
     }
   },
