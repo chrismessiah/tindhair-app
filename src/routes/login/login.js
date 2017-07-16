@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, View, Image, TouchableWithoutFeedback } from 'react-native';
 import { StackNavigator } from 'react-navigation';
+import LinearGradient from 'react-native-linear-gradient';
 
 import styles from './styles';
 
@@ -10,7 +11,7 @@ class Foo extends React.Component {
       <Image source={require('../../assets/images/login-bg.jpg')} style={styles.backgroundImage} >
         <Image source={require('../../assets/images/logo.png')} style={styles.logo} />
         <TouchableWithoutFeedback>
-          <View style={styles.fbLogin}><Text style={styles.buttonText}>Log in with Facebook</Text></View>
+          <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']} style={styles.fbLogin}><Text style={styles.buttonText}>Log in with Facebook</Text></LinearGradient>
         </TouchableWithoutFeedback>
 
         <TouchableWithoutFeedback>

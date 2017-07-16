@@ -27,12 +27,13 @@ const styles = StyleSheet.create({
     height: 40,
     width: 200,
     marginTop: 350,
-    backgroundColor: '#265BFF',
+    //backgroundColor: '#265BFF',
     borderRadius: 10,
   },
   buttonText: {
     color: 'white',
     textAlign: 'center',
+    backgroundColor: 'transparent',
     // fontWeight: 'bold'
   }
 });
