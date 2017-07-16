@@ -1,12 +1,40 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-  container: {
+  backgroundImage: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignSelf: 'stretch',
+    width: null,
   },
+  logo: {
+    height: 60,
+    width: 200,
+    alignSelf: 'center',
+    marginTop: 30,
+  },
+  login: {
+    alignSelf: 'center',
+    justifyContent: 'center',
+    height: 40,
+    width: 200,
+    marginTop: 20,
+    backgroundColor: '#A09E9E',
+    borderRadius: 10,
+  },
+  fbLogin: {
+    alignSelf: 'center',
+    justifyContent: 'center',
+    height: 40,
+    width: 200,
+    marginTop: 350,
+    backgroundColor: '#265BFF',
+    borderRadius: 10,
+  },
+  buttonText: {
+    color: 'white',
+    textAlign: 'center',
+    // fontWeight: 'bold'
+  }
 });
 
 export default styles;
