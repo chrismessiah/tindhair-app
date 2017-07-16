@@ -1,7 +1,6 @@
 package com.tindhair;
 
 import com.facebook.react.ReactActivity;
-import com.BV.LinearGradient.LinearGradientPackage;
 import java.util.List;
 import java.util.Arrays;
 import com.facebook.react.shell.MainReactPackage;
@@ -20,8 +19,7 @@ public class MainActivity extends ReactActivity {
 
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
-        new MainReactPackage(),
-        new LinearGradientPackage() // <---- and This!
+        new MainReactPackage()
       );
     }
 }
