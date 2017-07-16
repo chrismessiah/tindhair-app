@@ -1,25 +1,55 @@
 import React from 'react';
-import { Text, View, Image, Alert } from 'react-native';
+import { Text, View, Image } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
 import GradientButton from '../../components/buttons/gradient-button/';
 import styles from './styles';
 
-class Foo extends React.Component {
+class Root extends React.Component {
+  _nav(route) {
+    this.props.navigation.navigate(route)
+  }
   render() {
     return (
-      <Image source={require('../../assets/images/login-bg.jpg')} style={styles.backgroundImage} >
+      <Image source={require('../../assets/images/login-bg.jpg')} style={styles.background} >
         <Image source={require('../../assets/images/logo.png')} style={styles.logo} />
         <GradientButton style={styles.fbButton} colors={['#1B4DFF', '#5CA1FF']} value={"Log in with Facebook"}/>
         <GradientButton style={styles.emailButton} colors={['#A09E9E', '#BDBDBD']} value={"Use email instead"}/>
-        <GradientButton onPress={function() {Alert.alert('You passed a custom function!')}} style={styles.emailButton} colors={['#FF5E00', '#FBB869']} value={"Orange button"}/>
+        <GradientButton onPress={() => {this._nav('Next')}} style={styles.emailButton} colors={['#FF5E00', '#FBB869']} value={"Orange button"}/>
       </Image>
     );
   }
 };
 
-const App = StackNavigator({
-  Home: { screen: Foo },
-});
+class Next extends React.Component {
+  _nav(route) {
+    this.props.navigation.navigate(route)
+  }
+  render() {
+    return (
+      <View style={styles.background2} >
+        <GradientButton onPress={() => {this._nav('')}} style={styles.emailButton} colors={['#FF5E00', '#FBB869']} value={"Orange button"}/>
+      </View>
+    );
+  }
+};
+
+const App = StackNavigator(
+  {
+    Root: {
+      screen: Root,
+      navigationOptions: {header: false},
+    },
+    Next: {
+      screen: Next,
+      navigationOptions: {
+        headerStyle: {backgroundColor: '#ffc0b1' },
+      }
+    }
+  },
+  {
+    initialRouteName: 'Root',
+  }
+);
 
 export default App;

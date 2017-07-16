@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-  backgroundImage: {
+  background: {
     flex: 1,
     alignSelf: 'stretch',
     width: null,
@@ -28,7 +28,20 @@ const styles = StyleSheet.create({
   emailButton: {
     alignSelf: 'center',
     marginTop: 20,
+  },
+
+
+
+
+  background2: {
+    flex: 1,
+    alignSelf: 'stretch',
+    width: null,
+    backgroundColor: '#f26d4d'
   }
+
+
+
 });
 
 export default styles;
