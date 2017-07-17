@@ -3,6 +3,7 @@ import { Text, View, Image } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
 import GradientButton from '../../components/buttons/gradient-button/';
+import TextButton from '../../components/buttons/text-button/';
 import styles from './styles';
 
 class Root extends React.Component {
@@ -28,6 +29,9 @@ class Next extends React.Component {
   render() {
     return (
       <View style={styles.background2} >
+        <Image source={require('../../assets/images/logo-white.png')} style={styles.logo} />
+        <TextButton value={"Sign in"} color={"white"} active={true}/>
+        <TextButton value={"Sign up"} color={"white"} active={false}/>
         <GradientButton onPress={() => {this._nav('')}} style={styles.emailButton} colors={['#FF5E00', '#FBB869']} value={"Orange button"}/>
       </View>
     );
@@ -43,7 +47,7 @@ const App = StackNavigator(
     Next: {
       screen: Next,
       navigationOptions: {
-        headerStyle: {backgroundColor: '#FF8B70' },
+        headerStyle: {backgroundColor: '#ffe0d9'},
       }
     }
   },
