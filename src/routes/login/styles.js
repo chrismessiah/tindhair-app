@@ -38,6 +38,22 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     width: null,
     backgroundColor: '#f26d4d'
+  },
+  textButtonContainer2: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginTop: 40,
+  },
+  textButton2: {
+    marginLeft: 20,
+    marginRight: 20
+  },
+  textInputContaier2: {
+    marginTop: 50,
+    alignItems: 'center',
+  },
+  sumbitButton2: {
+    marginTop: 200,
   }
 
 
