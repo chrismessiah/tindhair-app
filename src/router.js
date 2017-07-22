@@ -4,13 +4,20 @@ import LoginSelection from './routes/login-selection/';
 import EmailLogin from './routes/email-login/';
 import GenderSelection from './routes/gender-selection/';
 import Loader from './routes/loader/';
+import LoaderSpin from './routes/loader-spin/';
 
 const App = StackNavigator(
   {
     LoginSelection: {
-      screen: LoginSelection,
-      navigationOptions: {header: false},
+      screen: LoaderSpin,
+      navigationOptions: {
+        headerStyle: {backgroundColor: '#ffe0d9'},
+      }
     },
+    // LoginSelection: {
+    //   screen: LoginSelection,
+    //   navigationOptions: {header: false},
+    // },
     EmailLogin: {
       screen: EmailLogin,
       navigationOptions: {

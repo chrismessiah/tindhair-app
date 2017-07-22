@@ -1,25 +1,18 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, Image } from 'react-native';
 
-import TextFader from '../../components/animations/text-fader/';
+import Spinner from '../../components/animations/spinner/';
 import styles from './styles';
 import globalStyles from '../../styles';
 
 class Loader extends React.Component {
   constructor(props) {
     super(props);
-    this.loopValues = [
-      'Creating account',
-      'Fecthing hairstyles',
-      'Grooming hair',
-      'Breeding hair models',
-      'Just joking'
-    ];
   }
   render() {
     return (
       <View style={[globalStyles.coverBackground, styles.background, globalStyles.centerChildrenBoth]}>
-        <TextFader loopValues={this.loopValues}/>
+        <Spinner source={require('../../assets/images/logomark-white.png')} style={{width: 70, height: 70}} />
       </View>
     )
   }

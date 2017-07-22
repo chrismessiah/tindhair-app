@@ -1,6 +1,5 @@
 import React from 'react';
 import { Text, View } from 'react-native';
-import { StackNavigator } from 'react-navigation';
 
 import ColorButton from '../../components/buttons/color-button/';
 import styles from './styles';
