@@ -6,6 +6,7 @@ let width = 200;
 const styles = StyleSheet.create({
   view: {
     width: width,
+    margin: 10,
   },
   touchable: {
     borderRadius: borderRadius,
