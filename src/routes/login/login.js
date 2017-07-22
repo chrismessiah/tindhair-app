@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, View, Image } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
+import TextFader from '../../components/faders/text-fader/';
 import GradientButton from '../../components/buttons/gradient-button/';
 import ColorButton from '../../components/buttons/color-button/';
 import TextButton from '../../components/buttons/text-button/';
@@ -72,10 +73,20 @@ class NextNext extends React.Component {
 };
 
 class Loader extends React.Component {
+  constructor(props) {
+    super(props);
+    this.loopValues = [
+      'Creating account',
+      'Fecthing hairstyles',
+      'Grooming hair',
+      'Breeding hair models',
+      'Just joking'
+    ];
+  }
   render() {
     return (
       <View style={styles.background2}>
-
+        <TextFader loopValues={this.loopValues} style={styles.text4}/>
       </View>
     )
   }

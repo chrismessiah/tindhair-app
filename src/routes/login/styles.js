@@ -75,13 +75,17 @@ const styles = StyleSheet.create({
     marginTop: 200,
   },
 
-
+  // ******* GENDER SELECTION *******
   sumbitButton3: {
     marginTop: 270,
+  },
+
+
+  // ******* LOADER 1 *******
+  text4: {
+    justifyContent: 'center',
+    flex: 1,
   }
-
-
-
 });
 
 export default styles;
