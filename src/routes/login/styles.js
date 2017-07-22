@@ -1,6 +1,25 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
+  // ********** GLOBAL ************
+  h1White: {
+    fontWeight: 'bold',
+    fontSize: 25,
+    color: 'white'
+  },
+  h2White: {
+    fontSize: 20,
+    color: 'white'
+  },
+  marginSmall: {
+    margin: 20,
+  },
+  marginSmaller: {
+    margin: 5,
+  },
+
+
+  // ***** SPLASH SCREEN ****
   background: {
     flex: 1,
     alignSelf: 'stretch',
@@ -32,7 +51,7 @@ const styles = StyleSheet.create({
 
 
 
-
+  // ******* EMAIL LOGIN *******
   background2: {
     flex: 1,
     alignSelf: 'stretch',
@@ -48,12 +67,17 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     marginRight: 20
   },
-  textInputContaier2: {
+  inputContaier2: {
     marginTop: 50,
     alignItems: 'center',
   },
   sumbitButton2: {
     marginTop: 200,
+  },
+
+
+  sumbitButton3: {
+    marginTop: 270,
   }
 
 

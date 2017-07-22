@@ -37,10 +37,10 @@ class Next extends React.Component {
           <TextButton style={styles.textButton2} value={"Sign in"} color={"white"} active={this.state.isSignInMode} onPress={() => {this._setMode(true)}}/>
           <TextButton style={styles.textButton2} value={"Sign up"} color={"white"} active={!this.state.isSignInMode} onPress={() => {this._setMode(false)}}/>
         </View>
-        <View style={styles.textInputContaier2}>
+        <View style={styles.inputContaier2}>
           <TextInput textColor={'#444444'} placeholder={'email'}/>
           <TextInput textColor={'#444444'} placeholder={'password'} isPassword={true}/>
-          <ColorButton style={styles.sumbitButton2} onPress={() => {this.props.navigation.navigate('NextNext')}} color={'#265BFF'} value={this.state.isSignInMode ? 'Sign in' : 'Sign up'}/>
+          <ColorButton style={styles.sumbitButton2} onPress={() => {this.props.navigation.navigate(!this.state.isSignInMode ? 'NextNext' : 'Loader')}} color={'#265BFF'} value={this.state.isSignInMode ? 'Sign in' : 'Sign up'}/>
         </View>
       </View>
     );
@@ -53,6 +53,25 @@ class NextNext extends React.Component {
     super(props);
     this.state = {selected: 0};
   }
+  _onClick = (param) => {
+    this.props.navigation.navigate('Loader')
+  }
+  render() {
+    return (
+      <View style={styles.background2}>
+        <View style={styles.inputContaier2}>
+          <Text style={styles.h1White}>Puh.. almost done!</Text>
+          <Text style={[styles.h2White, styles.marginSmall]}>Show me hairstyles for</Text>
+          <ColorButton style={[styles.sumbitButton3, styles.marginSmaller]} onPress={() => {this._onClick()}} color={'#265BFF'} value={'Men'}/>
+          <ColorButton style={styles.marginSmaller} onPress={() => {this._onClick()}} color={'#265BFF'} value={'Women'}/>
+          <ColorButton style={styles.marginSmaller} onPress={() => {this._onClick()}} color={'#265BFF'} value={'Both'}/>
+        </View>
+      </View>
+    )
+  }
+};
+
+class Loader extends React.Component {
   render() {
     return (
       <View style={styles.background2}>
@@ -76,6 +95,12 @@ const App = StackNavigator(
     },
     NextNext: {
       screen: NextNext,
+      navigationOptions: {
+        headerStyle: {backgroundColor: '#ffe0d9'},
+      }
+    },
+    Loader: {
+      screen: Loader,
       navigationOptions: {
         headerStyle: {backgroundColor: '#ffe0d9'},
       }

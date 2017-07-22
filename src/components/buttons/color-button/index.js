@@ -11,7 +11,7 @@ class ColorButton extends React.Component {
     const buttonPressHandler = (this.props.onPress) ? this.props.onPress : this._standardTouch;
     const buttonStyle = (this.props.color) ? [styles.buttonContainer, {backgroundColor: this.props.color}] : styles.buttonContainer;
     return (
-      <View style={this.props.style}>
+      <View style={[styles.view, this.props.style]}>
         <TouchableHighlight onPress={buttonPressHandler} style={styles.touchable}>
           <View style={buttonStyle}>
             <Text style={styles.buttonText}>{this.props.value}</Text>
