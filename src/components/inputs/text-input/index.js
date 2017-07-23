@@ -24,7 +24,10 @@ class CustomTextInput extends React.Component {
     }
   }
   _onType = (text) => {
-    this.setState({...this.state, text: text})
+    this.setState({...this.state, text: text});
+    if (this.props.callback) {
+      this.props.callback(text);
+    }
   }
   _onEndEdit = () => {
     if (this.state.text.length === 0) {

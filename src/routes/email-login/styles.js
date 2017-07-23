@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     marginTop: 50,
   },
   sumbitButton: {
-    marginTop: 200,
+    marginTop: 100,
   },
 });
 

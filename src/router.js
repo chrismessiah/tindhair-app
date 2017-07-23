@@ -8,16 +8,16 @@ import LoaderSpin from './routes/loader-spin/';
 
 const App = StackNavigator(
   {
-    LoginSelection: {
-      screen: LoaderSpin,
-      navigationOptions: {
-        headerStyle: {backgroundColor: '#ffe0d9'},
-      }
-    },
     // LoginSelection: {
-    //   screen: LoginSelection,
-    //   navigationOptions: {header: false},
+    //   screen: LoaderSpin,
+    //   navigationOptions: {
+    //     headerStyle: {backgroundColor: '#ffe0d9'},
+    //   }
     // },
+    LoginSelection: {
+      screen: LoginSelection,
+      navigationOptions: {header: false},
+    },
     EmailLogin: {
       screen: EmailLogin,
       navigationOptions: {
