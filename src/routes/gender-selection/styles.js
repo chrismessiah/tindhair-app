@@ -13,14 +13,16 @@ const styles = StyleSheet.create({
   marginMedium: {
     marginTop: 30,
   },
-  marginHuge: {
-    marginTop: 300,
+  buttonContainer: {
+    justifyContent: 'flex-end',
+    flex: 1,
+    marginBottom: 30,
   },
   marginSmall: {
     margin: 10,
   },
   background: {
-    backgroundColor: '#f26d4d'
+    backgroundColor: '#ee5d3d'
   },
 });
 

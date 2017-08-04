@@ -11,7 +11,8 @@ const styles = StyleSheet.create({
     marginTop: 30,
   },
   buttonContainer: {
-    marginTop: 420,
+    justifyContent: 'flex-end',
+    marginBottom: 30
   }
 });
 

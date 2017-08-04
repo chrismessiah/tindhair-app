@@ -8,3 +8,8 @@ export const FETCHING_DATA_FAILURE = 'FETCHING_DATA_FAILURE'
 export const LOGIN_TRY = 'LOGIN_TRY';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAIL = 'LOGIN_FAIL';
+
+export const STORE_SIGNUP_DETAILS = 'STORE_SIGNUP_DETAILS';
+export const SIGNUP_TRY = 'SIGNUP_TRY';
+export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
+export const SIGNUP_FAIL = 'SIGNUP_FAIL';

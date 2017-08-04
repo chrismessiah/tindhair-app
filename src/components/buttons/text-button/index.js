@@ -21,7 +21,9 @@ class TextButton extends React.Component {
     return (
       <View style={this.props.style}>
         <TouchableWithoutFeedback onPress={buttonPressHandler} style={styles.touchable}>
-          <View><Text style={buttonTextStyle}>{this.props.value}</Text></View>
+          <View style={styles.buttonContainer}>
+            <Text style={buttonTextStyle}>{this.props.value}</Text>
+          </View>
         </TouchableWithoutFeedback>
       </View>
     )

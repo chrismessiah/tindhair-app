@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   background: {
-    backgroundColor: '#f26d4d'
+    backgroundColor: '#ee5d3d'
   },
   logo: {
     height: 60,
@@ -10,14 +10,14 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginTop: 30,
   },
+  buttonContainer: {
+    justifyContent: 'flex-end',
+    marginBottom: 30
+  },
   textButtonContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
-    marginTop: 40,
-  },
-  textButton: {
-    marginLeft: 20,
-    marginRight: 20
+    marginTop: 30,
   },
   inputContaier: {
     marginTop: 50,

@@ -1,39 +1,14 @@
-import {LOGIN_TRY, LOGIN_SUCCESS, LOGIN_FAIL} from '../constants'
-import { login } from '../api/'
-
-// export function setUserDetails(data) {
-//   return {
-//     type: FETCHING_DATA,
-//     data,
-//   }
-// }
-//
-// export function getData() {
-//   return {
-//     type: FETCHING_DATA
-//   }
-// }
-//
-// export function getDataSuccess(data) {
-//   return {
-//     type: FETCHING_DATA_SUCCESS,
-//     data,
-//   }
-// }
-//
-// export function getDataFailure() {
-//   return {
-//     type: FETCHING_DATA_FAILURE
-//   }
-// }
-
+import * as c from '../constants'
+import { login, signup } from '../api/'
 
 // *********** MY OWN CODE ***********
+
+// **************** LOGIN ***************
 
 export function loginUser(email, password) {
   return (dispatch) => {
     dispatch(loginTry())
-    login(email, password)
+    login({email: email, password: password})
     .then(data => dispatch(loginSuccess(data)))
     .catch((err) => dispatch(loginFail(err)));
   }
@@ -41,25 +16,63 @@ export function loginUser(email, password) {
 
 export function loginTry() {
   return {
-    type: LOGIN_TRY
+    type: c.LOGIN_TRY
   }
 }
 
 export function loginSuccess() {
   return {
-    type: LOGIN_SUCCESS,
+    type: c.LOGIN_SUCCESS,
     data,
   }
 }
 
 export function loginFail(data) {
   return {
-    type: LOGIN_FAIL,
+    type: c.LOGIN_FAIL,
     data,
   }
 }
 
-// *********** MY OWN CODE ***********
+// **************** SIGNUP ***************
+
+export function signupUser(fullname, email, password, gender) {
+  return (dispatch) => {
+    dispatch(signupTry())
+    signup({email: email, password: password, gender: gender, fullname: fullname})
+    .then(data => dispatch(signupSuccess(data)))
+    .catch((err) => dispatch(signupFail(err)));
+  }
+}
+
+export function storeSignupDetails(data) {
+  return {
+    type: c.STORE_SIGNUP_DETAILS,
+    data
+  }
+}
+
+export function signupTry() {
+  return {
+    type: c.SIGNUP_TRY
+  }
+}
+
+export function signupSuccess() {
+  return {
+    type: c.SIGNUP_SUCCESS,
+    data,
+  }
+}
+
+export function signupFail(data) {
+  return {
+    type: c.SIGNUP_FAIL,
+    data,
+  }
+}
+
+
 
 
 

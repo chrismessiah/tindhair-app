@@ -5,11 +5,11 @@ import { API_URL } from './constants';
 
 
 export function login(data) {
-  return POST(`login/`, data);
+  return POST(`auth/login/`, data);
 };
 
 export function signup(data) {
-  return POST(`signup/`, data);
+  return POST(`auth/signup/`, data);
 };
 
 

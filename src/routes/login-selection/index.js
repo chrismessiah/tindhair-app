@@ -16,7 +16,7 @@ class LoginSelection extends React.Component {
     return (
       <Image source={require('../../assets/images/login-bg.jpg')} style={globalStyles.coverBackground} >
         <Image source={require('../../assets/images/logo.png')} style={styles.logo} />
-        {this.props.appData.isFetching && <Text>Loading</Text>}
+        {this.props.global.isFetching && <Text>Loading</Text>}
         <View style={[globalStyles.centerChildrenHorizontal, styles.buttonContainer]}>
           <GradientButton onPress={() => {this._fbLogin()}} style={styles.fbButton} colors={['#1B4DFF', '#5CA1FF']} value={"Log in with Facebook"}/>
           <GradientButton onPress={() => {this.props.navigation.navigate('EmailLogin')}} style={styles.emailButton} colors={['#A09E9E', '#BDBDBD']} value={"Use email instead"}/>
@@ -28,7 +28,7 @@ class LoginSelection extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    appData: state.appData
+    global: state.global
   }
 }
 

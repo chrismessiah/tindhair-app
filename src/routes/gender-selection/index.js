@@ -1,17 +1,26 @@
 import React from 'react';
+import { connect } from 'react-redux'
 import { Text, View } from 'react-native';
 
 import ColorButton from '../../components/buttons/color-button/';
 import styles from './styles';
 import globalStyles from '../../styles';
 
+import { signupUser } from '../../actions/';
+
 class GenderSelection extends React.Component {
   constructor(props) {
     super(props);
     this.state = {selected: 0};
   }
-  _onClick = (param) => {
-    this.props.navigation.navigate('Loader')
+  _onClick = (gender) => {
+    let {fullname, email, password} = this.props.global;
+    this.props.dispatch(signupUser(fullname, email, password, gender));
+  }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.global.isLoading) {
+      this.props.navigation.navigate('PostAuth');
+    }
   }
   render() {
     return (
@@ -19,13 +28,21 @@ class GenderSelection extends React.Component {
         <View style={styles.marginMedium}>
           <Text style={styles.h1}>Puh.. almost done!</Text>
           <Text style={[styles.h2, styles.marginSmall]}>Show me hairstyles for</Text>
-          <ColorButton style={styles.marginHuge} onPress={() => {this._onClick()}} color={'#265BFF'} value={'Men'}/>
-          <ColorButton onPress={() => {this._onClick()}} color={'#265BFF'} value={'Women'}/>
-          <ColorButton onPress={() => {this._onClick()}} color={'#265BFF'} value={'Both'}/>
+        </View>
+        <View style={styles.buttonContainer}>
+          <ColorButton onPress={() => this._onClick('M')} color={'#5f74e4'} value={'Men'}/>
+          <ColorButton onPress={() => this._onClick('F')} color={'#5f74e4'} value={'Women'}/>
+          <ColorButton onPress={() => this._onClick('O')} color={'#5f74e4'} value={'Both'}/>
         </View>
       </View>
     )
   }
 };
 
-export default GenderSelection;
+function mapStateToProps(state) {
+  return {
+    global: state.global
+  }
+}
+
+export default connect(mapStateToProps)(GenderSelection);

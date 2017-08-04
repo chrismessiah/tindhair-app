@@ -7,7 +7,7 @@ import ColorButton from '../../components/buttons/color-button/';
 import TextButton from '../../components/buttons/text-button/';
 import TextInput from '../../components/inputs/text-input/';
 
-import { loginUser } from '../../actions/'
+import { loginUser, storeSignupDetails } from '../../actions/'
 
 import styles from './styles';
 import globalStyles from '../../styles';
@@ -15,7 +15,7 @@ import globalStyles from '../../styles';
 class EmailLogin extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {isLoginMode: true, email: '', password: '', username: ''};
+    this.state = {isLoginMode: true, email: '', password: '', fullname: ''};
   }
   _updateFields = (field) => {
     return (text) => {
@@ -27,7 +27,7 @@ class EmailLogin extends React.Component {
 
   _updateEmail = this._updateFields('email');
   _updatePassword = this._updateFields('password');
-  _updateUsername = this._updateFields('username');
+  _updateFullname = this._updateFields('fullname');
 
   _setMode = (mode) => {
     this.setState({...this.state, isLoginMode: mode});
@@ -40,23 +40,31 @@ class EmailLogin extends React.Component {
       viewTopInset : 15,
     });
   }
-  _handleButtonPress = () => {
-    if ((!this.state.isLoginMode) && (this.state.username === '')) {
-      return this._showError("You haven't specified a username!")
+  _isValidInput = () => {
+    if ((!this.state.isLoginMode) && (this.state.fullname === '')) {
+      this._showError("You haven't specified a fullname!")
+      return false;
     }
-    if (this.state.email === '') {
-      return this._showError("You haven't specified an email!")
+    if (this.state.email === '' || this.state.email.indexOf('@') === -1) {
+      this._showError("You haven't specified an email!")
+      return false;
     }
     if (this.state.password === '') {
-      return this._showError("You haven't specified a password!")
+      this._showError("You haven't specified a password!")
+      return false;
     }
-
-    this.props.dispatch(loginUser({email: this.state.email, password: this.state.password}))
-
-    if (this.state.isLoginMode) {
+    return true;
+  }
+  _handleLogin = () => {
+    if (this._isValidInput()) {
+      this.props.dispatch(loginUser({email: this.state.email, password: this.state.password}))
       this.props.navigation.navigate('Loader')
-    } else {
-      this.props.navigation.navigate('GenderSelection')
+    }
+  }
+  _handleSignup = () => {
+    if (this._isValidInput()) {
+      this.props.dispatch(storeSignupDetails({email: this.state.email, password: this.state.password, fullname: this.state.fullname}))
+      this.props.navigation.navigate('GenderSelection');
     }
   }
   render() {
@@ -68,12 +76,12 @@ class EmailLogin extends React.Component {
           <TextButton style={styles.textButton} value={"Sign up"} color={"white"} active={!this.state.isLoginMode} onPress={() => {this._setMode(false)}}/>
         </View>
         <View style={[globalStyles.centerChildrenHorizontal, styles.inputContaier]}>
-          {!this.state.isLoginMode && <TextInput callback={this._updateUsername} textColor={'#444444'} placeholder={'username'}/>}
+          {!this.state.isLoginMode && <TextInput callback={this._updateFullname} textColor={'#444444'} placeholder={'fullname'}/>}
           <TextInput callback={this._updateEmail} textColor={'#444444'} placeholder={'email'}/>
           <TextInput callback={this._updatePassword} textColor={'#444444'} placeholder={'password'} isPassword={true}/>
         </View>
-        <View style={[globalStyles.centerChildrenHorizontal]}>
-          <ColorButton style={styles.sumbitButton} onPress={this._handleButtonPress} color={'#265BFF'} value={this.state.isLoginMode ? 'Sign in' : 'Sign up'}/>
+        <View style={[globalStyles.centerChildrenHorizontal, styles.buttonContainer]}>
+          <ColorButton style={styles.sumbitButton} onPress={(this.state.isLoginMode) ? this._handleLogin : this._handleSignup} color={'#5f74e4'} value={this.state.isLoginMode ? 'Sign in' : 'Sign up'}/>
         </View>
       </View>
     );
@@ -82,7 +90,7 @@ class EmailLogin extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    appData: state.appData
+    global: state.global
   }
 }
 

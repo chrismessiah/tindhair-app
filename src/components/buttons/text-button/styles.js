@@ -7,6 +7,12 @@ const styles = StyleSheet.create({
     color: 'black',
     textAlign: 'center',
     backgroundColor: 'transparent',
+  },
+  buttonContainer: {
+    paddingTop: 10,
+    paddingBottom: 10,
+    paddingLeft: 30,
+    paddingRight: 30,
   }
 });
 

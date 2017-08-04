@@ -4,16 +4,10 @@ import LoginSelection from './routes/login-selection/';
 import EmailLogin from './routes/email-login/';
 import GenderSelection from './routes/gender-selection/';
 import Loader from './routes/loader/';
-import LoaderSpin from './routes/loader-spin/';
+import PostAuth from './routes/post-auth/';
 
 const App = StackNavigator(
   {
-    // LoginSelection: {
-    //   screen: LoaderSpin,
-    //   navigationOptions: {
-    //     headerStyle: {backgroundColor: '#ffe0d9'},
-    //   }
-    // },
     LoginSelection: {
       screen: LoginSelection,
       navigationOptions: {header: false},
@@ -36,7 +30,14 @@ const App = StackNavigator(
       navigationOptions: {
         headerStyle: {backgroundColor: '#ffe0d9'},
       }
-    }
+    },
+    PostAuth: {
+      screen: PostAuth,
+      navigationOptions: {header: false},
+      navigationOptions: {
+        headerStyle: {backgroundColor: '#ffe0d9'},
+      }
+    },
   },
   {
     initialRouteName: 'LoginSelection',

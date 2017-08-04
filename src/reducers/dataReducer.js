@@ -1,53 +1,54 @@
-import { LOGIN_TRY, LOGIN_SUCCESS, LOGIN_FAIL } from '../constants'
+import * as c from '../constants'
 const initialState = {
-  data: [],
-  dataFetched: false,
-  isFetching: false,
+  isLoading: false,
   error: false
 }
 
 export default function dataReducer (state = initialState, action) {
   switch (action.type) {
-    case LOGIN_TRY:
+    case c.LOGIN_TRY:
       return {
         ...state,
-        data: [],
-        isFetching: true,
+        //data: [],
+        isLoading: true,
       }
-    case LOGIN_SUCCESS:
+    case c.LOGIN_SUCCESS:
       return {
         ...state,
-        data: action.data,
-        isFetching: false,
+        //data: action.data,
+        isLoading: false,
       }
-    case LOGIN_FAIL:
+    case c.LOGIN_FAIL:
       return {
         ...state,
-        data: action.data,
-        isFetching: false,
+        //data: action.data,
+        isLoading: false,
         error: true,
       }
-
-
-
-    // case FETCHING_DATA:
-    //   return {
-    //     ...state,
-    //     data: [],
-    //     isFetching: true
-    //   }
-    // case FETCHING_DATA_SUCCESS:
-    //   return {
-    //     ...state,
-    //     isFetching: false,
-    //     data: action.data
-    //   }
-    // case FETCHING_DATA_FAILURE:
-    //   return {
-    //     ...state,
-    //     isFetching: false,
-    //     error: true
-    //   }
+    case c.STORE_SIGNUP_DETAILS:
+      return {
+        ...state,
+        fullname: action.data.fullname,
+        email: action.data.email,
+        password: action.data.password,
+      }
+    case c.SIGNUP_TRY:
+      return {
+        ...state,
+        isLoading: true,
+      }
+    case c.SIGNUP_FAIL:
+      return {
+        ...state,
+        signupSuccess: false,
+        isLoading: false,
+      }
+    case c.SIGNUP_SUCCESS:
+      return {
+        ...state,
+        signupSuccess: true,
+        isLoading: false,
+      }
     default:
       return state
   }
