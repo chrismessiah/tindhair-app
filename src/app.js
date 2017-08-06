@@ -8,13 +8,13 @@ class App extends React.Component {
     return (
       <AppNavigator navigation={addNavigationHelpers({
         dispatch: this.props.dispatch,
-        state: this.props.nav,
+        state: this.props.global,
       })}/>
     )
   }
 }
 const mapStateToProps = (state) => ({
-  nav: state.nav
+  global: state.global
 });
 const AppWithNavigationState = connect(mapStateToProps)(App);
 

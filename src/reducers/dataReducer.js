@@ -1,28 +1,31 @@
 import * as c from '../constants'
-const initialState = {
-  isLoading: false,
-  error: false
-}
+import AppNavigator from '../router'
+
+let initialState = AppNavigator.router.getStateForAction(AppNavigator.router.getActionForPathAndParams('LoginSelection'));
+initialState = {
+  ...initialState,
+    isLoading: false,
+    error: false
+};
 
 export default function dataReducer (state = initialState, action) {
-  console.log('Datareducer ran');
+  const nextState = AppNavigator.router.getStateForAction(action, state);
+  if (nextState) return nextState;
+
   switch (action.type) {
     case c.LOGIN_TRY:
       return {
         ...state,
-        //data: [],
         isLoading: true,
       }
     case c.LOGIN_SUCCESS:
       return {
         ...state,
-        //data: action.data,
         isLoading: false,
       }
     case c.LOGIN_FAIL:
       return {
         ...state,
-        //data: action.data,
         isLoading: false,
         error: true,
       }
