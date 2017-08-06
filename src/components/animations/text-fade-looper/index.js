@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, Text, Animated } from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
 import TimerMixin from 'react-timer-mixin';
 import reactMixin from 'react-mixin';
 

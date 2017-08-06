@@ -69,14 +69,21 @@ const request = (type, route, params) => {
   return new Promise((resolve, reject) => {
     axios(config)
     .then(response => {
-      console.log(response);
-      resolve(parseResponse(response));
+      resolve(handleResponse(response));
     }).catch(err => {
       printError(err);
       reject(err)
     });
   })
 }
+
+const handleResponse = (response) => {
+  if (response.status !== 200) {
+    console.log(response);
+    throw 'Error status is not 200';
+  }
+  return parseResponse(response)
+};
 
 const printError = (err) => {
   let parsedError = parseResponse(err, true);

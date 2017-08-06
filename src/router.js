@@ -6,7 +6,7 @@ import GenderSelection from './routes/gender-selection/';
 import Loader from './routes/loader/';
 import PostAuth from './routes/post-auth/';
 
-const App = StackNavigator(
+const AppNavigator = StackNavigator(
   {
     LoginSelection: {
       screen: LoginSelection,
@@ -44,4 +44,4 @@ const App = StackNavigator(
   }
 );
 
-export default App;
+export default AppNavigator;

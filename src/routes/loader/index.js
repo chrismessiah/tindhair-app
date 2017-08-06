@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 
-import TextFader from '../../components/animations/text-fader/';
+import TextFader from '../../components/animations/text-fade-looper/';
 import styles from './styles';
 import globalStyles from '../../styles';
 

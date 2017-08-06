@@ -5,6 +5,7 @@ const initialState = {
 }
 
 export default function dataReducer (state = initialState, action) {
+  console.log('Datareducer ran');
   switch (action.type) {
     case c.LOGIN_TRY:
       return {
