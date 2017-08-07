@@ -4,18 +4,31 @@ import { NavigationActions } from 'react-navigation';
 
 // **************** LOGIN ***************
 
-export function loginUser(email, password) {
+export function loginUser(data, backToScreenKey) {
   return (dispatch) => {
+    dispatch(NavigationActions.navigate({routeName: 'Loader'}));
     dispatch(loginTry())
-    login({email: email, password: password})
-    .then(data => dispatch(loginSuccess(data)))
-    .catch((err) => dispatch(loginFail(err)));
+    login(data)
+    .then(response => {
+      dispatch(loginSuccess())
+
+      // store there somewhere!
+      response.access_token
+      response.refresh_token
+    })
+    .catch((err) => {
+      dispatch(loginFail());
+      goBackToScreen(dispatch, backToScreenKey)
+      .then(() => {
+        dispatch(showMessage({title: `Error ${err.code}`, message: err.message, type: 'error'}))
+      })
+    });
   }
 }
 
 const loginTry = () => {return {type: c.LOGIN_TRY}};
 const loginSuccess = () => {return {type: c.LOGIN_SUCCESS}};
-const loginFail = (data) => {return {type: c.LOGIN_FAIL, data}};
+const loginFail = () => {return {type: c.LOGIN_FAIL}};
 
 // **************** SIGNUP ***************
 

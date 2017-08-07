@@ -33,11 +33,7 @@ class EmailLogin extends React.Component {
     this.setState({...this.state, isLoginMode: mode});
   }
   _showError = (text) => {
-    this.props.dispatch(showMessage({
-      title: 'Error',
-      message: text,
-      type: 'error',
-    }));
+    this.props.dispatch(showMessage({title: 'Error', message: text, type: 'error'}));
   }
   componentWillReceiveProps(nextProps) {
     if (typeof nextProps.global.highlight === 'string' && nextProps.global.highlight === 'L') {
@@ -61,8 +57,7 @@ class EmailLogin extends React.Component {
   }
   _handleLogin = () => {
     if (this._isValidInput()) {
-      this.props.dispatch(loginUser({email: this.state.email, password: this.state.password}))
-      this.props.navigation.navigate('Loader')
+      this.props.dispatch(loginUser({email: this.state.email, password: this.state.password}, this.props.global.screenKeys[1]));
     }
   }
   _handleSignup = () => {
