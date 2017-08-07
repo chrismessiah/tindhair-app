@@ -1,5 +1,6 @@
 import * as c from '../constants'
 import { login, signup } from '../api/'
+import { NavigationActions } from 'react-navigation';
 
 // *********** MY OWN CODE ***********
 
@@ -36,12 +37,19 @@ export function loginFail(data) {
 
 // **************** SIGNUP ***************
 
-export function signupUser(fullname, email, password, gender) {
+export function signupUser(fullname, email, password, gender, backToScreenKey) {
   return (dispatch) => {
     dispatch(signupTry())
+    dispatch(NavigationActions.navigate({routeName: 'PostAuth'}));
     signup({email: email, password: password, gender: gender, fullname: fullname})
-    .then(data => dispatch(signupSuccess(data)))
-    .catch((err) => dispatch(signupFail(err)));
+    .then(data => {
+      dispatch(signupSuccess(data));
+      dispatch(NavigationActions.back({key: backToScreenKey}));
+    })
+    .catch((err) => {
+      dispatch(signupFail(err));
+      dispatch(NavigationActions.back({key: backToScreenKey}));
+    });
   }
 }
 
@@ -73,8 +81,14 @@ export function signupFail(data) {
 }
 
 
+// **************** NAVIGATION ***************
 
-
+export function goBackN(data) {
+  return {
+    type: c.GO_BACK_N,
+    data,
+  }
+}
 
 
 /*

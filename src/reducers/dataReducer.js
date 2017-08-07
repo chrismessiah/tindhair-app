@@ -5,14 +5,41 @@ let initialState = AppNavigator.router.getStateForAction(AppNavigator.router.get
 initialState = {
   ...initialState,
     isLoading: false,
-    error: false
+    error: false,
+    screenKeys: [],
 };
 
 export default function dataReducer (state = initialState, action) {
-  const nextState = AppNavigator.router.getStateForAction(action, state);
-  if (nextState) return nextState;
+  let tempState, nextState, nextScreenKeys;
 
   switch (action.type) {
+    case "Navigation/NAVIGATE":
+      tempState = AppNavigator.router.getStateForAction(action, state);
+      const lastRouteKey = tempState.routes[tempState.routes.length-1].key;
+      nextScreenKeys = tempState.screenKeys;
+      nextScreenKeys.push(lastRouteKey);
+      return {
+        ...tempState,
+        screenKeys: nextScreenKeys
+      }
+    case "Navigation/BACK":
+      tempState = AppNavigator.router.getStateForAction(action, state);
+      nextScreenKeys = tempState.screenKeys;
+      if (action.key) {
+        nextScreenKeys = tempState.screenKeys;
+        let indexToPopTo = nextScreenKeys.indexOf(action.key);
+        if (indexToPopTo === -1) throw 'Error: given key not in screenKeys';
+        const start = nextScreenKeys.length;
+        for (var i = start; i > indexToPopTo; i--) {
+          nextScreenKeys.pop();
+        }
+      } else {
+        nextScreenKeys.pop();
+      }
+      return {
+        ...tempState,
+        screenKeys: nextScreenKeys
+      }
     case c.LOGIN_TRY:
       return {
         ...state,
