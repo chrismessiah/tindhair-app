@@ -8,20 +8,6 @@ import styles from './styles';
 import globalStyles from '../../styles';
 
 class PostAuth extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  componentWillReceiveProps(nextProps) {
-    console.log(nextProps);
-    if (nextProps.global.signupSuccess) {
-      if (nextProps.global.signupSuccess === true) {
-        this.props.navigation.navigate('PostAuth');
-      } else {
-        const backAction = NavigationActions.back({key: 'EmailLogin'});
-        this.props.navigation.dispatch(backAction);
-      }
-    }
-  }
   render() {
     return (
       <View style={[globalStyles.coverBackground, styles.background, globalStyles.centerChildrenBoth]}>
@@ -31,10 +17,4 @@ class PostAuth extends React.Component {
   }
 };
 
-function mapStateToProps(state) {
-  return {
-    global: state.global
-  }
-}
-
-export default connect(mapStateToProps)(PostAuth);
+export default PostAuth;

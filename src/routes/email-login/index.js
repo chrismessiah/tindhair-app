@@ -1,13 +1,13 @@
 import React from 'react';
 import { View, Image } from 'react-native';
 import { connect } from 'react-redux'
-var MessageBarManager = require('react-native-message-bar').MessageBarManager;
+//var MessageBarManager = require('react-native-message-bar').MessageBarManager;
 
 import ColorButton from '../../components/buttons/color-button/';
 import TextButton from '../../components/buttons/text-button/';
 import TextInput from '../../components/inputs/text-input/';
 
-import { loginUser, storeSignupDetails } from '../../actions/'
+import { loginUser, storeSignupDetails, showMessage } from '../../actions/'
 
 import styles from './styles';
 import globalStyles from '../../styles';
@@ -33,12 +33,12 @@ class EmailLogin extends React.Component {
     this.setState({...this.state, isLoginMode: mode});
   }
   _showError = (text) => {
-    MessageBarManager.showAlert({
-      title: 'Error',
-      message: text,
-      alertType: 'error',
-      viewTopInset : 15,
-    });
+    this.props.dispatch(showMessage({title: 'Error', message: text, type: 'error'}));
+  }
+  componentWillReceiveProps(nextProps) {
+    if (typeof nextProps.global.highlight === 'string' && nextProps.global.highlight === 'L') {
+      this.setState({...this.state, isLoginMode: true})
+    }
   }
   _isValidInput = () => {
     if ((!this.state.isLoginMode) && (this.state.fullname === '')) {
@@ -57,8 +57,7 @@ class EmailLogin extends React.Component {
   }
   _handleLogin = () => {
     if (this._isValidInput()) {
-      this.props.dispatch(loginUser({email: this.state.email, password: this.state.password}))
-      this.props.navigation.navigate('Loader')
+      this.props.dispatch(loginUser({email: this.state.email, password: this.state.password}, this.props.global.screenKeys[1]));
     }
   }
   _handleSignup = () => {
