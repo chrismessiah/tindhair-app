@@ -71,8 +71,7 @@ const request = (type, route, params) => {
     .then(response => {
       resolve(handleResponse(response));
     }).catch(err => {
-      printError(err);
-      reject(err)
+      reject(getErrorMessage(err))
     });
   })
 }
@@ -85,14 +84,15 @@ const handleResponse = (response) => {
   return parseResponse(response)
 };
 
-const printError = (err) => {
-  let parsedError = parseResponse(err, true);
-  if (parsedError) {
-    for (var i = 0; i < parsedError.length; i++) {
-      console.log(`ERROR: ${parsedError[i].status} - ${parsedError[i].title} `);
+const getErrorMessage = (err) => {
+  if (err && err.request && err.request._response) {
+    try {
+      let error = JSON.parse(err.request._response);
+      return {code: error.errors[0].status, message: error.errors[0].title}
+    } catch (e) {
+      console.log(err);
+      return {code: '999', message: 'Unknown error, check log'}
     }
-  } else {
-    console.log(err);
   }
 }
 

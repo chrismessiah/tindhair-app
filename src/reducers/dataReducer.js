@@ -7,12 +7,17 @@ initialState = {
     isLoading: false,
     error: false,
     screenKeys: [],
+    alertMessage: null,
 };
 
 export default function dataReducer (state = initialState, action) {
   let tempState, nextState, nextScreenKeys;
 
   switch (action.type) {
+
+
+
+    // ****************** NAVIGATION ************************
     case "Navigation/NAVIGATE":
       tempState = AppNavigator.router.getStateForAction(action, state);
       const lastRouteKey = tempState.routes[tempState.routes.length-1].key;
@@ -39,6 +44,24 @@ export default function dataReducer (state = initialState, action) {
       return {
         ...tempState,
         screenKeys: nextScreenKeys
+      }
+
+
+    // ****************** DATA ************************
+    case c.SET_MESSAGE:
+      return {
+        ...state,
+        alertMessage: {
+          title: action.data.title,
+          message: action.data.message,
+          type: action.data.type,
+          duration: action.data.duration || 3000,
+        }
+      }
+    case c.NULLIFY_MESSAGE:
+      return {
+        ...state,
+        alertMessage: null,
       }
     case c.LOGIN_TRY:
       return {

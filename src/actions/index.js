@@ -43,12 +43,18 @@ export function signupUser(fullname, email, password, gender, backToScreenKey) {
     dispatch(NavigationActions.navigate({routeName: 'PostAuth'}));
     signup({email: email, password: password, gender: gender, fullname: fullname})
     .then(data => {
-      dispatch(signupSuccess(data));
+      dispatch(signupSuccess());
       dispatch(NavigationActions.back({key: backToScreenKey}));
+      setTimeout(() => {
+        dispatch(showMessage({title: 'Success', message: 'Please check your mail to verify your account', type: 'success'}))
+      }, 500);
     })
     .catch((err) => {
-      dispatch(signupFail(err));
+      dispatch(signupFail());
       dispatch(NavigationActions.back({key: backToScreenKey}));
+      setTimeout(() => {
+        dispatch(showMessage({title: `Error ${err.code}`, message: err.message, type: 'error'}))
+      }, 500);
     });
   }
 }
@@ -68,25 +74,38 @@ export function signupTry() {
 
 export function signupSuccess() {
   return {
-    type: c.SIGNUP_SUCCESS,
+    type: c.SIGNUP_SUCCESS
+  }
+}
+
+export function signupFail() {
+  return {
+    type: c.SIGNUP_FAIL
+  }
+}
+
+
+// **************** MESSAGES ***************
+
+export function showMessage(data) {
+  return (dispatch) => {
+    dispatch(setMessage(data));
+    setTimeout(() => {
+      dispatch(nullifyMessage());
+    }, 50);
+  }
+}
+
+export function setMessage(data) {
+  return {
+    type: c.SET_MESSAGE,
     data,
   }
 }
 
-export function signupFail(data) {
+export function nullifyMessage() {
   return {
-    type: c.SIGNUP_FAIL,
-    data,
-  }
-}
-
-
-// **************** NAVIGATION ***************
-
-export function goBackN(data) {
-  return {
-    type: c.GO_BACK_N,
-    data,
+    type: c.NULLIFY_MESSAGE,
   }
 }
 

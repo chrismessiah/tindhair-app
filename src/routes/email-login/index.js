@@ -1,13 +1,13 @@
 import React from 'react';
 import { View, Image } from 'react-native';
 import { connect } from 'react-redux'
-var MessageBarManager = require('react-native-message-bar').MessageBarManager;
+//var MessageBarManager = require('react-native-message-bar').MessageBarManager;
 
 import ColorButton from '../../components/buttons/color-button/';
 import TextButton from '../../components/buttons/text-button/';
 import TextInput from '../../components/inputs/text-input/';
 
-import { loginUser, storeSignupDetails } from '../../actions/'
+import { loginUser, storeSignupDetails, showMessage } from '../../actions/'
 
 import styles from './styles';
 import globalStyles from '../../styles';
@@ -33,12 +33,11 @@ class EmailLogin extends React.Component {
     this.setState({...this.state, isLoginMode: mode});
   }
   _showError = (text) => {
-    MessageBarManager.showAlert({
+    this.props.dispatch(showMessage({
       title: 'Error',
       message: text,
-      alertType: 'error',
-      viewTopInset : 15,
-    });
+      type: 'error',
+    }));
   }
   _isValidInput = () => {
     if ((!this.state.isLoginMode) && (this.state.fullname === '')) {
