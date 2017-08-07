@@ -16,3 +16,5 @@ export const SIGNUP_FAIL = 'SIGNUP_FAIL';
 
 export const SET_MESSAGE = 'SET_MESSAGE';
 export const NULLIFY_MESSAGE = 'NULLIFY_MESSAGE';
+
+export const HIGHLIGHT_LOG_IN = 'HIGHLIGHT_LOG_IN';

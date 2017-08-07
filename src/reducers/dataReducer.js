@@ -58,6 +58,11 @@ export default function dataReducer (state = initialState, action) {
           duration: action.data.duration || 3000,
         }
       }
+    case c.HIGHLIGHT_LOG_IN:
+      return {
+        ...state,
+        highlight: 'L'
+      }
     case c.NULLIFY_MESSAGE:
       return {
         ...state,

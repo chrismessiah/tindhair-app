@@ -39,6 +39,11 @@ class EmailLogin extends React.Component {
       type: 'error',
     }));
   }
+  componentWillReceiveProps(nextProps) {
+    if (typeof nextProps.global.highlight === 'string' && nextProps.global.highlight === 'L') {
+      this.setState({...this.state, isLoginMode: true})
+    }
+  }
   _isValidInput = () => {
     if ((!this.state.isLoginMode) && (this.state.fullname === '')) {
       this._showError("You haven't specified a fullname!")

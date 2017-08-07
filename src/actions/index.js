@@ -44,18 +44,33 @@ export function signupUser(fullname, email, password, gender, backToScreenKey) {
     signup({email: email, password: password, gender: gender, fullname: fullname})
     .then(data => {
       dispatch(signupSuccess());
-      dispatch(NavigationActions.back({key: backToScreenKey}));
-      setTimeout(() => {
-        dispatch(showMessage({title: 'Success', message: 'Please check your mail to verify your account', type: 'success'}))
-      }, 500);
+      return goBackToScreen(dispatch, backToScreenKey);
+    }).then(() => {
+      dispatch(highlightLogIn());
+      dispatch(showMessage({title: 'Success', message: 'Please check your mail to verify your account', type: 'success'}))
     })
     .catch((err) => {
       dispatch(signupFail());
-      dispatch(NavigationActions.back({key: backToScreenKey}));
-      setTimeout(() => {
+      goBackToScreen(dispatch, backToScreenKey)
+      .then(() => {
         dispatch(showMessage({title: `Error ${err.code}`, message: err.message, type: 'error'}))
-      }, 500);
+      });
     });
+  }
+}
+
+export function goBackToScreen(dispatch, key) {
+  return new Promise((resolve, reject) => {
+    dispatch(NavigationActions.back({key: key}));
+    setTimeout(() => {
+      resolve();
+    }, 500)
+  })
+}
+
+export function highlightLogIn() {
+  return {
+    type: c.HIGHLIGHT_LOG_IN,
   }
 }
 
