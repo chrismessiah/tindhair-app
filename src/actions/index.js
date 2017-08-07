@@ -2,8 +2,6 @@ import * as c from '../constants'
 import { login, signup } from '../api/'
 import { NavigationActions } from 'react-navigation';
 
-// *********** MY OWN CODE ***********
-
 // **************** LOGIN ***************
 
 export function loginUser(email, password) {
@@ -15,27 +13,18 @@ export function loginUser(email, password) {
   }
 }
 
-export function loginTry() {
-  return {
-    type: c.LOGIN_TRY
-  }
-}
-
-export function loginSuccess() {
-  return {
-    type: c.LOGIN_SUCCESS,
-    data,
-  }
-}
-
-export function loginFail(data) {
-  return {
-    type: c.LOGIN_FAIL,
-    data,
-  }
-}
+const loginTry = () => {return {type: c.LOGIN_TRY}};
+const loginSuccess = () => {return {type: c.LOGIN_SUCCESS}};
+const loginFail = (data) => {return {type: c.LOGIN_FAIL, data}};
 
 // **************** SIGNUP ***************
+
+export function storeSignupDetails(data) {
+  return {
+    type: c.STORE_SIGNUP_DETAILS,
+    data
+  }
+}
 
 export function signupUser(fullname, email, password, gender, backToScreenKey) {
   return (dispatch) => {
@@ -59,46 +48,10 @@ export function signupUser(fullname, email, password, gender, backToScreenKey) {
   }
 }
 
-export function goBackToScreen(dispatch, key) {
-  return new Promise((resolve, reject) => {
-    dispatch(NavigationActions.back({key: key}));
-    setTimeout(() => {
-      resolve();
-    }, 500)
-  })
-}
-
-export function highlightLogIn() {
-  return {
-    type: c.HIGHLIGHT_LOG_IN,
-  }
-}
-
-export function storeSignupDetails(data) {
-  return {
-    type: c.STORE_SIGNUP_DETAILS,
-    data
-  }
-}
-
-export function signupTry() {
-  return {
-    type: c.SIGNUP_TRY
-  }
-}
-
-export function signupSuccess() {
-  return {
-    type: c.SIGNUP_SUCCESS
-  }
-}
-
-export function signupFail() {
-  return {
-    type: c.SIGNUP_FAIL
-  }
-}
-
+const highlightLogIn = () => {return {type: c.HIGHLIGHT_LOG_IN}}
+const signupTry = () => {return {type: c.SIGNUP_TRY}}
+const signupSuccess = () => {return {type: c.SIGNUP_SUCCESS}}
+const signupFail = () => {return {type: c.SIGNUP_FAIL}}
 
 // **************** MESSAGES ***************
 
@@ -111,31 +64,16 @@ export function showMessage(data) {
   }
 }
 
-export function setMessage(data) {
-  return {
-    type: c.SET_MESSAGE,
-    data,
-  }
-}
+const setMessage = (data) => {return {type: c.SET_MESSAGE, data}}
+const nullifyMessage = () => {return {type: c.NULLIFY_MESSAGE}}
 
-export function nullifyMessage() {
-  return {
-    type: c.NULLIFY_MESSAGE,
-  }
-}
+// *************************** NAVIGATION *************************
 
-
-/*
-* The fetchData function is now a thunk. When fetchData is called, it returns
-* a function that will then dispatch the getData action. Then, getPeople is
-* called. Once getPeople resolves, it will then dispatch the getDataSuccess action.
-*/
-export function fetchData() {
-  return (dispatch) => {
-    dispatch(getData())
-    getPeople()
-      .then((data) => {
-        dispatch(getDataSuccess(data))
-      });
-  }
+export function goBackToScreen(dispatch, key) {
+  return new Promise((resolve, reject) => {
+    dispatch(NavigationActions.back({key: key}));
+    setTimeout(() => {
+      resolve();
+    }, 500)
+  })
 }
