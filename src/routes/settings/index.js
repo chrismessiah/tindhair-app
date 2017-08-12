@@ -7,10 +7,10 @@ import globalStyles from '../../styles';
 import { fetchHairstyles } from '../../actions/';
 import ColorButton from '../../components/buttons/color-button/';
 
-class Main extends React.Component {
+class Settings extends React.Component {
   static navigationOptions = {
     tabBarIcon: ({ tintColor }) => (
-      <Image source={require('../../assets/images/haircut.png')} style={{width: 22, height: 22, tintColor: tintColor}} />
+      <Image source={require('../../assets/images/cogwheel.png')} style={{width: 22, height: 22, tintColor: tintColor}} />
     ),
   }
   constructor(props) {
@@ -74,4 +74,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(Main)
+export default connect(mapStateToProps)(Settings)

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="50px" height="50px" viewBox="0 0 50 50" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 46.1 (44463) - http://www.bohemiancoding.com/sketch -->
+    <title>user</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="user">
+            <circle id="Oval" stroke="#D8D8D8" stroke-width="2" stroke-linecap="round" cx="25" cy="25" r="24"></circle>
+            <rect id="Rectangle-path" x="0" y="0" width="50" height="50"></rect>
+            <path d="M29.933,35.528 C29.787,33.916 29.843,32.791 29.843,31.318 C30.573,30.935 31.881,28.493 32.102,26.43 C32.676,26.383 33.581,25.823 33.846,23.612 C33.989,22.425 33.421,21.757 33.075,21.547 C34.009,18.738 35.949,10.048 29.487,9.15 C28.822,7.982 27.119,7.391 24.906,7.391 C16.052,7.554 14.984,14.077 16.925,21.547 C16.58,21.757 16.012,22.425 16.154,23.612 C16.42,25.823 17.324,26.383 17.898,26.43 C18.118,28.492 19.478,30.935 20.21,31.318 C20.21,32.791 20.265,33.916 20.119,35.528 C18.858,38.918 12.382,39.183 8.646,42.452 C12.552,46.385 18.882,49.198 25.562,49.198 C32.242,49.198 40.094,43.924 41.401,42.485 C37.688,39.186 31.197,38.93 29.933,35.528 Z" id="Shape" fill="#D8D8D8" fill-rule="nonzero"></path>
+        </g>
+    </g>
+</svg>
