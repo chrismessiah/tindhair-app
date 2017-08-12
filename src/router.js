@@ -1,5 +1,8 @@
 import { StackNavigator } from 'react-navigation';
+import { START_SCREEN } from './constants'
 
+
+import Splash from './routes/splash/';
 import LoginSelection from './routes/login-selection/';
 import EmailLogin from './routes/email-login/';
 import GenderSelection from './routes/gender-selection/';
@@ -9,6 +12,10 @@ import Main from './routes/main/';
 
 const AppNavigator = StackNavigator(
   {
+    Splash: {
+      screen: Splash,
+      navigationOptions: {header: false},
+    },
     LoginSelection: {
       screen: LoginSelection,
       navigationOptions: {header: false},
@@ -27,17 +34,11 @@ const AppNavigator = StackNavigator(
     },
     Loader: {
       screen: Loader,
-      navigationOptions: {header: false}, // change to this in prod
-      navigationOptions: {
-        headerStyle: {backgroundColor: '#ffe0d9'},
-      }
+      navigationOptions: {header: false},
     },
     PostAuth: {
       screen: PostAuth,
       navigationOptions: {header: false},
-      navigationOptions: {
-        headerStyle: {backgroundColor: '#ffe0d9'},
-      }
     },
     Main: {
       screen: Main,
@@ -47,7 +48,7 @@ const AppNavigator = StackNavigator(
     },
   },
   {
-    initialRouteName: 'LoginSelection',
+    initialRouteName: START_SCREEN,
   }
 );
 

@@ -2,7 +2,12 @@ import { NavigationActions } from 'react-navigation';
 import { AsyncStorage } from 'react-native';
 
 import * as c from '../constants'
-import { login, signup, getHairstyles } from '../api/'
+import {
+  login,
+  signup,
+  getHairstyles,
+  getAccessTokenFromRefreshToken,
+} from '../api/'
 
 // **************** HAIRSTYLES ***************
 
@@ -23,10 +28,24 @@ const fetchHairstylesSuccess = (data) => {return {type: c.FETCH_HAIRSTYLES_SUCCE
 const fetchHairstylesFail = () => {return {type: c.FETCH_HAIRSTYLES_FAIL}};
 
 // **************** LOGIN ***************
+export function checkIfLoggedIn(data, backToScreenKey) {
+  return (dispatch) => {
+    return AsyncStorage.getItem('refresh_token')
+    .then(refreshToken => {
+      dispatch(storeRefreshToken(refreshToken))
+      return getAccessTokenFromRefreshToken({refresh_token: refreshToken})
+    }).then(response => {
+      dispatch(storeAccessToken(response.access_token))
+      dispatch(navigateTo('Main'));
+    }).catch(err => {
+      dispatch(navigateTo('LoginSelection'));
+    })
+  }
+}
 
 export function loginUser(data, backToScreenKey) {
   return (dispatch) => {
-    dispatch(NavigationActions.navigate({routeName: 'Loader'}));
+    dispatch(navigateTo('Loader'));
     dispatch(loginTry())
     return login(data)
     .then(response => {
@@ -36,7 +55,7 @@ export function loginUser(data, backToScreenKey) {
       return AsyncStorage.setItem('refresh_token', response.refresh_token)
     })
     .then(() => {
-      dispatch(NavigationActions.navigate({routeName: 'Main'}));
+      dispatch(navigateTo('Main'));
     })
     .catch((err) => {
       dispatch(loginFail());
@@ -66,7 +85,7 @@ export function storeSignupDetails(data) {
 export function signupUser(fullname, email, password, gender, backToScreenKey) {
   return (dispatch) => {
     dispatch(signupTry())
-    dispatch(NavigationActions.navigate({routeName: 'PostAuth'}));
+    dispatch(navigateTo('PostAuth'));
     signup({email: email, password: password, gender: gender, fullname: fullname})
     .then(data => {
       dispatch(signupSuccess());
@@ -114,3 +133,5 @@ export function goBackToScreen(dispatch, key) {
     }, 500)
   })
 }
+
+const navigateTo = (route) => {return NavigationActions.navigate({routeName: route})}

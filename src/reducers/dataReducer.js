@@ -1,7 +1,8 @@
 import * as c from '../constants'
 import AppNavigator from '../router'
+import { START_SCREEN } from '../constants'
 
-let initialState = AppNavigator.router.getStateForAction(AppNavigator.router.getActionForPathAndParams('LoginSelection'));
+let initialState = AppNavigator.router.getStateForAction(AppNavigator.router.getActionForPathAndParams(START_SCREEN));
 initialState = {
   ...initialState,
     isLoading: false,
@@ -57,8 +58,6 @@ export default function dataReducer (state = initialState, action) {
         isLoading: true,
       }
     case c.FETCH_HAIRSTYLES_SUCCESS:
-    console.log('action.data');
-    console.log(action.data);
       return {
         ...state,
         isLoading: false,

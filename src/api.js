@@ -5,6 +5,9 @@ export function getHairstyles(data) {
   return GET(`hairstyle/list/`, data);
 };
 
+export function getAccessTokenFromRefreshToken(data) {
+  return POST(`auth/refresh/`, data);
+};
 
 export function login(data) {
   return POST(`auth/login/`, data);
