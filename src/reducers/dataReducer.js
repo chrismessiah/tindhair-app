@@ -12,6 +12,7 @@ initialState = {
     access_token: null,
     refresh_token: null,
     hairstyles: null,
+    hairstyleIndex: null,
 };
 
 export default function dataReducer (state = initialState, action) {
@@ -52,6 +53,11 @@ export default function dataReducer (state = initialState, action) {
 
 
     // ****************** DATA ************************
+    case c.NEXT_HAIRSTYLE:
+      return {
+        ...state,
+        hairstyleIndex: state.hairstyleIndex+1,
+      }
     case c.FETCH_HAIRSTYLES_TRY:
       return {
         ...state,
@@ -61,7 +67,8 @@ export default function dataReducer (state = initialState, action) {
       return {
         ...state,
         isLoading: false,
-        hairstyles: action.data.hairstyles
+        hairstyles: action.data.hairstyles,
+        hairstyleIndex: 0,
       }
     case c.STORE_ACCESS_TOKEN:
       return {

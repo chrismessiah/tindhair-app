@@ -10,6 +10,11 @@ import {
 } from '../api/'
 
 // **************** HAIRSTYLES ***************
+export function nextHairstyle() {
+  return {
+    type: c.NEXT_HAIRSTYLE
+  }
+};
 
 export function fetchHairstyles(data) {
   return (dispatch) => {
