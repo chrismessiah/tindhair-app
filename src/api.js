@@ -1,7 +1,9 @@
 import axios from 'axios';
 import { API_URL } from './constants';
 
-
+export function getHairstyles(data) {
+  return GET(`hairstyle/list/`, data);
+};
 
 
 export function login(data) {
@@ -39,8 +41,8 @@ export function addHairstyle() {
 
 
 
-const GET = (route) => {
-  return request('GET', route);
+const GET = (route, params) => {
+  return request('GET', route, params);
 }
 
 const POST = (route, params) => {
@@ -58,7 +60,7 @@ const request = (type, route, params) => {
     method: type,
   }
 
-  if (params) {
+  if (params && type != 'GET') {
     config.data = params;
   }
 
@@ -88,12 +90,15 @@ const getErrorMessage = (err) => {
   if (err && err.request && err.request._response) {
     try {
       let error = JSON.parse(err.request._response);
-      return {code: error.errors[0].status, message: error.errors[0].title}
+      let errorObject = {code: error.errors[0].status, message: error.errors[0].title};
+      console.log(errorObject);
+      return errorObject;
     } catch (e) {
       console.log(err);
+      console.log(e);
       return {code: '999', message: 'Unknown error, check log'}
     }
-  }
+  } else { console.log(err); return {code: '999', message: 'Unknown error, check log'}; }
 }
 
 const parseResponse = (response, isError) => {

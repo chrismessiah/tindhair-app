@@ -5,6 +5,7 @@ import EmailLogin from './routes/email-login/';
 import GenderSelection from './routes/gender-selection/';
 import Loader from './routes/loader/';
 import PostAuth from './routes/post-auth/';
+import Main from './routes/main/';
 
 const AppNavigator = StackNavigator(
   {
@@ -26,7 +27,7 @@ const AppNavigator = StackNavigator(
     },
     Loader: {
       screen: Loader,
-      //navigationOptions: {header: false}, // change to this in prod
+      navigationOptions: {header: false}, // change to this in prod
       navigationOptions: {
         headerStyle: {backgroundColor: '#ffe0d9'},
       }
@@ -36,6 +37,12 @@ const AppNavigator = StackNavigator(
       navigationOptions: {header: false},
       navigationOptions: {
         headerStyle: {backgroundColor: '#ffe0d9'},
+      }
+    },
+    Main: {
+      screen: Main,
+      navigationOptions: {
+        headerStyle: {backgroundColor: '#ffffff'},
       }
     },
   },

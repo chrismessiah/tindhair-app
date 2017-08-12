@@ -1,7 +1,5 @@
 import React from 'react';
-import { View, Image } from 'react-native';
-import { connect } from 'react-redux'
-import { NavigationActions } from 'react-navigation'
+import { View } from 'react-native';
 
 import Spinner from '../../components/animations/spinner/';
 import styles from './styles';

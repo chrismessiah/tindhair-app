@@ -8,6 +8,9 @@ initialState = {
     error: false,
     screenKeys: [],
     alertMessage: null,
+    access_token: null,
+    refresh_token: null,
+    hairstyles: null,
 };
 
 export default function dataReducer (state = initialState, action) {
@@ -48,6 +51,29 @@ export default function dataReducer (state = initialState, action) {
 
 
     // ****************** DATA ************************
+    case c.FETCH_HAIRSTYLES_TRY:
+      return {
+        ...state,
+        isLoading: true,
+      }
+    case c.FETCH_HAIRSTYLES_SUCCESS:
+    console.log('action.data');
+    console.log(action.data);
+      return {
+        ...state,
+        isLoading: false,
+        hairstyles: action.data.hairstyles
+      }
+    case c.STORE_ACCESS_TOKEN:
+      return {
+        ...state,
+        access_token: action.data
+      }
+    case c.STORE_REFRESH_TOKEN:
+      return {
+        ...state,
+        refresh_token: action.data
+      }
     case c.SET_MESSAGE:
       return {
         ...state,
