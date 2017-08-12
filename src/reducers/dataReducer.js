@@ -53,6 +53,8 @@ export default function dataReducer (state = initialState, action) {
 
 
     // ****************** DATA ************************
+    case c.CLEAR_STORE:
+      return initialState;
     case c.NEXT_HAIRSTYLE:
       return {
         ...state,

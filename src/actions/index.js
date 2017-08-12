@@ -32,6 +32,22 @@ const fetchHairstylesTry = () => {return {type: c.FETCH_HAIRSTYLES_TRY}};
 const fetchHairstylesSuccess = (data) => {return {type: c.FETCH_HAIRSTYLES_SUCCESS, data}};
 const fetchHairstylesFail = () => {return {type: c.FETCH_HAIRSTYLES_FAIL}};
 
+// **************** LOGOUT **************
+
+export function logout(data, backToScreenKey) {
+  return (dispatch) => {
+    return AsyncStorage.clear()
+    .then(() => {
+      dispatch(clearStore())
+      dispatch(navigateTo('Splash'));
+    }).catch(err => {
+      console.log(err);
+      dispatch(navigateTo('Splash'));
+    })
+  }
+}
+const clearStore = () => {return {type: c.CLEAR_STORE}};
+
 // **************** LOGIN ***************
 export function checkIfLoggedIn(data, backToScreenKey) {
   return (dispatch) => {

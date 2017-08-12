@@ -6,6 +6,7 @@ import styles from './styles';
 import globalStyles from '../../styles';
 import { fetchHairstyles, nextHairstyle } from '../../actions/';
 import ColorButton from '../../components/buttons/color-button/';
+import SwipeCards from '../../components/tinder-module/'
 
 class Main extends React.Component {
   static navigationOptions = {
@@ -27,14 +28,6 @@ class Main extends React.Component {
       this.setState({...this.state, messageText: null})
     }
   }
-  _setNextHairstyle = () => {
-    let { hairstyles, hairstyleIndex } = this.props.global;
-    if (hairstyles.length-1 > hairstyleIndex) {
-      this.props.dispatch(nextHairstyle());
-    } else {
-      this.setState({...this.state, messageText: 'Whoa! We ran out of hairstyles!'})
-    }
-  }
   render() {
     let {hairstyles, hairstyleIndex} = this.props.global;
     return (
@@ -44,11 +37,7 @@ class Main extends React.Component {
             <Text>{this.state.messageText}</Text>
           </View>
         :
-          <View>
-            <Image style={styles.image} source={{uri: hairstyles[hairstyleIndex].image_url}}/>
-            <Text>{hairstyles[hairstyleIndex].name} - {hairstyles[hairstyleIndex].likes}</Text>
-            <ColorButton onPress={() => {this._setNextHairstyle()}} color={'#5f74e4'} value={'Next style'}/>
-          </View>
+          <SwipeCards style={{flex: 1}} cards={hairstyles} callbackYes={''} callbackNo={''}/>
         }
       </View>
     )
