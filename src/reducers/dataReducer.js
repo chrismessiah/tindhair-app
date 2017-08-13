@@ -64,9 +64,13 @@ export default function dataReducer (state = initialState, action) {
       let index = _.findIndex(state.hairstyles, el => {return el.id == action.data.haristyle_id});
       let hairstyles = state.hairstyles;
       hairstyles[index].likes += 1;
+
+      let likedHairstyles = state.likedHairstyles;
+      likedHairstyles.unshift(hairstyles[index])
       return {
         ...state,
         hairstyles: hairstyles,
+        likedHairstyles: likedHairstyles,
       }
     case c.CLEAR_STORE:
       return initialState;
