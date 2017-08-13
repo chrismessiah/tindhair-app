@@ -1,6 +1,14 @@
 import axios from 'axios';
 import { API_URL } from './constants';
 
+export function getLikedHairstyles(data) {
+  return GET(`like/`, data);
+};
+
+export function like(data) {
+  return POST(`like/`, data);
+};
+
 export function getHairstyles(data) {
   return GET(`hairstyle/list/`, data);
 };

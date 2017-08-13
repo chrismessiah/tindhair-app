@@ -4,14 +4,14 @@ import { connect } from 'react-redux'
 
 import styles from './styles';
 import globalStyles from '../../styles';
-import { fetchHairstyles, nextHairstyle } from '../../actions/';
+import { fetchHairstyles, likeHairstyle } from '../../actions/';
 import ColorButton from '../../components/buttons/color-button/';
-import SwipeCards from '../../components/tinder-module/'
+import SwipeCards from '../../components/tinder/tinder-swipe'
 
 class Main extends React.Component {
   static navigationOptions = {
     tabBarIcon: ({ tintColor }) => (
-      <Image source={require('../../assets/images/haircut.png')} style={{width: 22, height: 22, tintColor: tintColor}} />
+      <Image source={require('../../assets/images/heart.png')} style={{width: 22*1.1052631579, height: 22, tintColor: tintColor}} />
     ),
   }
   constructor(props) {
@@ -28,6 +28,12 @@ class Main extends React.Component {
       this.setState({...this.state, messageText: null})
     }
   }
+  _callbackYes = (hairstyle) => {
+    this.props.dispatch(likeHairstyle({token: this.props.global.access_token, haristyle_id: hairstyle.id}));
+  }
+  _callbackNo = (hairstyle) => {
+
+  }
   render() {
     let {hairstyles, hairstyleIndex} = this.props.global;
     return (
@@ -37,7 +43,7 @@ class Main extends React.Component {
             <Text>{this.state.messageText}</Text>
           </View>
         :
-          <SwipeCards style={{flex: 1}} cards={hairstyles} callbackYes={''} callbackNo={''}/>
+          <SwipeCards style={{flex: 1}} cards={hairstyles} callbackYes={this._callbackYes} callbackNo={this._callbackNo}/>
         }
       </View>
     )

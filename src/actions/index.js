@@ -7,14 +7,44 @@ import {
   signup,
   getHairstyles,
   getAccessTokenFromRefreshToken,
+  like,
+  getLikedHairstyles,
 } from '../api/'
 
 // **************** HAIRSTYLES ***************
-export function nextHairstyle() {
-  return {
-    type: c.NEXT_HAIRSTYLE
+export function fetchLikedHairstyles(data) {
+  return (dispatch) => {
+    dispatch(fetchLikedHairstylesTry())
+    return getLikedHairstyles(data)
+    .then(response => {
+      dispatch(fetchLikedHairstylesSuccess(response))
+    }).catch(err => {
+      console.log(err);
+      dispatch(fetchLikedHairstylesFail())
+    })
   }
-};
+}
+
+const fetchLikedHairstylesSuccess = (data) => {return {type: c.FETCH_LIKED_HAIRSTYLES_SUCCESS, data}};
+const fetchLikedHairstylesTry = () => {return {type: c.FETCH_LIKED_HAIRSTYLES_TRY}};
+const fetchLikedHairstylesFail = () => {return {type: c.FETCH_LIKED_HAIRSTYLES_FAIL}};
+
+export function likeHairstyle(data) {
+  return (dispatch) => {
+    dispatch(likeTry())
+    return like(data)
+    .then(response => {
+      dispatch(likeSuccess(data))
+    }).catch(err => {
+      console.log(err);
+      dispatch(likeFail())
+    })
+  }
+}
+
+const likeTry = () => {return {type: c.LIKE_TRY}};
+const likeFail = () => {return {type: c.LIKE_FAIL}};
+const likeSuccess = (data) => {return {type: c.LIKE_SUCCESS, data}};
 
 export function fetchHairstyles(data) {
   return (dispatch) => {

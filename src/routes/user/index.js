@@ -1,39 +1,37 @@
 import React from 'react';
-import { View, Image, Text } from 'react-native';
+import { View, ScrollView, Image, Text } from 'react-native';
 import { connect } from 'react-redux'
 
 import styles from './styles';
 import globalStyles from '../../styles';
-import { fetchHairstyles } from '../../actions/';
-import ColorButton from '../../components/buttons/color-button/';
+
+import Card from '../../components/tinder/tinder-card/';
+import { fetchLikedHairstyles } from '../../actions'
 
 class User extends React.Component {
   static navigationOptions = {
     tabBarIcon: ({ tintColor }) => (
-      <Image source={require('../../assets/images/user.png')} style={{width: 22, height: 22, tintColor: tintColor}} />
+      <Image source={require('../../assets/images/haircut.png')} style={{width: 22, height: 22, tintColor: tintColor}} />
     ),
   }
-  constructor(props) {
-    super(props)
-    this.state = {
-      // index: 0,
-      // messageText: 'Loading hairstyles',
-      // hairstyle: null,
-    }
-  }
-  componentDidMount() {
-    //this.props.dispatch(fetchHairstyles({token: this.props.global.access_token}));
-  }
-  componentWillReceiveProps(nextProps) {
 
+  componentDidMount() {
+    this.props.dispatch(fetchLikedHairstyles({token: this.props.global.access_token}))
   }
 
   render() {
-    let {hairstyle} = this.state;
     return (
-      <View style={[globalStyles.coverBackground, styles.background]}>
-
-      </View>
+      <ScrollView contentContainerStyle={globalStyles.centerChildrenHorizontal} style={[globalStyles.coverBackground, styles.background]}>
+        {this.props.global.likedHairstyles ?
+          <View style={styles.hairstyleContainer}>
+            {this.props.global.likedHairstyles.map(hairstyle => {
+              return <Card {...hairstyle} key={`liked-${hairstyle.id}`}/>
+            })}
+          </View>
+        :
+          <Text>Loading</Text>
+        }
+      </ScrollView>
     )
   }
 };

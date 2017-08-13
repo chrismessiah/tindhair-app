@@ -1,12 +1,11 @@
 import { StyleSheet } from 'react-native';
 
+const HEART_WH_RATIO = 1.1052631579;
+
 const styles = StyleSheet.create({
-  background: {
-    backgroundColor: '#ffffff',
+  noMoreCardsText: {
+    fontSize: 22,
   },
-  hairstyleContainer: {
-    
-  }
 });
 
 export default styles;

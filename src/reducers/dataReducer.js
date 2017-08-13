@@ -1,6 +1,7 @@
 import * as c from '../constants'
 import AppNavigator from '../router'
 import { START_SCREEN } from '../constants'
+import * as _ from 'lodash';
 
 let initialState = AppNavigator.router.getStateForAction(AppNavigator.router.getActionForPathAndParams(START_SCREEN));
 initialState = {
@@ -12,6 +13,7 @@ initialState = {
     access_token: null,
     refresh_token: null,
     hairstyles: null,
+    likedHairstyles: null,
     hairstyleIndex: null,
 };
 
@@ -53,13 +55,21 @@ export default function dataReducer (state = initialState, action) {
 
 
     // ****************** DATA ************************
-    case c.CLEAR_STORE:
-      return initialState;
-    case c.NEXT_HAIRSTYLE:
+    case c.FETCH_LIKED_HAIRSTYLES_SUCCESS:
       return {
         ...state,
-        hairstyleIndex: state.hairstyleIndex+1,
+        likedHairstyles: action.data.result,
       }
+    case c.LIKE_SUCCESS:
+      let index = _.findIndex(state.hairstyles, el => {return el.id == action.data.haristyle_id});
+      let hairstyles = state.hairstyles;
+      hairstyles[index].likes += 1;
+      return {
+        ...state,
+        hairstyles: hairstyles,
+      }
+    case c.CLEAR_STORE:
+      return initialState;
     case c.FETCH_HAIRSTYLES_TRY:
       return {
         ...state,
