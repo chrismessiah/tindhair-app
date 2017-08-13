@@ -21,9 +21,9 @@ class User extends React.Component {
 
   render() {
     return (
-      <ScrollView contentContainerStyle={globalStyles.centerChildrenHorizontal} style={[globalStyles.coverBackground, styles.background]}>
+      <ScrollView contentContainerStyle={styles.scrollContainer} style={[globalStyles.coverBackground, styles.background]}>
         {this.props.global.likedHairstyles ?
-          <View style={styles.hairstyleContainer}>
+          <View>
             {this.props.global.likedHairstyles.map(hairstyle => {
               return <Card {...hairstyle} key={`liked-${hairstyle.id}`}/>
             })}

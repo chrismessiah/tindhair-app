@@ -4,11 +4,11 @@ const HEART_WH_RATIO = 1.1052631579;
 
 const styles = StyleSheet.create({
   card: {
-    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     width: 250,
-    height: 250,
+    height: 285,
+    margin: 20,
   },
   noMoreCardsText: {
     fontSize: 22,

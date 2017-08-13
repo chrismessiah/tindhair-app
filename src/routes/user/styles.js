@@ -4,8 +4,8 @@ const styles = StyleSheet.create({
   background: {
     backgroundColor: '#ffffff',
   },
-  hairstyleContainer: {
-    
+  scrollContainer: {
+    alignItems: 'center',
   }
 });
 
