@@ -2,11 +2,34 @@ import axios from 'axios';
 import { API_URL } from './constants';
 
 export function postHairstyle(data) {
-  return uploadFile(data.uri, 'image/jpeg', data)
-  uri: data.uri,
-  type: 'image/jpeg',
-  name: 'testPhotoName'
-});
+  return new Promise((resolve, reject) => {
+    let xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = () => {
+      if (xhr.readyState == XMLHttpRequest.DONE) {
+        if (xhr.status === 200) {
+          resolve(xhr.responseText);
+        } else {
+          console.log("FILE UPLOAD ERROR")
+          console.log(xhr.statusText);
+          console.log(xhr.responseText);
+          reject('FILE UPLOAD ERROR');
+        }
+        let response = JSON.parse(xhr.responseText);
+        resolve(response);
+      }
+    }
+    var body = new FormData();
+    body.append('file', {
+      uri: data.uri,
+      type: 'image/jpeg',
+      name: 'foobar123'
+    });
+    body.append('name', data.name);
+    body.append('gender', data.gender);
+    xhr.open('POST', `${API_URL}/hairstyle/`);
+    xhr.setRequestHeader('Authorization', `Bearer ${data.token}`)
+    xhr.send(body);
+  });
 };
 
 export function getLikedHairstyles(data) {
@@ -55,20 +78,6 @@ const DELETE = (route, params) => {
 }
 
 // params is only to be used for passing token or body
-const uploadFile = (uri, type, name) => {
-  let xhr = new XMLHttpRequest();
-  var body = new FormData();
-  body.append('file', {
-    uri: data.uri,
-    type: type,
-    name: 'foobar123'
-  });
-  body.append('name', data.name);
-  body.append('gender', data.gender);
-  xhr.open('POST', `${API_URL}/hairstyle/`);
-  xhr.setRequestHeader('Authorization', `Bearer ${data.token}`)
-  xhr.send(body);
-}
 
 const request = (type, route, params) => {
   let config = {

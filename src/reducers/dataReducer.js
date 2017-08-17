@@ -61,7 +61,6 @@ export default function dataReducer (state = initialState, action) {
 
     // ****************** DATA ************************
     case c.SEND_HAIRSTYLE_SUCCESS:
-      console.log(action.data);
       likedHairstyles = state.likedHairstyles;
       likedHairstyles.unshift(action.data);
       return {

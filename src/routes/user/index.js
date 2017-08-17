@@ -31,23 +31,8 @@ class User extends React.Component {
       if (response.error) throw response.error;
       if (!response.didCancel) {
         const {fullname, gender} =  this.props.global.user;
-        data = {
-          name: fullname,
-          gender: gender,
-          //file: base64.decode(response.data),
-          uri: response.uri,
-          fileUpload: true,
-          token: this.props.global.access_token
-        }
+        data = { name: fullname, gender: gender, uri: response.uri, token: this.props.global.access_token };
         this.props.dispatch(sendHairstyle(data));
-        //console.log(response.data);
-        // let source = { uri: response.uri };
-        // let source = { uri: 'data:image/jpeg;base64,' + response.data };
-
-        // this.setState({
-        //   ...this.state,
-        //   avatarSource: source,
-        // });
       }
     });
   }
