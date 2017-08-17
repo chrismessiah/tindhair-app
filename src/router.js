@@ -1,4 +1,4 @@
-import { StackNavigator, TabNavigator } from 'react-navigation';
+import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation';
 import { START_SCREEN } from './constants'
 
 
@@ -21,7 +21,10 @@ const HairstyleApp = TabNavigator(
   },
   {
     initialRouteName: 'Main',
-    tabBarOptions: { showLabel: false }
+    tabBarOptions: { showLabel: false },
+    tabBarComponent: TabBarBottom,
+    tabBarPosition: 'bottom',
+    swipeEnabled: false,
   }
 );
 
