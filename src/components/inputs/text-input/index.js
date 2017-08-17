@@ -14,7 +14,7 @@ class CustomTextInput extends React.Component {
       password: false,
     };
   }
-  _onClick = (text) => {
+  _onFocus = (text) => {
     if (!this.state.noClicks) {
       let newState = {...this.state, noClicks: true, text: ''};
       if (this.props.isPassword) {
@@ -22,12 +22,11 @@ class CustomTextInput extends React.Component {
       }
       this.setState(newState);
     }
+    if (this.props.onFocus) this.props.onFocus(this.defaultText);
   }
   _onType = (text) => {
     this.setState({...this.state, text: text});
-    if (this.props.callback) {
-      this.props.callback(text);
-    }
+    if (this.props.onType) this.props.onType(text);
   }
   _onEndEdit = () => {
     if (this.state.text.length === 0) {
@@ -47,12 +46,14 @@ class CustomTextInput extends React.Component {
       <View style={boxStyle}>
         <TextInput
           style={textStyle}
-          onFocus={this._onClick}
+          onFocus={this._onFocus}
           onChangeText={this._onType}
           value={this.state.text}
           onEndEditing={this._onEndEdit}
           secureTextEntry={isPassword}
           autoCorrect={useAutocorrect}
+          onFocus={this._onFocus}
+          underlineColorAndroid={'rgba(0,0,0,0)'}
         />
       </View>
     )

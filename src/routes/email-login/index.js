@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image } from 'react-native';
+import { View, Image, ScrollView, findNodeHandle } from 'react-native';
 import { connect } from 'react-redux'
 //var MessageBarManager = require('react-native-message-bar').MessageBarManager;
 
@@ -66,23 +66,30 @@ class EmailLogin extends React.Component {
       this.props.navigation.navigate('GenderSelection');
     }
   }
+  _focus = (refName) => {
+    setTimeout(() => {
+      let scrollResponder = this.refs.scrollView.getScrollResponder();
+      scrollResponder.scrollResponderScrollNativeHandleToKeyboard(
+        findNodeHandle(this.refs[refName]), 150, true);
+    }, 50);
+  }
   render() {
     return (
-      <View style={[globalStyles.coverBackground, styles.background]} >
+      <ScrollView ref='scrollView' style={[globalStyles.coverBackground, styles.background]}>
         <Image source={require('../../assets/images/logo-white.png')} style={styles.logo} />
         <View style={styles.textButtonContainer}>
           <TextButton style={styles.textButton} value={"Sign in"} color={"white"} active={this.state.isLoginMode} onPress={() => {this._setMode(true)}}/>
           <TextButton style={styles.textButton} value={"Sign up"} color={"white"} active={!this.state.isLoginMode} onPress={() => {this._setMode(false)}}/>
         </View>
         <View style={[globalStyles.centerChildrenHorizontal, styles.inputContaier]}>
-          {!this.state.isLoginMode && <TextInput callback={this._updateFullname} textColor={'#444444'} placeholder={'fullname'}/>}
-          <TextInput callback={this._updateEmail} textColor={'#444444'} placeholder={'email'}/>
-          <TextInput callback={this._updatePassword} textColor={'#444444'} placeholder={'password'} isPassword={true}/>
+          {!this.state.isLoginMode && <TextInput ref={'fullname'} onFocus={() => {this._focus('fullname')}} onType={this._updateFullname} textColor={'#444444'} placeholder={'fullname'}/>}
+          <TextInput ref={'email'} onFocus={() => {this._focus('email')}} onType={this._updateEmail} textColor={'#444444'} placeholder={'email'}/>
+          <TextInput ref={'password'} onFocus={() => {this._focus('password')}} onType={this._updatePassword} textColor={'#444444'} placeholder={'password'} isPassword={true}/>
         </View>
         <View style={[globalStyles.centerChildrenHorizontal, styles.buttonContainer]}>
           <ColorButton style={styles.sumbitButton} onPress={(this.state.isLoginMode) ? this._handleLogin : this._handleSignup} color={'#5f74e4'} value={this.state.isLoginMode ? 'Sign in' : 'Sign up'}/>
         </View>
-      </View>
+      </ScrollView>
     );
   }
 };
