@@ -1,6 +1,14 @@
 import axios from 'axios';
 import { API_URL } from './constants';
 
+export function postHairstyle(data) {
+  return uploadFile(data.uri, 'image/jpeg', data)
+  uri: data.uri,
+  type: 'image/jpeg',
+  name: 'testPhotoName'
+});
+};
+
 export function getLikedHairstyles(data) {
   return GET(`like/`, data);
 };
@@ -25,32 +33,14 @@ export function signup(data) {
   return POST(`auth/signup/`, data);
 };
 
-
-
-
-export function getUser(data, token) {
-  return GET(`user/${data.id}`, {token: token});
-};
-
-export function removeUser() {
-  return DELETE(`user/`);
+export function getMe(data) {
+  return GET(`user/myself/`, data);
 };
 
 
 
 
-
-export function listHairstyles() {
-  return GET(`hairstyle/list`);
-};
-
-// How to add image upload ????
-export function addHairstyle() {
-  return POST(`hairstyle/`, {});
-};
-
-
-
+// *************************** HTTP REQUEST TYPES ******************************
 
 const GET = (route, params) => {
   return request('GET', route, params);
@@ -65,18 +55,38 @@ const DELETE = (route, params) => {
 }
 
 // params is only to be used for passing token or body
+const uploadFile = (uri, type, name) => {
+  let xhr = new XMLHttpRequest();
+  var body = new FormData();
+  body.append('file', {
+    uri: data.uri,
+    type: type,
+    name: 'foobar123'
+  });
+  body.append('name', data.name);
+  body.append('gender', data.gender);
+  xhr.open('POST', `${API_URL}/hairstyle/`);
+  xhr.setRequestHeader('Authorization', `Bearer ${data.token}`)
+  xhr.send(body);
+}
+
 const request = (type, route, params) => {
   let config = {
     url: `${API_URL}/${route}`,
     method: type,
+    headers: {},
   }
 
   if (params && type != 'GET') {
     config.data = params;
   }
 
+  if (params && params.fileUpload) {
+    config.headers = {...config.headers, 'content-type': 'multipart/form-data'};
+  }
+
   if (params && params.token) {
-    config.headers = {Authorization: `Bearer ${params.token}`};
+    config.headers = {...config.headers, Authorization: `Bearer ${params.token}`};
   }
 
   return new Promise((resolve, reject) => {

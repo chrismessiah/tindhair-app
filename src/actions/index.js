@@ -5,13 +5,33 @@ import * as c from '../constants'
 import {
   login,
   signup,
+  getMe,
   getHairstyles,
   getAccessTokenFromRefreshToken,
   like,
   getLikedHairstyles,
+  postHairstyle,
 } from '../api/'
 
 // **************** HAIRSTYLES ***************
+export function sendHairstyle(data) {
+  return (dispatch) => {
+    dispatch(sendHairstyleTry())
+    return postHairstyle(data)
+    .then(response => {
+      dispatch(sendHairstyleSuccess(response))
+    }).catch(err => {
+      console.log(err);
+      dispatch(sendHairstyleFail())
+    })
+  }
+}
+
+const sendHairstyleSuccess = (data) => {return {type: c.SEND_HAIRSTYLE_SUCCESS, data}};
+const sendHairstyleTry = () => {return {type: c.SEND_HAIRSTYLE_TRY}};
+const sendHairstyleFail = () => {return {type: c.SEND_HAIRSTYLE_FAIL}}
+
+
 export function fetchLikedHairstyles(data) {
   return (dispatch) => {
     dispatch(fetchLikedHairstylesTry())
@@ -92,6 +112,9 @@ export function checkIfLoggedIn(data, backToScreenKey) {
       return getAccessTokenFromRefreshToken({refresh_token: refreshToken})
     }).then(response => {
       dispatch(storeAccessToken(response.access_token))
+      return getMe({token: response.access_token})
+    }).then(response => {
+      dispatch(storeMe(response));
       dispatch(navigateTo('Main'));
     }).catch(err => {
       dispatch(navigateTo('LoginSelection'));
@@ -100,17 +123,21 @@ export function checkIfLoggedIn(data, backToScreenKey) {
 }
 
 export function loginUser(data, backToScreenKey) {
+  let accessToken;
   return (dispatch) => {
     dispatch(navigateTo('Loader'));
     dispatch(loginTry())
     return login(data)
     .then(response => {
+      accessToken = response.access_token;
       dispatch(loginSuccess())
       dispatch(storeAccessToken(response.access_token))
       dispatch(storeRefreshToken(response.refresh_token))
       return AsyncStorage.setItem('refresh_token', response.refresh_token)
-    })
-    .then(() => {
+    }).then(() => {
+      return getMe({token: accessToken})
+    }).then((response) => {
+      dispatch(storeMe(response));
       dispatch(navigateTo('Main'));
     })
     .catch((err) => {
@@ -123,6 +150,7 @@ export function loginUser(data, backToScreenKey) {
   }
 }
 
+const storeMe = (data) => {return {type: c.STORE_ME, data}};
 const loginTry = () => {return {type: c.LOGIN_TRY}};
 const loginSuccess = () => {return {type: c.LOGIN_SUCCESS}};
 const loginFail = () => {return {type: c.LOGIN_FAIL}};

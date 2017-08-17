@@ -1,8 +1,10 @@
-export const API_URL = 'https://tindhair-api.christianabdelmassih.com/api';
-//export const API_URL = 'http://localhost:3000/api';
+//export const API_URL = 'https://tindhair-api.christianabdelmassih.com/api';
+export const API_URL = 'http://localhost:3000/api';
 
 export const START_SCREEN = 'Splash';
 //export const START_SCREEN = 'LoginSelection';
+
+export const STORE_ME = 'STORE_ME';
 
 export const FETCHING_DATA = 'FETCHING_DATA'
 export const FETCHING_DATA_SUCCESS = 'FETCHING_DATA_SUCCESS'
@@ -11,6 +13,10 @@ export const FETCHING_DATA_FAILURE = 'FETCHING_DATA_FAILURE'
 export const LIKE_TRY = 'LIKE_TRY'
 export const LIKE_FAIL = 'LIKE_FAIL'
 export const LIKE_SUCCESS = 'LIKE_SUCCESS'
+
+export const SEND_HAIRSTYLE_SUCCESS = 'SEND_HAIRSTYLE_SUCCESS';
+export const SEND_HAIRSTYLE_TRY = 'SEND_HAIRSTYLE_TRY';
+export const SEND_HAIRSTYLE_FAIL = 'SEND_HAIRSTYLE_FAIL';
 
 export const FETCH_LIKED_HAIRSTYLES_TRY = 'FETCH_LIKED_HAIRSTYLES_TRY'
 export const FETCH_LIKED_HAIRSTYLES_SUCCESS = 'FETCH_LIKED_HAIRSTYLES_SUCCESS'

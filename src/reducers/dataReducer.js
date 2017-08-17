@@ -17,11 +17,14 @@ initialState = {
     hairstyles: null,
     likedHairstyles: null,
     hairstyleIndex: null,
+    user: null,
 };
 
 export default function dataReducer (state = initialState, action) {
-  let tempState, nextState, nextScreenKeys;
+  let tempState, nextState, nextScreenKeys, likedHairstyles;
 
+  console.log('state');
+  console.log(state);
   switch (action.type) {
 
 
@@ -57,6 +60,24 @@ export default function dataReducer (state = initialState, action) {
 
 
     // ****************** DATA ************************
+    case c.SEND_HAIRSTYLE_SUCCESS:
+      console.log(action.data);
+      likedHairstyles = state.likedHairstyles;
+      likedHairstyles.unshift(action.data);
+      return {
+        ...state,
+        likedHairstyles: likedHairstyles
+      }
+    case c.STORE_ME:
+      console.log(action.data);
+      return {
+        ...state,
+        user: {
+          id: action.data.id,
+          gender: action.data.gender,
+          fullname: action.data.fullname,
+        },
+      }
     case c.FETCH_LIKED_HAIRSTYLES_SUCCESS:
       return {
         ...state,
@@ -67,7 +88,7 @@ export default function dataReducer (state = initialState, action) {
       let hairstyles = state.hairstyles;
       hairstyles[index].likes += 1;
 
-      let likedHairstyles = state.likedHairstyles;
+      likedHairstyles = state.likedHairstyles;
       likedHairstyles.unshift(hairstyles[index])
       return {
         ...state,
