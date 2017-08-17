@@ -20,10 +20,13 @@ class Settings extends React.Component {
   componentWillReceiveProps(nextProps) {
 
   }
+  _logout = () => {
+    this.props.dispatch(logout(this.props.global.screenKeys[1]))
+  }
   render() {
     return (
       <View style={[globalStyles.coverBackground, globalStyles.centerChildrenHorizontal, styles.background]}>
-        <ColorButton onPress={() => {this.props.dispatch(logout())}} color={'#5f74e4'} value={'Log out'}/>
+        <ColorButton onPress={this._logout} color={'#5f74e4'} value={'Log out'}/>
       </View>
     )
   }

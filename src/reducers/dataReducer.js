@@ -5,10 +5,12 @@ import * as _ from 'lodash';
 
 let initialState = AppNavigator.router.getStateForAction(AppNavigator.router.getActionForPathAndParams(START_SCREEN));
 initialState = {
-  ...initialState,
+    ...initialState,
+    // index,  // reserved for react-navigation
+    // routes, // reserved for react-navigation
+    screenKeys: [],
     isLoading: false,
     error: false,
-    screenKeys: [],
     alertMessage: null,
     access_token: null,
     refresh_token: null,
@@ -72,8 +74,19 @@ export default function dataReducer (state = initialState, action) {
         hairstyles: hairstyles,
         likedHairstyles: likedHairstyles,
       }
+    case c.CLEAR_TOKENS:
+      return {
+        ...state,
+        access_token: null,
+        refresh_token: null,
+      };
     case c.CLEAR_STORE:
-      return initialState;
+      return {
+        initialState,
+        screenKeys: state.screenKeys,
+        index: state.index,   // from react-navigation
+        routes: state.routes,   // from react-navigation
+      };
     case c.FETCH_HAIRSTYLES_TRY:
       return {
         ...state,

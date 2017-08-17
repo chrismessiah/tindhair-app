@@ -64,25 +64,30 @@ const fetchHairstylesFail = () => {return {type: c.FETCH_HAIRSTYLES_FAIL}};
 
 // **************** LOGOUT **************
 
-export function logout(data, backToScreenKey) {
+export function logout(firstScreenKey) {
   return (dispatch) => {
     return AsyncStorage.clear()
     .then(() => {
+      dispatch(clearTokens())
       dispatch(clearStore())
-      dispatch(navigateTo('Splash'));
+      return goBackToScreen(dispatch, firstScreenKey)
+    }).then(() => {
+
     }).catch(err => {
       console.log(err);
-      dispatch(navigateTo('Splash'));
+      if (firstScreenKey) goBackToScreen(dispatch, firstScreenKey);
     })
   }
 }
 const clearStore = () => {return {type: c.CLEAR_STORE}};
+const clearTokens = () => {return {type: c.CLEAR_TOKENS}};
 
 // **************** LOGIN ***************
 export function checkIfLoggedIn(data, backToScreenKey) {
   return (dispatch) => {
     return AsyncStorage.getItem('refresh_token')
     .then(refreshToken => {
+      if (!refreshToken) throw 'Not logged in';
       dispatch(storeRefreshToken(refreshToken))
       return getAccessTokenFromRefreshToken({refresh_token: refreshToken})
     }).then(response => {
