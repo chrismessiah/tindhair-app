@@ -9,7 +9,7 @@ class Card extends React.Component {
     return (
       <View style={[styles.card]}>
         <View style={styles.canvas}>
-          <Image style={styles.image} source={{uri: image.tiny}}/>
+          <Image style={styles.image} source={{uri: image.small}}/>
           <View style={styles.textContainer}>
             <Text style={styles.text}>{name}</Text>
             <View style={styles.heartContainer}>

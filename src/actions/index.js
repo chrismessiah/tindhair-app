@@ -11,6 +11,7 @@ import {
   like,
   getLikedHairstyles,
   postHairstyle,
+  getMyHairstyles,
 } from '../api/'
 
 // **************** HAIRSTYLES ***************
@@ -30,6 +31,24 @@ export function sendHairstyle(data) {
 const sendHairstyleSuccess = (data) => {return {type: c.SEND_HAIRSTYLE_SUCCESS, data}};
 const sendHairstyleTry = () => {return {type: c.SEND_HAIRSTYLE_TRY}};
 const sendHairstyleFail = () => {return {type: c.SEND_HAIRSTYLE_FAIL}}
+
+
+
+export function fetchMyHairstyles(data) {
+  return (dispatch) => {
+    dispatch(fetchMyHairstylesTry())
+    return getMyHairstyles(data)
+    .then(response => {
+      dispatch(fetchMyHairstylesSuccess(response))
+    }).catch(err => {
+      console.log(err);
+      dispatch(fetchMyHairstylesFail())
+    })
+  }
+}
+const fetchMyHairstylesSuccess = (data) => {return {type: c.FETCH_MY_HAIRSTYLES_SUCCESS, data}};
+const fetchMyHairstylesTry = () => {return {type: c.FETCH_MY_HAIRSTYLES_TRY}};
+const fetchMyHairstylesFail = () => {return {type: c.FETCH_MY_HAIRSTYLES_FAIL}}
 
 
 export function fetchLikedHairstyles(data) {

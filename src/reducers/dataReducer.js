@@ -15,13 +15,14 @@ initialState = {
     access_token: null,
     refresh_token: null,
     hairstyles: null,
+    myHairstyles: null,
     likedHairstyles: null,
     hairstyleIndex: null,
     user: null,
 };
 
 export default function dataReducer (state = initialState, action) {
-  let tempState, nextState, nextScreenKeys, likedHairstyles;
+  let tempState, nextState, nextScreenKeys, likedHairstyles, myHairstyles;
 
   console.log('state');
   console.log(state);
@@ -60,12 +61,17 @@ export default function dataReducer (state = initialState, action) {
 
 
     // ****************** DATA ************************
-    case c.SEND_HAIRSTYLE_SUCCESS:
-      likedHairstyles = state.likedHairstyles;
-      likedHairstyles.unshift(action.data);
+    case c.FETCH_MY_HAIRSTYLES_SUCCESS:
       return {
         ...state,
-        likedHairstyles: likedHairstyles
+        myHairstyles: action.data.hairstyles
+      }
+    case c.SEND_HAIRSTYLE_SUCCESS:
+      myHairstyles = state.myHairstyles;
+      myHairstyles.unshift(action.data);
+      return {
+        ...state,
+        myHairstyles: myHairstyles
       }
     case c.STORE_ME:
       console.log(action.data);

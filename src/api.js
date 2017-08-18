@@ -1,35 +1,8 @@
 import axios from 'axios';
 import { API_URL } from './constants';
 
-export function postHairstyle(data) {
-  return new Promise((resolve, reject) => {
-    let xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = () => {
-      if (xhr.readyState == XMLHttpRequest.DONE) {
-        if (xhr.status === 200) {
-          resolve(xhr.responseText);
-        } else {
-          console.log("FILE UPLOAD ERROR")
-          console.log(xhr.statusText);
-          console.log(xhr.responseText);
-          reject('FILE UPLOAD ERROR');
-        }
-        let response = JSON.parse(xhr.responseText);
-        resolve(response);
-      }
-    }
-    var body = new FormData();
-    body.append('file', {
-      uri: data.uri,
-      type: 'image/jpeg',
-      name: 'foobar123'
-    });
-    body.append('name', data.name);
-    body.append('gender', data.gender);
-    xhr.open('POST', `${API_URL}/hairstyle/`);
-    xhr.setRequestHeader('Authorization', `Bearer ${data.token}`)
-    xhr.send(body);
-  });
+export function getMyHairstyles(data) {
+  return GET(`hairstyle/my/`, data);
 };
 
 export function getLikedHairstyles(data) {
@@ -60,7 +33,36 @@ export function getMe(data) {
   return GET(`user/myself/`, data);
 };
 
-
+export function postHairstyle(data) {
+  return new Promise((resolve, reject) => {
+    let xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = () => {
+      if (xhr.readyState == XMLHttpRequest.DONE) {
+        if (xhr.status === 200) {
+          resolve(xhr.responseText);
+        } else {
+          console.log("FILE UPLOAD ERROR")
+          console.log(xhr.statusText);
+          console.log(xhr.responseText);
+          reject('FILE UPLOAD ERROR');
+        }
+        let response = JSON.parse(xhr.responseText);
+        resolve(response);
+      }
+    }
+    var body = new FormData();
+    body.append('file', {
+      uri: data.uri,
+      type: 'image/jpeg',
+      name: 'foobar123'
+    });
+    body.append('name', data.name);
+    body.append('gender', data.gender);
+    xhr.open('POST', `${API_URL}/hairstyle/`);
+    xhr.setRequestHeader('Authorization', `Bearer ${data.token}`)
+    xhr.send(body);
+  });
+};
 
 
 // *************************** HTTP REQUEST TYPES ******************************
