@@ -10,9 +10,10 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginTop: 30,
   },
-  buttonContainer: {
-    justifyContent: 'flex-end',
-    marginBottom: 30
+  sumbitButton: {
+    position: 'absolute',
+    bottom: 30,
+    alignSelf: 'center'
   },
   textButtonContainer: {
     flexDirection: 'row',
@@ -21,9 +22,6 @@ const styles = StyleSheet.create({
   },
   inputContaier: {
     marginTop: 50,
-  },
-  sumbitButton: {
-    marginTop: 100,
   },
 });
 

@@ -10,18 +10,21 @@ class TextButton extends React.Component {
   render() {
     const buttonPressHandler = (this.props.onPress) ? this.props.onPress : this._standardTouch;
 
-    var buttonTextStyle = [styles.buttonText];
+    let buttonTextStyle = [styles.buttonText];
+    let buttonContainerStyle = [styles.buttonContainer]
     if (this.props.color) {
       buttonTextStyle.push({color: this.props.color});
     }
     if (this.props.active) {
-      buttonTextStyle.push({fontWeight: 'bold'});
+      buttonTextStyle.push(styles.buttonTextActive);
+      buttonContainerStyle.push(styles.buttonContainerActive);
+      if (this.props.activeBgColor) buttonContainerStyle.push({backgroundColor: this.props.activeBgColor});
     }
 
     return (
       <View style={this.props.style}>
         <TouchableWithoutFeedback onPress={buttonPressHandler} style={styles.touchable}>
-          <View style={styles.buttonContainer}>
+          <View style={buttonContainerStyle}>
             <Text style={buttonTextStyle}>{this.props.value}</Text>
           </View>
         </TouchableWithoutFeedback>

@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     borderRadius: borderRadius,
     backgroundColor: 'white',
     height: boxHeight,
-    width: 220,
+    width: 230,
     paddingTop: 5,
     paddingBottom: 5,
     paddingLeft: 10,

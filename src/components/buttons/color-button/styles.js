@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 let borderRadius = 10;
-let width = 200;
+let width = 230;
 
 const styles = StyleSheet.create({
   view: {
@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
     color: 'white',
     textAlign: 'center',
     backgroundColor: 'transparent',
+    fontSize: 16,
   }
 });
 

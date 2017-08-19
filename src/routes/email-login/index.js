@@ -75,21 +75,22 @@ class EmailLogin extends React.Component {
   }
   render() {
     return (
-      <ScrollView ref='scrollView' style={[globalStyles.coverBackground, styles.background]}>
-        <Image source={require('../../assets/images/logo-white.png')} style={styles.logo} />
-        <View style={styles.textButtonContainer}>
-          <TextButton style={styles.textButton} value={"Sign in"} color={"white"} active={this.state.isLoginMode} onPress={() => {this._setMode(true)}}/>
-          <TextButton style={styles.textButton} value={"Sign up"} color={"white"} active={!this.state.isLoginMode} onPress={() => {this._setMode(false)}}/>
-        </View>
-        <View style={[globalStyles.centerChildrenHorizontal, styles.inputContaier]}>
-          {!this.state.isLoginMode && <TextInput ref={'fullname'} onFocus={() => {this._focus('fullname')}} onType={this._updateFullname} textColor={'#444444'} placeholder={'fullname'}/>}
-          <TextInput ref={'email'} onFocus={() => {this._focus('email')}} onType={this._updateEmail} textColor={'#444444'} placeholder={'email'}/>
-          <TextInput ref={'password'} onFocus={() => {this._focus('password')}} onType={this._updatePassword} textColor={'#444444'} placeholder={'password'} isPassword={true}/>
-        </View>
-        <View style={[globalStyles.centerChildrenHorizontal, styles.buttonContainer]}>
-          <ColorButton style={styles.sumbitButton} onPress={(this.state.isLoginMode) ? this._handleLogin : this._handleSignup} color={'#5f74e4'} value={this.state.isLoginMode ? 'Sign in' : 'Sign up'}/>
-        </View>
-      </ScrollView>
+      <View style={[globalStyles.coverBackground, styles.background]}>
+        <ScrollView ref='scrollView'>
+          <Image source={require('../../assets/images/logo-white.png')} style={styles.logo} />
+          <View style={styles.textButtonContainer}>
+            <TextButton style={styles.textButton} value={"Sign in"} activeBgColor={'#ee684f'} color={"white"} active={this.state.isLoginMode} onPress={() => {this._setMode(true)}}/>
+            <TextButton style={styles.textButton} value={"Sign up"} activeBgColor={'#ee684f'} color={"white"} active={!this.state.isLoginMode} onPress={() => {this._setMode(false)}}/>
+          </View>
+          <View style={[globalStyles.centerChildrenHorizontal, styles.inputContaier]}>
+            {!this.state.isLoginMode && <TextInput ref={'fullname'} onFocus={() => {this._focus('fullname')}} onType={this._updateFullname} textColor={'#444444'} placeholder={'fullname'}/>}
+            <TextInput ref={'email'} onFocus={() => {this._focus('email')}} onType={this._updateEmail} textColor={'#444444'} placeholder={'email'}/>
+            <TextInput ref={'password'} onFocus={() => {this._focus('password')}} onType={this._updatePassword} textColor={'#444444'} placeholder={'password'} isPassword={true}/>
+          </View>
+        </ScrollView>
+        <ColorButton style={styles.sumbitButton} onPress={(this.state.isLoginMode) ? this._handleLogin : this._handleSignup} color={'#5f74e4'} value={this.state.isLoginMode ? 'Sign in' : 'Sign up'}/>
+      </View>
+
     );
   }
 };
