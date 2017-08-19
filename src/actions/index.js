@@ -192,12 +192,12 @@ export function signupUser(fullname, email, password, gender, backToScreenKey) {
     signup({email: email, password: password, gender: gender, fullname: fullname})
     .then(data => {
       dispatch(signupSuccess());
-      return goBackToScreen(dispatch, backToScreenKey);
+      return goBackToScreen(dispatch, backToScreenKey)
     }).then(() => {
       dispatch(highlightLogIn());
-      dispatch(showMessage({title: 'Success', message: 'Please check your mail to verify your account', type: 'success'}))
-    })
-    .catch((err) => {
+      const message = (email.indexOf('@kth.se') === -1) ? 'Please check your mail to verify your account' : 'Account verified (KTH). Please sign in.';
+      dispatch(showMessage({title: 'Success', message: message, type: 'success'}))
+    }).catch((err) => {
       dispatch(signupFail());
       goBackToScreen(dispatch, backToScreenKey)
       .then(() => {

@@ -57,7 +57,7 @@ class EmailLogin extends React.Component {
   }
   _handleLogin = () => {
     if (this._isValidInput()) {
-      this.props.dispatch(loginUser({email: this.state.email, password: this.state.password}, this.props.global.screenKeys[1]));
+      this.props.dispatch(loginUser({email: this.state.email, password: this.state.password}, this.props.global.screenKeys[2]));
     }
   }
   _handleSignup = () => {

@@ -15,7 +15,7 @@ class GenderSelection extends React.Component {
   }
   _onClick = (gender) => {
     let {fullname, email, password, screenKeys} = this.props.global;
-    this.props.dispatch(signupUser(fullname, email, password, gender, screenKeys[1]));
+    this.props.dispatch(signupUser(fullname, email, password, gender, screenKeys[2]));
   }
   render() {
     return (
