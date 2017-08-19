@@ -38,16 +38,13 @@ export function postHairstyle(data) {
     let xhr = new XMLHttpRequest();
     xhr.onreadystatechange = () => {
       if (xhr.readyState == XMLHttpRequest.DONE) {
-        if (xhr.status === 200) {
-          resolve(xhr.responseText);
-        } else {
+        if (xhr.status !== 200) {
           console.log("FILE UPLOAD ERROR")
           console.log(xhr.statusText);
           console.log(xhr.responseText);
-          reject('FILE UPLOAD ERROR');
+          return reject('FILE UPLOAD ERROR');
         }
-        let response = JSON.parse(xhr.responseText);
-        resolve(response);
+        resolve(JSON.parse(xhr.responseText));
       }
     }
     var body = new FormData();
