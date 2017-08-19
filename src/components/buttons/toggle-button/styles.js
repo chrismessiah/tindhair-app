@@ -6,20 +6,21 @@ const height = 30;
 
 const styles = StyleSheet.create({
   view: {
-    width: width*2+20+10,
+    width: width*2+30,
     margin: 10,
     justifyContent: 'center',
     flexDirection: 'row',
     borderRadius: borderRadius,
     overflow: 'hidden',
     borderWidth: 1,
+    zIndex: 100,
   },
 
   buttonContainer: {
     justifyContent: 'center',
     alignItems: 'center',
     height: height,
-    width: width+10,
+    width: width+10-1,
   },
 
   buttonText: {
@@ -27,6 +28,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     backgroundColor: 'transparent',
     position: 'relative',
+    includeFontPadding: false,
   },
   buttonActive: {
     fontWeight: '500',
