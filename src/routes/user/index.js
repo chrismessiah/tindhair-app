@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, ScrollView, Image, Text } from 'react-native';
+import { View, ScrollView, Image, Text, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux'
 var ImagePicker = require('react-native-image-picker');
 var base64 = require('base-64');
@@ -59,6 +59,8 @@ class User extends React.Component {
         <ToggleButton color1={'#F26D4D'} color2={'white'} value1={'Liked hairstyles'} value2={'Your hairstyles'} onPress={this._toggleTab} style={{marginTop: 20}}/>
 
         {this.state.mode === 2 ? <GradientButton onPress={this._goToCamera} colors={['#FF5E00', '#FBB869']} value={'Upload your hairstyle'}/> : null}
+
+        <ActivityIndicator animating={this.props.global.uploading}/>
 
         {activeHairstyles ?
           <View>

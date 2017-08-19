@@ -19,6 +19,7 @@ initialState = {
     likedHairstyles: null,
     hairstyleIndex: null,
     user: null,
+    uploading: false,
 };
 
 export default function dataReducer (state = initialState, action) {
@@ -66,12 +67,18 @@ export default function dataReducer (state = initialState, action) {
         ...state,
         myHairstyles: action.data.hairstyles
       }
+    case c.SEND_HAIRSTYLE_TRY:
+      return {
+        ...state,
+        uploading: true,
+      }
     case c.SEND_HAIRSTYLE_SUCCESS:
       myHairstyles = state.myHairstyles;
       myHairstyles.unshift(action.data);
       return {
         ...state,
-        myHairstyles: myHairstyles
+        myHairstyles: myHairstyles,
+        uploading: false,
       }
     case c.STORE_ME:
       console.log(action.data);
