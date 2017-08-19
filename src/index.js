@@ -5,6 +5,7 @@ import { Provider } from 'react-redux'
 import AppWithNavigationState from './app';
 import configureStore from './configureStore';
 import MessageWrapper from './components/wrappers/message-wrapper/';
+const BusyIndicator = require('react-native-busy-indicator');
 
 const store = configureStore();
 
@@ -14,6 +15,7 @@ class ReduxApp extends React.Component {
       <Provider store={store}>
         <MessageWrapper>
           <AppWithNavigationState />
+          <BusyIndicator/>
         </MessageWrapper>
       </Provider>
     )

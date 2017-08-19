@@ -6,7 +6,14 @@ const styles = StyleSheet.create({
   },
   scrollContainer: {
     alignItems: 'center',
-  }
+  },
+  toggleButton: {
+    marginTop: 40,
+  },
+  gradientButton: {
+    marginTop: 20,
+    marginBottom: 0,
+  },
 });
 
 export default styles;

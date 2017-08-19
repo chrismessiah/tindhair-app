@@ -1,8 +1,9 @@
 import React from 'react';
-import { View, ScrollView, Image, Text, ActivityIndicator } from 'react-native';
+import { View, ScrollView, Image, Text } from 'react-native';
 import { connect } from 'react-redux'
 var ImagePicker = require('react-native-image-picker');
 var base64 = require('base-64');
+const loaderHandler = require('react-native-busy-indicator/LoaderHandler');
 
 import styles from './styles';
 import globalStyles from '../../styles';
@@ -19,18 +20,22 @@ class User extends React.Component {
       mode: 1
     }
   }
-
   static navigationOptions = {
     tabBarIcon: ({ tintColor }) => (
       <Image source={require('../../assets/images/haircut.png')} style={{width: 22, height: 22, tintColor: tintColor}} />
     ),
   }
-
   componentDidMount() {
     this.props.dispatch(fetchLikedHairstyles({token: this.props.global.access_token}))
     this.props.dispatch(fetchMyHairstyles({token: this.props.global.access_token}))
   }
-
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.global.uploading) {
+      loaderHandler.showLoader("Uploading hairstyle");
+    } else {
+      loaderHandler.hideLoader();
+    }
+  }
   _goToCamera = () => {
     const options = {
       title: 'Upload hairstyle',
@@ -56,11 +61,9 @@ class User extends React.Component {
 
     return (
       <ScrollView contentContainerStyle={styles.scrollContainer} style={[globalStyles.coverBackground, styles.background]}>
-        <ToggleButton color1={'#F26D4D'} color2={'white'} value1={'Liked hairstyles'} value2={'Your hairstyles'} onPress={this._toggleTab} style={{marginTop: 20}}/>
+        <ToggleButton style={styles.toggleButton} color1={'#F26D4D'} color2={'white'} value1={'Liked hairstyles'} value2={'Your hairstyles'} onPress={this._toggleTab}/>
 
-        {this.state.mode === 2 ? <GradientButton onPress={this._goToCamera} colors={['#FF5E00', '#FBB869']} value={'Upload your hairstyle'}/> : null}
-
-        <ActivityIndicator animating={this.props.global.uploading}/>
+        {this.state.mode === 2 ? <GradientButton style={styles.gradientButton} onPress={this._goToCamera} colors={['#FF5E00', '#FBB869']} value={'Upload your hairstyle'}/> : null}
 
         {activeHairstyles ?
           <View>

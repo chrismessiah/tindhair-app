@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 const HEART_WH_RATIO = 1.1052631579;
+const borderRadius = 10;
 
 const styles = StyleSheet.create({
   card: {
@@ -16,13 +17,14 @@ const styles = StyleSheet.create({
   image: {
     width: 250,
     height: 250,
+    borderTopLeftRadius: borderRadius,  // android fix
+    borderTopRightRadius: borderRadius, // android fix
   },
   canvas: {
-    overflow: 'hidden',
     width: 250,
     height: 285,
     overflow: 'hidden',
-    borderRadius: 10,
+    borderRadius: borderRadius,
     borderWidth: 1,
     borderColor: '#E9E9E9',
   },

@@ -72,6 +72,11 @@ export default function dataReducer (state = initialState, action) {
         ...state,
         uploading: true,
       }
+    case c.SEND_HAIRSTYLE_FAIL:
+      return {
+        ...state,
+        uploading: false,
+      }
     case c.SEND_HAIRSTYLE_SUCCESS:
       myHairstyles = state.myHairstyles;
       myHairstyles.unshift(action.data);
