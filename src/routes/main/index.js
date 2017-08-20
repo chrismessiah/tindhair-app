@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image, Text } from 'react-native';
+import { View, Image, Text, StatusBar } from 'react-native';
 import { connect } from 'react-redux'
 
 import styles from './styles';
@@ -38,6 +38,12 @@ class Main extends React.Component {
     let {hairstyles, hairstyleIndex} = this.props.global;
     return (
       <View style={[globalStyles.coverBackground, styles.background]}>
+        {/* <View style={styles.statusbar}></View> */}
+        <StatusBar
+          backgroundColor="blue"
+          barStyle="light-content"
+        />
+        {/* <View style={styles.header}></View> */}
         {this.state.messageText ?
           <View style={globalStyles.coverBackground, globalStyles.centerChildrenBoth}>
             <Text>{this.state.messageText}</Text>

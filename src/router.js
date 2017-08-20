@@ -9,22 +9,27 @@ import GenderSelection from './routes/gender-selection/';
 import Loader from './routes/loader/';
 import PostAuth from './routes/post-auth/';
 
+import Search from './routes/search/';
 import Main from './routes/main/';
 import User from './routes/user/';
-import Settings from './routes/settings/';
 
 const HairstyleApp = TabNavigator(
   {
-    Settings: {screen: Settings},
+    Search: {screen: Search},
     Main: {screen: Main},
     User: {screen: User},
   },
   {
     initialRouteName: 'Main',
-    tabBarOptions: { showLabel: false },
+    tabBarOptions: {
+      showLabel: false,
+      activeTintColor: '#262626',
+    },
     tabBarComponent: TabBarBottom,
     tabBarPosition: 'bottom',
     swipeEnabled: false,
+    animationEnabled: false,
+    lazy: true,
   }
 );
 

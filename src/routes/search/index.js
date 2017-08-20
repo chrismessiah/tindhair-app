@@ -11,7 +11,7 @@ import { logout } from '../../actions/';
 class Settings extends React.Component {
   static navigationOptions = {
     tabBarIcon: ({ tintColor }) => (
-      <Image source={require('../../assets/images/cogwheel.png')} style={{width: 22, height: 22, tintColor: tintColor}} />
+      <Image source={require('../../assets/images/search.png')} style={{width: 22, height: 22, tintColor: tintColor}} />
     ),
   }
   componentDidMount() {

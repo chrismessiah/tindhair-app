@@ -22,7 +22,7 @@ class User extends React.Component {
   }
   static navigationOptions = {
     tabBarIcon: ({ tintColor }) => (
-      <Image source={require('../../assets/images/haircut.png')} style={{width: 22, height: 22, tintColor: tintColor}} />
+      <Image source={require('../../assets/images/user.png')} style={{width: 22, height: 22, tintColor: tintColor}} />
     ),
   }
   componentDidMount() {
