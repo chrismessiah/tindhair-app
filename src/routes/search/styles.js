@@ -7,6 +7,17 @@ const styles = StyleSheet.create({
   image: {
     width: 200,
     height: 200,
+  },
+  header: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
+  row: {
+    flexDirection: 'row',
+    alignSelf: 'stretch',
+    height: 122,
+    marginBottom: 5,
   }
 });
 

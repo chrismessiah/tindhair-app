@@ -88,7 +88,7 @@ class User extends React.Component {
 
           {activeHairstyles && this.state.tab === 2 && this.state.subTab === 1 ? <GradientButton style={styles.gradientButton} onPress={this._goToCamera} colors={['#FF5E00', '#FBB869']} value={'Upload your hairstyle'}/> : null}
           {this.state.tab === 2 && this.state.subTab === 2 ?
-            <ColorButton onPress={() => this.props.dispatch(logout(this.props.global.screenKeys[1]))} color={'#5f74e4'} value={'Log out'}/>
+            <ColorButton value={'Log out'} onPress={() => this.props.dispatch(logout(this.props.global.screenKeys[1]))} color={'#F26D4D'} />
           : null}
           {!activeHairstyles ? <Text>Loading</Text> : null}
         </ScrollView>
