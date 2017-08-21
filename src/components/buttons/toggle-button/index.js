@@ -5,16 +5,8 @@ import Triangle from 'react-native-triangle';
 import styles from './styles';
 
 class ToggleButton extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      activeButton: this.props.activeButton || 1,
-    }
-  }
-
   _onPress(num) {
-    if (this.state.activeButton != num) {
-      this.setState({...this.state, activeButton: num});
+    if (this.props.activeButton != num) {
       if (this.props.onPress) {
         this.props.onPress(num);
       } else {
@@ -24,7 +16,7 @@ class ToggleButton extends React.Component {
   }
 
   render() {
-    const firstButtonActive = this.state.activeButton === 1;
+    const firstButtonActive = this.props.activeButton === 1;
 
     return (
       <View style={[styles.view, this.props.style]}>

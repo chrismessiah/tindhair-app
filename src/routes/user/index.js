@@ -55,7 +55,7 @@ class User extends React.Component {
     });
   }
   _toggleTab = (num) => {
-    this.setState({...this.state, tab: num});
+    this.setState({...this.state, tab: num, subTab: 1});
   }
 
   _toggleSubTab = (num) => {
@@ -76,7 +76,7 @@ class User extends React.Component {
         </Header>
 
         <ScrollView contentContainerStyle={styles.scrollContainer} >
-          {this.state.tab === 2 ? <ToggleButton style={{marginTop: 20}} onPress={this._toggleSubTab}/> : null}
+          {this.state.tab === 2 ? <ToggleButton style={{marginTop: 20}} onPress={this._toggleSubTab} activeButton={this.state.subTab}/> : null}
 
           {activeHairstyles && !(this.state.tab === 2 && this.state.subTab === 2) ?
             <View>
