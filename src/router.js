@@ -24,6 +24,7 @@ const HairstyleApp = TabNavigator(
     tabBarOptions: {
       showLabel: false,
       activeTintColor: '#262626',
+      style: { backgroundColor: '#FAFAFA' },
     },
     tabBarComponent: TabBarBottom,
     tabBarPosition: 'bottom',
