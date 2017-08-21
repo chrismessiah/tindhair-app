@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableWithoutFeedback, Alert } from 'react-native';
+import { View, Text, TouchableWithoutFeedback, Alert, Image } from 'react-native';
 import Triangle from 'react-native-triangle';
 
 import styles from './styles';
@@ -24,36 +24,30 @@ class ToggleButton extends React.Component {
   }
 
   render() {
-    const {color1, color2} = this.props;
-    const {activeButton} = this.state
-
-    let buttonOuterStyle1, buttonOuterStyle2, textStyle1, textStyle2;
-    if (this.state.activeButton === 1) {
-      buttonOuterStyle1 = [styles.buttonContainer, {backgroundColor: color1, width: styles.buttonContainer.width+1}];
-      buttonOuterStyle2 = [styles.buttonContainer, {backgroundColor: color2, width: styles.buttonContainer.width+1}];
-      textStyle1 = [styles.buttonText, styles.buttonActive, {color: color2}];
-      textStyle2 = [styles.buttonText, styles.buttonInactive, {color: color1}];
-    } else {
-      buttonOuterStyle1 = [styles.buttonContainer, {backgroundColor: color2, width: styles.buttonContainer.width+1}];
-      buttonOuterStyle2 = [styles.buttonContainer, {backgroundColor: color1, width: styles.buttonContainer.width+1}];
-      textStyle1 = [styles.buttonText, styles.buttonInactive, {color: color1}];
-      textStyle2 = [styles.buttonText, styles.buttonActive, {color: color2}];
-    }
+    const firstButtonActive = this.state.activeButton === 1;
 
     return (
-      <View style={[styles.view, this.props.style, {borderColor: color1}]}>
-        <View style={[buttonOuterStyle1, styles.buttonLeftContainer]}>
+      <View style={[styles.view, this.props.style]}>
+        <View style={[styles.buttonLeftContainer, (firstButtonActive ? styles.buttonActiveContainer : {})]}>
           <TouchableWithoutFeedback onPress={() => {this._onPress(1)}}>
             <View style={styles.buttonContainer}>
-              <Text style={textStyle1}>{this.props.value1}</Text>
+              {(firstButtonActive) ?
+                <Image style={{height: 20, width: 20}} source={require('../../../assets/images/scissors-white.png')}/>
+              :
+                <Image style={{height: 20, width: 20}} source={require('../../../assets/images/scissors-orange-light.png')}/>
+              }
             </View>
           </TouchableWithoutFeedback>
         </View>
 
-        <View style={[buttonOuterStyle2, styles.buttonRightContainer]}>
+        <View style={[styles.buttonRightContainer, (!firstButtonActive ? styles.buttonActiveContainer : {})]}>
           <TouchableWithoutFeedback onPress={() => {this._onPress(2)}}>
             <View style={styles.buttonContainer}>
-              <Text style={textStyle2}>{this.props.value2}</Text>
+              {(!firstButtonActive) ?
+                <Image style={{height: 20, width: 20}} source={require('../../../assets/images/Cogwheel-white.png')}/>
+              :
+                <Image style={{height: 20, width: 20}} source={require('../../../assets/images/Cogwheel-orange-light.png')}/>
+              }
             </View>
           </TouchableWithoutFeedback>
         </View>

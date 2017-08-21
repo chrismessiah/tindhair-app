@@ -12,14 +12,16 @@ import Card from '../../components/tinder/tinder-card/';
 import GradientButton from '../../components/buttons/gradient-button/';
 import ToggleButton from '../../components/buttons/toggle-button/';
 import TextButton from '../../components/buttons/text-button/'
+import ColorButton from '../../components/buttons/color-button/';
 import Header from '../../components/headers/main/'
-import { fetchLikedHairstyles, sendHairstyle, fetchMyHairstyles } from '../../actions'
+import { fetchLikedHairstyles, sendHairstyle, fetchMyHairstyles, logout } from '../../actions';
 
 class User extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      mode: 1
+      tab: 1,
+      subTab: 1,
     }
   }
   static navigationOptions = {
@@ -53,33 +55,42 @@ class User extends React.Component {
     });
   }
   _toggleTab = (num) => {
-    this.setState({...this.state, mode: num});
+    this.setState({...this.state, tab: num});
   }
+
+  _toggleSubTab = (num) => {
+    this.setState({...this.state, subTab: num});
+  }
+
   render() {
     let activeHairstyles;
     if (this.props.global.likedHairstyles && this.props.global.myHairstyles) {
-      activeHairstyles = (this.state.mode === 1) ? this.props.global.likedHairstyles : this.props.global.myHairstyles;
+      activeHairstyles = (this.state.tab === 1) ? this.props.global.likedHairstyles : this.props.global.myHairstyles;
     }
 
     return (
       <View style={[globalStyles.coverBackground, styles.background]}>
         <Header bgColor={'#FAFAFA'} androidBarBgColor={'#F0F0F0'} style={styles.header}>
-          <TextButton value={'LIKES'} activeTextStyle={styles.headerActiveText} textStyle={styles.headerText} onPress={() => this._toggleTab(1)} active={this.state.mode === 1}/>
-          <TextButton value={'YOU'} activeTextStyle={styles.headerActiveText} textStyle={styles.headerText} onPress={() => this._toggleTab(2)} active={this.state.mode === 2}/>
+          <TextButton value={'LIKES'} activeTextStyle={styles.headerActiveText} textStyle={styles.headerText} onPress={() => this._toggleTab(1)} active={this.state.tab === 1}/>
+          <TextButton value={'YOU'} activeTextStyle={styles.headerActiveText} textStyle={styles.headerText} onPress={() => this._toggleTab(2)} active={this.state.tab === 2}/>
         </Header>
 
         <ScrollView contentContainerStyle={styles.scrollContainer} >
-          {this.state.mode === 2 ? <GradientButton style={styles.gradientButton} onPress={this._goToCamera} colors={['#FF5E00', '#FBB869']} value={'Upload your hairstyle'}/> : null}
+          {this.state.tab === 2 ? <ToggleButton style={{marginTop: 20}} onPress={this._toggleSubTab}/> : null}
 
-          {activeHairstyles ?
+          {activeHairstyles && !(this.state.tab === 2 && this.state.subTab === 2) ?
             <View>
               {activeHairstyles.map(hairstyle => {
                 return <Card {...hairstyle} key={`liked-${hairstyle.id}`}/>
               })}
             </View>
-          :
-            <Text>Loading</Text>
-          }
+          : null }
+
+          {activeHairstyles && this.state.tab === 2 && this.state.subTab === 1 ? <GradientButton style={styles.gradientButton} onPress={this._goToCamera} colors={['#FF5E00', '#FBB869']} value={'Upload your hairstyle'}/> : null}
+          {this.state.tab === 2 && this.state.subTab === 2 ?
+            <ColorButton onPress={() => this.props.dispatch(logout(this.props.global.screenKeys[1]))} color={'#5f74e4'} value={'Log out'}/>
+          : null}
+          {!activeHairstyles ? <Text>Loading</Text> : null}
         </ScrollView>
       </View>
 

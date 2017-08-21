@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 let borderRadius = 8;
-const width = 130;
+const width = 60;
 const height = 30;
 
 const styles = StyleSheet.create({
@@ -12,6 +12,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     borderRadius: borderRadius,
     borderWidth: 1,
+    borderColor: '#EA6A50',
   },
   buttonContainer: {
     justifyContent: 'center',
@@ -34,12 +35,13 @@ const styles = StyleSheet.create({
     position: 'relative',
     includeFontPadding: false,
   },
-  buttonActive: {
-    fontWeight: '500',
+
+  buttonActiveContainer: {
+    backgroundColor: '#EA6A50',
   },
-  buttonInactive: {
-    fontWeight: '300',
-  },
+  // buttonInactiveContainer: {
+  //   fontWeight: '300',
+  // },
 
 
 
