@@ -14,6 +14,22 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 0,
   },
+  header: {
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
+
+  headerText: {
+    color: '#C7C7C7',
+    fontWeight: 'bold',
+    fontSize: 16,
+  },
+  headerActiveText: {
+    color: '#262626',
+    fontWeight: 'bold',
+    fontSize: 16,
+  },
 });
 
 export default styles;

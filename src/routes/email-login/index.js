@@ -79,8 +79,8 @@ class EmailLogin extends React.Component {
         <ScrollView ref='scrollView'>
           <Image source={require('../../assets/images/logo-white.png')} style={styles.logo} />
           <View style={styles.textButtonContainer}>
-            <TextButton style={styles.textButton} value={"Sign in"} activeBgColor={'#ee684f'} color={"white"} active={this.state.isLoginMode} onPress={() => {this._setMode(true)}}/>
-            <TextButton style={styles.textButton} value={"Sign up"} activeBgColor={'#ee684f'} color={"white"} active={!this.state.isLoginMode} onPress={() => {this._setMode(false)}}/>
+            <TextButton style={styles.textButton} value={"Sign in"} textStyle={styles.buttonText} activeTextStyle={styles.buttonTextActive} activeContainerStyle={styles.buttonContainerActive} active={this.state.isLoginMode} onPress={() => {this._setMode(true)}}/>
+            <TextButton style={styles.textButton} value={"Sign up"} textStyle={styles.buttonText} activeTextStyle={styles.buttonTextActive} activeContainerStyle={styles.buttonContainerActive} active={!this.state.isLoginMode} onPress={() => {this._setMode(false)}}/>
           </View>
           <View style={[globalStyles.centerChildrenHorizontal, styles.inputContaier]}>
             {!this.state.isLoginMode && <TextInput ref={'fullname'} onFocus={() => {this._focus('fullname')}} onType={this._updateFullname} textColor={'#444444'} placeholder={'fullname'}/>}

@@ -23,6 +23,19 @@ const styles = StyleSheet.create({
   inputContaier: {
     marginTop: 50,
   },
+
+  buttonText: {
+    fontWeight: '300',
+    color: 'white',
+  },
+  buttonTextActive: {
+    fontWeight: '600',
+    color: 'white',
+  },
+  buttonContainerActive: {
+    backgroundColor: '#EE684F',
+    borderRadius: 20,
+  },
 });
 
 export default styles;

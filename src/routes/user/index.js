@@ -11,6 +11,8 @@ import globalStyles from '../../styles';
 import Card from '../../components/tinder/tinder-card/';
 import GradientButton from '../../components/buttons/gradient-button/';
 import ToggleButton from '../../components/buttons/toggle-button/';
+import TextButton from '../../components/buttons/text-button/'
+import Header from '../../components/headers/main/'
 import { fetchLikedHairstyles, sendHairstyle, fetchMyHairstyles } from '../../actions'
 
 class User extends React.Component {
@@ -60,21 +62,27 @@ class User extends React.Component {
     }
 
     return (
-      <ScrollView contentContainerStyle={styles.scrollContainer} style={[globalStyles.coverBackground, styles.background]}>
-        <ToggleButton style={styles.toggleButton} color1={'#F26D4D'} color2={'white'} value1={'Liked hairstyles'} value2={'Your hairstyles'} onPress={this._toggleTab}/>
+      <View style={[globalStyles.coverBackground, styles.background]}>
+        <Header bgColor={'#FAFAFA'} androidBarBgColor={'#F0F0F0'} style={styles.header}>
+          <TextButton value={'LIKES'} activeTextStyle={styles.headerActiveText} textStyle={styles.headerText} onPress={() => this._toggleTab(1)} active={this.state.mode === 1}/>
+          <TextButton value={'YOU'} activeTextStyle={styles.headerActiveText} textStyle={styles.headerText} onPress={() => this._toggleTab(2)} active={this.state.mode === 2}/>
+        </Header>
 
-        {this.state.mode === 2 ? <GradientButton style={styles.gradientButton} onPress={this._goToCamera} colors={['#FF5E00', '#FBB869']} value={'Upload your hairstyle'}/> : null}
+        <ScrollView contentContainerStyle={styles.scrollContainer} >
+          {this.state.mode === 2 ? <GradientButton style={styles.gradientButton} onPress={this._goToCamera} colors={['#FF5E00', '#FBB869']} value={'Upload your hairstyle'}/> : null}
 
-        {activeHairstyles ?
-          <View>
-            {activeHairstyles.map(hairstyle => {
-              return <Card {...hairstyle} key={`liked-${hairstyle.id}`}/>
-            })}
-          </View>
-        :
-          <Text>Loading</Text>
-        }
-      </ScrollView>
+          {activeHairstyles ?
+            <View>
+              {activeHairstyles.map(hairstyle => {
+                return <Card {...hairstyle} key={`liked-${hairstyle.id}`}/>
+              })}
+            </View>
+          :
+            <Text>Loading</Text>
+          }
+        </ScrollView>
+      </View>
+
     )
   }
 };

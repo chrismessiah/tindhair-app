@@ -6,19 +6,11 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     backgroundColor: 'transparent',
   },
-  buttonTextActive: {
-    fontWeight: '600',
-  },
-  
   buttonContainer: {
     paddingTop: 10,
     paddingBottom: 10,
     paddingLeft: 30,
     paddingRight: 30,
-  },
-  buttonContainerActive: {
-    backgroundColor: '#787878',
-    borderRadius: 20,
   },
 });
 

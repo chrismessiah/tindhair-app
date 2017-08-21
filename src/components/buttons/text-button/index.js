@@ -8,24 +8,20 @@ class TextButton extends React.Component {
     Alert.alert('You tapped the button!');
   }
   render() {
-    const buttonPressHandler = (this.props.onPress) ? this.props.onPress : this._standardTouch;
-
-    let buttonTextStyle = [styles.buttonText];
-    let buttonContainerStyle = [styles.buttonContainer]
-    if (this.props.color) {
-      buttonTextStyle.push({color: this.props.color});
-    }
+    let textStyle, containerStyle;
     if (this.props.active) {
-      buttonTextStyle.push(styles.buttonTextActive);
-      buttonContainerStyle.push(styles.buttonContainerActive);
-      if (this.props.activeBgColor) buttonContainerStyle.push({backgroundColor: this.props.activeBgColor});
+      textStyle =  this.props.activeTextStyle || this.props.textStyle;
+      containerStyle =  this.props.activeContainerStyle || this.props.containerStyle;
+    } else {
+      textStyle = this.props.textStyle;
+      containerStyle = this.props.containerStyle;
     }
 
     return (
       <View style={this.props.style}>
-        <TouchableWithoutFeedback onPress={buttonPressHandler} style={styles.touchable}>
-          <View style={buttonContainerStyle}>
-            <Text style={buttonTextStyle}>{this.props.value}</Text>
+        <TouchableWithoutFeedback onPress={this.props.onPress || this._standardTouch} >
+          <View style={[styles.buttonContainer, containerStyle]}>
+            <Text style={[styles.buttonText, textStyle]}>{this.props.value}</Text>
           </View>
         </TouchableWithoutFeedback>
       </View>
