@@ -20,7 +20,7 @@ class ToggleButton extends React.Component {
 
     return (
       <View style={[styles.view, this.props.style]}>
-        <View style={[styles.buttonLeftContainer, (firstButtonActive ? styles.buttonActiveContainer : {})]}>
+        <View style={[styles.buttonLeftContainer, (firstButtonActive ? styles.buttonActiveContainer : styles.buttonInactiveContainer)]}>
           <TouchableWithoutFeedback onPress={() => {this._onPress(1)}}>
             <View style={styles.buttonContainer}>
               {(firstButtonActive) ?
@@ -32,7 +32,7 @@ class ToggleButton extends React.Component {
           </TouchableWithoutFeedback>
         </View>
 
-        <View style={[styles.buttonRightContainer, (!firstButtonActive ? styles.buttonActiveContainer : {})]}>
+        <View style={[styles.buttonRightContainer, (!firstButtonActive ? styles.buttonActiveContainer : styles.buttonInactiveContainer)]}>
           <TouchableWithoutFeedback onPress={() => {this._onPress(2)}}>
             <View style={styles.buttonContainer}>
               {(!firstButtonActive) ?

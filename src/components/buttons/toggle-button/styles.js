@@ -39,9 +39,9 @@ const styles = StyleSheet.create({
   buttonActiveContainer: {
     backgroundColor: '#EA6A50',
   },
-  // buttonInactiveContainer: {
-  //   fontWeight: '300',
-  // },
+  buttonInactiveContainer: {
+    //backgroundColor: '#ffffff',
+  },
 
 
 
