@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image, Text } from 'react-native';
+import { View, Image, Text, StatusBar } from 'react-native';
 
 import GradientButton from '../../components/buttons/gradient-button/';
 import styles from './styles';
@@ -15,6 +15,7 @@ class LoginSelection extends React.Component {
   render() {
     return (
       <Image source={require('../../assets/images/login-bg.jpg')} style={globalStyles.coverBackground} >
+        <StatusBar barStyle="light-content" translucent={true} />
         <Image source={require('../../assets/images/logo.png')} style={styles.logo} />
         {this.props.global.isFetching && <Text>Loading</Text>}
         <View style={[globalStyles.centerChildrenHorizontal, styles.buttonContainer]}>

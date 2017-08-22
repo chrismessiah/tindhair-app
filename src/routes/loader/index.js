@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, StatusBar } from 'react-native';
 
 import TextFader from '../../components/animations/text-fade-looper/';
 import styles from './styles';
@@ -19,6 +19,7 @@ class Loader extends React.Component {
   render() {
     return (
       <View style={[globalStyles.coverBackground, styles.background, globalStyles.centerChildrenBoth]}>
+        <StatusBar barStyle="dark-content" backgroundColor={'#fec4b8'} />
         <TextFader loopValues={this.loopValues}/>
       </View>
     )

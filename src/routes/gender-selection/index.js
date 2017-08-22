@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { Text, View } from 'react-native';
+import { Text, View, StatusBar } from 'react-native';
 
 import ColorButton from '../../components/buttons/color-button/';
 import styles from './styles';
@@ -20,6 +20,7 @@ class GenderSelection extends React.Component {
   render() {
     return (
       <View style={[globalStyles.coverBackground, styles.background, globalStyles.centerChildrenHorizontal]}>
+        <StatusBar barStyle="dark-content" backgroundColor={'#fec4b8'} />
         <View style={styles.marginMedium}>
           <Text style={styles.h1}>Puh.. almost done!</Text>
           <Text style={[styles.h2, styles.marginSmall]}>Show me hairstyles for</Text>

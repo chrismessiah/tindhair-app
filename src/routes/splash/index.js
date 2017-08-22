@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image } from 'react-native';
+import { View, Image, StatusBar } from 'react-native';
 import { connect } from 'react-redux'
 
 import styles from './styles';
@@ -13,6 +13,7 @@ class Splash extends React.Component {
   render() {
     return (
       <View style={[globalStyles.coverBackground, globalStyles.centerChildrenBoth, styles.background]}>
+        <StatusBar barStyle="dark-content" translucent={true} />
         <Image source={require('../../assets/images/logo-white.png')} style={styles.logo} />
       </View>
     )
