@@ -5,15 +5,14 @@ import styles from './styles';
 
 class Card extends React.Component {
   render() {
-    let {image, name, likes} = this.props;
     return (
-      <View style={[styles.card]}>
+      <View style={[styles.card, this.props.style]}>
         <View style={styles.canvas}>
-          <Image style={styles.image} source={{uri: image.small}}/>
+          <Image style={styles.image} source={(this.props.image && this.props.image.small) ? {uri: this.props.image.small} : require('../../../assets/images/no-avatar.png')}/>
           <View style={styles.textContainer}>
-            <Text style={styles.text}>{name}</Text>
+            <Text style={styles.text}>{this.props.name || 'Unnamed hairstyle'}</Text>
             <View style={styles.heartContainer}>
-              <Text style={styles.heartText}>{likes}</Text>
+              <Text style={styles.heartText}>{this.props.likes || 0}</Text>
               <Image style={styles.heartImage} source={require('../../../assets/images/heart.png')}/>
             </View>
           </View>

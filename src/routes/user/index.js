@@ -1,9 +1,6 @@
 import React from 'react';
 import { View, ScrollView, Image, Text } from 'react-native';
 import { connect } from 'react-redux'
-var ImagePicker = require('react-native-image-picker');
-var base64 = require('base-64');
-const loaderHandler = require('react-native-busy-indicator/LoaderHandler');
 
 import styles from './styles';
 import globalStyles from '../../styles';
@@ -14,7 +11,7 @@ import ToggleButton from '../../components/buttons/toggle-button/';
 import TextButton from '../../components/buttons/text-button/'
 import ColorButton from '../../components/buttons/color-button/';
 import Header from '../../components/headers/main/'
-import { fetchLikedHairstyles, sendHairstyle, fetchMyHairstyles, logout } from '../../actions';
+import { fetchLikedHairstyles, fetchMyHairstyles, logout } from '../../actions';
 
 class User extends React.Component {
   constructor(props) {
@@ -33,26 +30,8 @@ class User extends React.Component {
     this.props.dispatch(fetchLikedHairstyles({token: this.props.global.access_token}))
     this.props.dispatch(fetchMyHairstyles({token: this.props.global.access_token}))
   }
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.global.uploading) {
-      loaderHandler.showLoader("Uploading hairstyle");
-    } else {
-      loaderHandler.hideLoader();
-    }
-  }
   _goToCamera = () => {
-    const options = {
-      title: 'Upload hairstyle',
-      storageOptions: {skipBackup: true, path: 'images'}
-    };
-    ImagePicker.showImagePicker(options, (response) => {
-      if (response.error) throw response.error;
-      if (!response.didCancel) {
-        const {fullname, gender} =  this.props.global.user;
-        data = { name: fullname, gender: gender, uri: response.uri, token: this.props.global.access_token };
-        this.props.dispatch(sendHairstyle(data));
-      }
-    });
+    this.props.navigation.navigate('Upload');
   }
   _toggleTab = (num) => {
     this.setState({...this.state, tab: num, subTab: 1});

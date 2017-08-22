@@ -87,8 +87,8 @@ class EmailLogin extends React.Component {
             <TextInput ref={'email'} onFocus={() => {this._focus('email')}} onType={this._updateEmail} textColor={'#444444'} placeholder={'email'}/>
             <TextInput ref={'password'} onFocus={() => {this._focus('password')}} onType={this._updatePassword} textColor={'#444444'} placeholder={'password'} isPassword={true}/>
           </View>
+          <ColorButton style={styles.sumbitButton} onPress={(this.state.isLoginMode) ? this._handleLogin : this._handleSignup} color={'#5f74e4'} value={this.state.isLoginMode ? 'Sign in' : 'Sign up'}/>
         </ScrollView>
-        <ColorButton style={styles.sumbitButton} onPress={(this.state.isLoginMode) ? this._handleLogin : this._handleSignup} color={'#5f74e4'} value={this.state.isLoginMode ? 'Sign in' : 'Sign up'}/>
       </View>
 
     );

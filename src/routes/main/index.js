@@ -36,12 +36,15 @@ class Main extends React.Component {
   _callbackNo = (hairstyle) => {
 
   }
+  _cameraClick = () => {
+    this.props.navigation.navigate('Upload');
+  }
   render() {
     let {hairstyles, hairstyleIndex} = this.props.global;
     return (
       <View style={[globalStyles.coverBackground, styles.background]}>
         <Header bgColor={'#FAFAFA'} androidBarBgColor={'#F0F0F0'} style={styles.header}>
-          <ImageButton source={require('../../assets/images/camera.png')} imageStyle={{width: 27, height: 22}}/>
+          <ImageButton onPress={this._cameraClick} source={require('../../assets/images/camera.png')} imageStyle={{width: 27, height: 22}}/>
           <Image source={require('../../assets/images/logo-gray.png')} style={{width: 100, height: 30, position: 'relative', top: 3}}/>
           <ImageButton imageStyle={{width: 10, height: 22}}/>
         </Header>

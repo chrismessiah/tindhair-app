@@ -1,5 +1,5 @@
 import { NavigationActions } from 'react-navigation';
-import { AsyncStorage } from 'react-native';
+import { AsyncStorage, Platform } from 'react-native';
 
 import * as c from '../constants'
 import {
@@ -21,6 +21,9 @@ export function sendHairstyle(data) {
     return postHairstyle(data)
     .then(response => {
       dispatch(sendHairstyleSuccess(response))
+      dispatch(NavigationActions.back())
+      setTimeout(() => {dispatch(navigateTo('Search'))}, 500);
+      if (Platform.os === 'ios') RNFS.unlink(data.uri);
     }).catch(err => {
       console.log(err);
       dispatch(sendHairstyleFail())

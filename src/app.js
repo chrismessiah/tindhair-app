@@ -13,16 +13,17 @@ class App extends React.Component {
     }
   }
   _showAlert = (data) => {
+    const duration = data.duration || 4000;
     MessageBarManager.showAlert({
       title: data.title,
       message: data.message,
       alertType: data.type,
       viewTopInset: 15,
-      duration: data.duration,
+      duration: duration,
     });
     setTimeout(() => {
       MessageBarManager.hideAlert();
-    }, data.duration)
+    }, duration)
   }
   render() {
     return (

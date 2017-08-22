@@ -10,6 +10,8 @@ const styles = StyleSheet.create({
     width: 250,
     height: 285,
     margin: 20,
+    borderRadius: borderRadius,
+    backgroundColor: 'white',
   },
   noMoreCardsText: {
     fontSize: 22,
@@ -25,8 +27,8 @@ const styles = StyleSheet.create({
     height: 285,
     overflow: 'hidden',
     borderRadius: borderRadius,
-    borderWidth: 1,
-    borderColor: '#E9E9E9',
+    borderWidth: 0.5,
+    borderColor: '#d0d0d0',
   },
   textContainer: {
     height: 15,

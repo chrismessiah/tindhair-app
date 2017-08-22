@@ -12,12 +12,29 @@ import PostAuth from './routes/post-auth/';
 import Search from './routes/search/';
 import Main from './routes/main/';
 import User from './routes/user/';
+import UploadHairstyle from './routes/upload-hairstyle/';
+
+const MainApp = StackNavigator(
+  {
+    Main2: {screen: Main, navigationOptions: {header: false}},
+    Upload: {screen: UploadHairstyle, navigationOptions: {headerStyle: {backgroundColor: '#FAFAFA'}} },
+  },
+  { initialRouteName: 'Main2' }
+)
+
+const UserApp = StackNavigator(
+  {
+    User2: {screen: User, navigationOptions: {header: false}},
+    Upload: {screen: UploadHairstyle, navigationOptions: {headerStyle: {backgroundColor: '#FAFAFA'}} },
+  },
+  { initialRouteName: 'User2' }
+)
 
 const HairstyleApp = TabNavigator(
   {
     Search: {screen: Search},
-    Main: {screen: Main},
-    User: {screen: User},
+    Main: {screen: MainApp},
+    User: {screen: UserApp},
   },
   {
     initialRouteName: 'Main',
