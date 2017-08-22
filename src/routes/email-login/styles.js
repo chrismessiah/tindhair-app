@@ -11,8 +11,6 @@ const styles = StyleSheet.create({
     marginTop: 30,
   },
   sumbitButton: {
-    position: 'absolute',
-    bottom: 30,
     alignSelf: 'center'
   },
   textButtonContainer: {
@@ -33,7 +31,7 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   buttonContainerActive: {
-    backgroundColor: '#EE684F',
+    backgroundColor: '#ec7560',
     borderRadius: 20,
   },
 });
