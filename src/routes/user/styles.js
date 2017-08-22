@@ -2,7 +2,8 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   background: {
-    backgroundColor: '#ffffff',
+    //backgroundColor: '#ffffff',
+    backgroundColor: '#e9e9ef',
   },
   scrollContainer: {
     alignItems: 'center',
