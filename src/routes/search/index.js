@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, ScrollView, Image, Text, Dimensions } from 'react-native';
 import { connect } from 'react-redux'
+var _ = require('lodash');
 
 import Header from '../../components/headers/main/';
 import { fetchHairstyles } from '../../actions/';
@@ -54,9 +55,8 @@ class Settings extends React.Component {
     const scrolledRows = Math.floor(scrolled/ROW_HEIGHT)
     const maxDisplayedRows = Math.floor(DEVICE_HEIGHT/ROW_HEIGHT);
     const rowsLeft = this.state.showedRows - (scrolledRows+maxDisplayedRows)
-    if (rowsLeft >= 3) {
-      console.log('entered fetch');
-        this.setState({...this.state, showedRows: 15})
+    if (rowsLeft <= 3) {
+        this.setState({...this.state, showedRows: this.state.showedRows+3})
     }
   }
   _onLayout = (e) => {
@@ -65,7 +65,7 @@ class Settings extends React.Component {
   }
   _getShowedHairstyles = (rows) => {
     if (!this.props.global.hairstyles) return;
-    const {hairstyles} = this.props.global;
+    let hairstyles = _.cloneDeep(this.props.global.hairstyles);
     hairstyles.splice(rows*3);
     return hairstyles;
   }
@@ -76,7 +76,7 @@ class Settings extends React.Component {
           <Text style={{fontWeight: 'bold', fontSize: 16}}>Discover</Text>
         </Header>
 
-        <ScrollView onScroll={this._onScroll} showsVerticalScrollIndicator={true} scrollEventThrottle={50}>
+        <ScrollView onScroll={this._onScroll} showsVerticalScrollIndicator={true} scrollEventThrottle={500}>
           <View onLayout={this._onLayout}>
             {this._buildGridArray()}
           </View>
