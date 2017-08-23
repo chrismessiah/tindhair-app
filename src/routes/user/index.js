@@ -11,7 +11,7 @@ import ToggleButton from '../../components/buttons/toggle-button/';
 import TextButton from '../../components/buttons/text-button/'
 import ColorButton from '../../components/buttons/color-button/';
 import Header from '../../components/headers/main/'
-import { fetchLikedHairstyles, fetchMyHairstyles, logout } from '../../actions';
+import { fetchLikedHairstyles, fetchMyHairstyles, logout, deleteAccount } from '../../actions';
 
 class User extends React.Component {
   constructor(props) {
@@ -68,7 +68,10 @@ class User extends React.Component {
 
           {activeHairstyles && this.state.tab === 2 && this.state.subTab === 1 ? <GradientButton style={styles.gradientButton} onPress={this._goToCamera} colors={['#FF5E00', '#FBB869']} value={'Upload your hairstyle'}/> : null}
           {this.state.tab === 2 && this.state.subTab === 2 ?
-            <ColorButton value={'Log out'} onPress={() => this.props.dispatch(logout(this.props.global.screenKeys[1]))} color={'#F26D4D'} />
+            <View>
+              <ColorButton value={'Log out'} onPress={() => this.props.dispatch(logout(this.props.global.screenKeys[1]))} color={'#F26D4D'} />
+              <ColorButton value={'Delete account'} onPress={() => this.props.dispatch(deleteAccount({token: this.props.global.access_token}, this.props.global.screenKeys[1]))} color={'#ff4e4e'} />
+            </View>
           : null}
           {!activeHairstyles ? <Text>Loading</Text> : null}
         </ScrollView>

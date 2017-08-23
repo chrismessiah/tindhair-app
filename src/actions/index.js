@@ -12,6 +12,7 @@ import {
   getLikedHairstyles,
   postHairstyle,
   getMyHairstyles,
+  deleteUser,
 } from '../api/'
 
 // **************** HAIRSTYLES ***************
@@ -123,6 +124,25 @@ export function logout(firstScreenKey) {
 }
 const clearStore = () => {return {type: c.CLEAR_STORE}};
 const clearTokens = () => {return {type: c.CLEAR_TOKENS}};
+
+// **************** DELETE ACCOUNT ***************
+export function deleteAccount(data, firstScreenKey) {
+  return (dispatch) => {
+    dispatch(deleteAccountTry())
+    deleteUser(data)
+    .then(response => {
+      dispatch(deleteAccountSuccess())
+      dispatch(logout(firstScreenKey))
+    }).catch(err => {
+      dispatch(deleteAccountFail())
+      console.log(err);
+    })
+  }
+}
+
+const deleteAccountTry = () => {return {type: c.DELETE_ACCOUNT_TRY}};
+const deleteAccountSuccess = () => {return {type: c.DELETE_ACCOUNT_SUCCESS}};
+const deleteAccountFail = () => {return {type: c.DELETE_ACCOUNT_FAIL}};
 
 // **************** LOGIN ***************
 export function checkIfLoggedIn(data, backToScreenKey) {

@@ -1,6 +1,11 @@
 import axios from 'axios';
 import { API_URL } from './constants';
 
+export function deleteUser(data) {
+  return DELETE(`user/`, data);
+};
+
+
 export function getMyHairstyles(data) {
   return GET(`hairstyle/my/`, data);
 };
@@ -73,7 +78,7 @@ const POST = (route, params) => {
 }
 
 const DELETE = (route, params) => {
-  return request(axios.delete,route, params);
+  return request('DELETE', route, params);
 }
 
 // params is only to be used for passing token or body
@@ -85,7 +90,7 @@ const request = (type, route, params) => {
     headers: {},
   }
 
-  if (params && type != 'GET') {
+  if (params && type === 'POST') {
     config.data = params;
   }
 
