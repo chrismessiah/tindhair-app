@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, ScrollView, Image, Text } from 'react-native';
+import { View, ScrollView, Image, Text, Dimensions } from 'react-native';
 import { connect } from 'react-redux'
+var _ = require('lodash');
 
 import Header from '../../components/headers/main/';
 import { fetchHairstyles } from '../../actions/';
@@ -8,16 +9,26 @@ import { fetchHairstyles } from '../../actions/';
 import styles from './styles';
 import globalStyles from '../../styles';
 
+const ROW_HEIGHT = styles.row.height + styles.row.marginBottom;
+const DEVICE_HEIGHT = Dimensions.get('window').height;
+
 class Settings extends React.Component {
   static navigationOptions = {
     tabBarIcon: ({ tintColor }) => (
       <Image source={require('../../assets/images/search.png')} style={{width: 21, height: 22, tintColor: tintColor}} />
     ),
   }
+  constructor(props) {
+    super(props);
+    this.state = {
+      showedRows: 10,
+    }
+  }
   componentDidMount() {
     this.props.dispatch(fetchHairstyles({token: this.props.global.access_token}));
   }
-  _buildGridArray = (hairstyles) => {
+  _buildGridArray = () => {
+    let hairstyles = this._getShowedHairstyles(this.state.showedRows);
     if (!hairstyles) {return(<Text>Loading</Text>)}
     let sum = [];
     for (var i = 0; i < hairstyles.length; i+=3) {
@@ -39,6 +50,25 @@ class Settings extends React.Component {
     }
     return sum;
   }
+  _onScroll = (e) => {
+    const scrolled = e.nativeEvent.contentOffset.y;
+    const scrolledRows = Math.floor(scrolled/ROW_HEIGHT)
+    const maxDisplayedRows = Math.floor(DEVICE_HEIGHT/ROW_HEIGHT);
+    const rowsLeft = this.state.showedRows - (scrolledRows+maxDisplayedRows)
+    if (rowsLeft <= 3) {
+        this.setState({...this.state, showedRows: this.state.showedRows+3})
+    }
+  }
+  _onLayout = (e) => {
+    const showedRows = Math.round(e.nativeEvent.layout.height/ROW_HEIGHT);
+    this.setState({...this.state, showedRows: showedRows});
+  }
+  _getShowedHairstyles = (rows) => {
+    if (!this.props.global.hairstyles) return;
+    let hairstyles = _.cloneDeep(this.props.global.hairstyles);
+    hairstyles.splice(rows*3);
+    return hairstyles;
+  }
   render() {
     return (
       <View style={globalStyles.coverBackground}>
@@ -46,8 +76,10 @@ class Settings extends React.Component {
           <Text style={{fontWeight: 'bold', fontSize: 16}}>Discover</Text>
         </Header>
 
-        <ScrollView contentContainerStyle={styles.scrollContainer} >
-          {this._buildGridArray(this.props.global.hairstyles)}
+        <ScrollView onScroll={this._onScroll} showsVerticalScrollIndicator={true} scrollEventThrottle={500}>
+          <View onLayout={this._onLayout}>
+            {this._buildGridArray()}
+          </View>
         </ScrollView>
       </View>
     )

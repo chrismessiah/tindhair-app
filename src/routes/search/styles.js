@@ -1,9 +1,10 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { Dimensions } from 'react-native';
 
 const availableWidth = Dimensions.get('window').width;
 const elementWidth = (availableWidth-10)/3;
+const GRID_MARGIN = 5;
 
-const styles = StyleSheet.create({
+const styles = {
   background: {
     backgroundColor: '#ffffff',
   },
@@ -20,8 +21,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignSelf: 'stretch',
     width: elementWidth,
-    marginBottom: 5,
+    height: elementWidth,
+    marginBottom: GRID_MARGIN,
   },
-});
+};
 
 export default styles;
