@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#EA6A50',
   },
   buttonInactiveContainer: {
-    //backgroundColor: '#ffffff',
+    backgroundColor: '#f2f1f1',
   },
 
 

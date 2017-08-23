@@ -13,6 +13,7 @@ import {
   postHairstyle,
   getMyHairstyles,
   deleteUser,
+  updateGender,
 } from '../api/'
 
 // **************** HAIRSTYLES ***************
@@ -124,6 +125,25 @@ export function logout(firstScreenKey) {
 }
 const clearStore = () => {return {type: c.CLEAR_STORE}};
 const clearTokens = () => {return {type: c.CLEAR_TOKENS}};
+
+// **************** CHANGE GENDER ***************
+export function changeGender(data) {
+  return (dispatch) => {
+    dispatch(changeGenderTry())
+    return updateGender(data)
+    .then(response => {
+      dispatch(changeGenderSuccess(data));
+      dispatch(fetchHairstyles(data))
+    }).catch(err => {
+      console.log(err);
+      dispatch(changeGenderFail());
+    })
+  }
+}
+
+const changeGenderTry = () => {return {type: c.CHANGE_GENDER_TRY}};
+const changeGenderSuccess = (data) => {return {type: c.CHANGE_GENDER_SUCCESS, data}};
+const changeGenderFail = () => {return {type: c.CHANGE_GENDER_FAIL}};
 
 // **************** DELETE ACCOUNT ***************
 export function deleteAccount(data, firstScreenKey) {

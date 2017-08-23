@@ -30,6 +30,7 @@
     "react-native-image-picker": "^0.26.4",
     "react-native-linear-gradient": "^2.2.0",
     "react-native-message-bar": "^1.6.0",
+    "react-native-slider": "^0.11.0",
     "react-native-swipe-cards": "^0.1.0",
     "react-native-triangle": "0.0.8",
     "react-navigation": "^1.0.0-beta.11",

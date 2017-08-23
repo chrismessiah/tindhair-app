@@ -5,6 +5,9 @@ export function deleteUser(data) {
   return DELETE(`user/`, data);
 };
 
+export function updateGender(data) {
+  return POST('user/gender/', data);
+}
 
 export function getMyHairstyles(data) {
   return GET(`hairstyle/my/`, data);

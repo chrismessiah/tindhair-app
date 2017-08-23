@@ -62,6 +62,11 @@ export default function dataReducer (state = initialState, action) {
 
 
     // ****************** DATA ************************
+    case c.CHANGE_GENDER_SUCCESS:
+      return {
+        ...state,
+        user: {...state.user, gender: action.data.gender}
+      }
     case c.FETCH_MY_HAIRSTYLES_SUCCESS:
       return {
         ...state,
