@@ -34,6 +34,7 @@ class User extends React.Component {
     this.props.navigation.navigate('Upload');
   }
   _toggleTab = (num) => {
+    if (this.refs.scrollView) this.refs.scrollView.scrollTo({x:0, y:0, animated:false});
     this.setState({...this.state, tab: num, subTab: 1});
   }
 
@@ -54,7 +55,7 @@ class User extends React.Component {
           <TextButton value={'YOU'} activeTextStyle={styles.headerActiveText} textStyle={styles.headerText} onPress={() => this._toggleTab(2)} active={this.state.tab === 2}/>
         </Header>
 
-        <ScrollView contentContainerStyle={styles.scrollContainer} >
+        <ScrollView contentContainerStyle={styles.scrollContainer} ref={'scrollView'}>
           {this.state.tab === 2 ? <ToggleButton style={{marginTop: 20}} onPress={this._toggleSubTab} activeButton={this.state.subTab}/> : null}
 
           {activeHairstyles && !(this.state.tab === 2 && this.state.subTab === 2) ?
