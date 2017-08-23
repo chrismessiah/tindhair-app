@@ -71,12 +71,14 @@ class UploadHairstyle extends React.Component {
   }
   render() {
     return(
-      <View style={[globalStyles.coverBackground, globalStyles.centerChildrenHorizontal, styles.background]}>
-          <Card {...this.state.hairstyle} style={{marginTop: 30}}/>
-          <TextInput onType={this._updateName} placeholder={this.state.name || 'Unnamed hairstyle'} textColor={'#444444'}/>
-          <ColorButton onPress={this._takePhoto} value={'Select Photo'} color={'#F26D4D'}/>
-          <ColorButton onPress={this._sendHairstyle} value={'Upload'} color={'#F26D4D'}/>
-      </View>
+      <ScrollView>
+        <View style={[globalStyles.coverBackground, globalStyles.centerChildrenHorizontal, styles.background]}>
+            <Card {...this.state.hairstyle} style={{marginTop: 30}}/>
+            <TextInput onType={this._updateName} placeholder={this.state.name || 'Unnamed hairstyle'} textColor={'#444444'}/>
+            <ColorButton onPress={this._takePhoto} value={'Select Photo'} color={'#F26D4D'}/>
+            <ColorButton onPress={this._sendHairstyle} value={'Upload'} color={'#F26D4D'}/>
+        </View>
+      </ScrollView>
     )
   }
 

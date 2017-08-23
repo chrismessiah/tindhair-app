@@ -33,7 +33,7 @@ class Settings extends React.Component {
         } else if (i2 === 2) {
           marginStyle = {marginLeft: 5};
         }
-        tempSum.push(<Image key={`im-${i}-${i2}`} source={{uri: hairstyleArray[i2].image.tiny}} style={[{width: 122, height: 122}, marginStyle]} />);
+        tempSum.push(<Image key={`im-${i}-${i2}`} source={{uri: hairstyleArray[i2].image.tiny}} style={[styles.image, marginStyle]} />);
       }
       sum.push(<View key={`vi-${i}`} style={styles.row}>{tempSum}</View>);
     }

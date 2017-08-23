@@ -1,12 +1,15 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
+
+const availableWidth = Dimensions.get('window').width;
+const elementWidth = (availableWidth-10)/3;
 
 const styles = StyleSheet.create({
   background: {
     backgroundColor: '#ffffff',
   },
   image: {
-    width: 200,
-    height: 200,
+    width: elementWidth,
+    height: elementWidth
   },
   header: {
     justifyContent: 'center',
@@ -16,9 +19,9 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     alignSelf: 'stretch',
-    height: 122,
+    width: elementWidth,
     marginBottom: 5,
-  }
+  },
 });
 
 export default styles;
