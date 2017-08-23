@@ -76,7 +76,7 @@ class EmailLogin extends React.Component {
   render() {
     return (
       <View style={[globalStyles.coverBackground, styles.background]}>
-        <StatusBar barStyle="dark-content" backgroundColor={'#fec4b8'} />
+        <StatusBar barStyle="dark-content" translucent={false} backgroundColor={'#ffebe7'} />
         <ScrollView ref='scrollView'>
           <Image source={require('../../assets/images/logo-white.png')} style={styles.logo} />
           <View style={styles.textButtonContainer}>

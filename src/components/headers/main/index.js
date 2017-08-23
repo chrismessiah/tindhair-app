@@ -9,10 +9,10 @@ class MainHeader extends React.Component {
     super(props)
   }
   render() {
-    const { bgColor, androidBarBgColor, children, style } = this.props;
+    const { bgColor, androidBarBgColor, children, style, translucent } = this.props;
     return (
       <View>
-        <StatusBar bgColor={bgColor} androidBarBgColor={androidBarBgColor}/>
+        <StatusBar bgColor={bgColor} androidBarBgColor={androidBarBgColor} translucent={translucent}/>
         <View style={[styles.header, {backgroundColor: bgColor}, style]}>
           {children}
         </View>

@@ -19,7 +19,7 @@ class Loader extends React.Component {
   render() {
     return (
       <View style={[globalStyles.coverBackground, styles.background, globalStyles.centerChildrenBoth]}>
-        <StatusBar barStyle="dark-content" backgroundColor={'#fec4b8'} />
+        <StatusBar barStyle="light-content" translucent={true} backgroundColor={'transparent'} />
         <TextFader loopValues={this.loopValues}/>
       </View>
     )

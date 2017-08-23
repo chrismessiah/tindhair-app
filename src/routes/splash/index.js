@@ -13,7 +13,7 @@ class Splash extends React.Component {
   render() {
     return (
       <View style={[globalStyles.coverBackground, globalStyles.centerChildrenBoth, styles.background]}>
-        <StatusBar barStyle="dark-content" translucent={true} />
+        <StatusBar barStyle="light-content" translucent={true} backgroundColor={'transparent'} />
         <Image source={require('../../assets/images/logo-white.png')} style={styles.logo} />
       </View>
     )

@@ -15,7 +15,7 @@ class LoginSelection extends React.Component {
   render() {
     return (
       <Image source={require('../../assets/images/login-bg.jpg')} style={globalStyles.coverBackground} >
-        <StatusBar barStyle="light-content" translucent={true} />
+        <StatusBar barStyle="light-content" translucent={true} backgroundColor={'transparent'} />
         <Image source={require('../../assets/images/logo.png')} style={styles.logo} />
         {this.props.global.isFetching && <Text>Loading</Text>}
         <View style={[globalStyles.centerChildrenHorizontal, styles.buttonContainer]}>
