@@ -38,9 +38,6 @@ const styles = StyleSheet.create({
   fixMiddleGender: {
     left: 10,
   },
-  sliderTrack: {
-    backgroundColor: '#ffc1b4'
-  },
   sliderHandle: {
     backgroundColor: '#EA6A50'
   },

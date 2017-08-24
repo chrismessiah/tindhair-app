@@ -79,7 +79,7 @@ class User extends React.Component {
             <View>
               <View style={styles.genderBlock}>
                 <Text style={styles.genderHeadline}>Show me hairstyles for</Text>
-                <Slider value={this.state.gender} step={1} minimumValue={1} maximumValue={3} onSlidingComplete={this._changeGender} trackStyle={styles.sliderTrack} thumbStyle={styles.sliderHandle}/>
+                <Slider value={this.state.gender} step={1} minimumValue={1} maximumValue={3} onSlidingComplete={this._changeGender} minimumTrackTintColor={'#ffc1b4'} maximumTrackTintColor={'#ffc1b4'} thumbStyle={styles.sliderHandle}/>
                 <View style={styles.genderDescriptor}>
                   <Text>Men</Text>
                   <Text style={styles.fixMiddleGender}>Both</Text>

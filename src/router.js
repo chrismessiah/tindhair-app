@@ -32,9 +32,9 @@ const UserApp = StackNavigator(
 
 const HairstyleApp = TabNavigator(
   {
-    Search: {screen: Search},
-    Main: {screen: MainApp},
-    User: {screen: UserApp},
+    Search: {screen: Search, navigationOptions: {gesturesEnabled: false} },
+    Main: {screen: MainApp, navigationOptions: {gesturesEnabled: false} },
+    User: {screen: UserApp, navigationOptions: {gesturesEnabled: false} },
   },
   {
     initialRouteName: 'Main',
