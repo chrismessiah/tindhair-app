@@ -19,6 +19,7 @@ class SwipeCard extends React.Component {
     this.state = {
       buttonOpacity: 0,
       cardOpacity: new Animated.Value(1),
+      cardHeight: new Animated.Value(325),
     };
   }
   _xPanEventListener = (e) => {
@@ -31,20 +32,23 @@ class SwipeCard extends React.Component {
   }
   _onButtonPress = () => {
     const duration = 1000;
-    Animated.timing(this.state.cardOpacity, {toValue: 0, duration: duration, useNativeDriver: true}).start();
-    this.setTimeout(() => {
-      console.log('HANDLE CALLBACK HERE');
-    }, duration);
+    Animated.sequence([
+      Animated.timing(this.state.cardOpacity, {toValue: 0, duration: duration}),
+      Animated.timing(this.state.cardHeight, {toValue: 0, duration: duration}),
+    ]).start()
+    if (this.props.callbackRemove) {
+      this.setTimeout(() => this.props.callbackRemove(this.props.hairstyle.id), duration*2);
+    }
   }
   render() {
     return(
       <Swipeable
         onPanAnimatedValueRef={(a) => a.x.addListener(this._xPanEventListener)}
-        rightButtons={[<RightButton opacity={this.state.buttonOpacity} cardOpacity={this.state.cardOpacity} onPress={this._onButtonPress}/>]}
+        rightButtons={[<RightButton opacity={this.state.buttonOpacity} cardHeight={this.state.cardHeight} cardOpacity={this.state.cardOpacity} onPress={this._onButtonPress}/>]}
         rightButtonWidth={RIGHT_BUTTON_WIDTH}
         leftActionActivationDistance={50}
       >
-        <Animated.View style={{opacity: this.state.cardOpacity}}>
+        <Animated.View style={{opacity: this.state.cardOpacity, height: this.state.cardHeight}}>
           <Card {...this.props.hairstyle} style={{alignSelf: 'center'}}/>
         </Animated.View>
       </Swipeable>
@@ -55,10 +59,11 @@ class SwipeCard extends React.Component {
 class RightButton extends React.Component {
   render() {
     let opacity = (this.props.opacity === 1) ? this.props.cardOpacity : this.props.opacity;
+    const imageStyle = {width: 40, height: 40};
     return(
-      <Animated.View style={[{height: 325, justifyContent: 'center', opacity: opacity}]}>
-        <TouchableWithoutFeedback onPress={this.props.onPress} style={{width: 40, height: 40}}>
-          <Image style={{width: 40, height: 40}} source={require('../../assets/images/delete.png')}/>
+      <Animated.View style={[{justifyContent: 'center', height: this.props.cardHeight, opacity: opacity}]}>
+        <TouchableWithoutFeedback style={imageStyle} onPress={this.props.onPress}>
+          <Image style={imageStyle} source={require('../../assets/images/delete.png')}/>
         </TouchableWithoutFeedback>
       </Animated.View>
     )

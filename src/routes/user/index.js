@@ -49,7 +49,12 @@ class User extends React.Component {
   _toggleSubTab = (num) => {
     this.setState({...this.state, subTab: num});
   }
+  _removeLike = (hairstyleId) => {
 
+  }
+  _removeHairstyle = (hairstyleId) => {
+
+  }
   render() {
     let activeHairstyles;
     if (this.props.global.likedHairstyles && this.props.global.myHairstyles) {
@@ -67,7 +72,7 @@ class User extends React.Component {
           {this.state.tab === 2 ? <ToggleButton style={{marginTop: 20}} onPress={this._toggleSubTab} activeButton={this.state.subTab}/> : null}
 
           {activeHairstyles && !(this.state.tab === 2 && this.state.subTab === 2) ? activeHairstyles.map(hairstyle => {
-            return( <SwipeCard key={`SwipeCard-${hairstyle.id}`} hairstyle={hairstyle}/> )})
+            return( <SwipeCard callbackRemove={(this.state.tab === 1) ? this._removeLike : this._removeHairstyle} key={`SwipeCard-${hairstyle.id}`} hairstyle={hairstyle}/> )})
           : null }
 
           {activeHairstyles && this.state.tab === 2 && this.state.subTab === 1 ? <GradientButton style={styles.gradientButton} onPress={this._goToCamera} colors={['#FF5E00', '#FBB869']} value={'Upload your hairstyle'}/> : null}
