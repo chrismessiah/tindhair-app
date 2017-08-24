@@ -6,7 +6,7 @@ import Slider from "react-native-slider";
 import styles from './styles';
 import globalStyles from '../../styles';
 
-import Card from '../../components/tinder/tinder-card/';
+import SwipeCard from './swipe-card/';
 import GradientButton from '../../components/buttons/gradient-button/';
 import ToggleButton from '../../components/buttons/toggle-button/';
 import TextButton from '../../components/buttons/text-button/'
@@ -66,12 +66,8 @@ class User extends React.Component {
         <ScrollView contentContainerStyle={styles.scrollContainer} ref={'scrollView'}>
           {this.state.tab === 2 ? <ToggleButton style={{marginTop: 20}} onPress={this._toggleSubTab} activeButton={this.state.subTab}/> : null}
 
-          {activeHairstyles && !(this.state.tab === 2 && this.state.subTab === 2) ?
-            <View>
-              {activeHairstyles.map(hairstyle => {
-                return <Card {...hairstyle} key={`liked-${hairstyle.id}`}/>
-              })}
-            </View>
+          {activeHairstyles && !(this.state.tab === 2 && this.state.subTab === 2) ? activeHairstyles.map(hairstyle => {
+            return( <SwipeCard key={`SwipeCard-${hairstyle.id}`} hairstyle={hairstyle}/> )})
           : null }
 
           {activeHairstyles && this.state.tab === 2 && this.state.subTab === 1 ? <GradientButton style={styles.gradientButton} onPress={this._goToCamera} colors={['#FF5E00', '#FBB869']} value={'Upload your hairstyle'}/> : null}
