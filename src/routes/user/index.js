@@ -42,6 +42,11 @@ class User extends React.Component {
     this.setState({...this.state, gender: value});
     this.props.dispatch(changeGender({token: this.props.global.access_token, gender: this._numToGender(value)}));
   }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.global.tab) {
+      this.setState({...this.state, tab: nextProps.global.tab})
+    }
+  }
   componentDidMount() {
     this.props.dispatch(fetchLikedHairstyles({token: this.props.global.access_token}))
     this.props.dispatch(fetchMyHairstyles({token: this.props.global.access_token}))

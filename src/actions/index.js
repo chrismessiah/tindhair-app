@@ -43,7 +43,10 @@ export function sendHairstyle(data) {
     .then(response => {
       dispatch(sendHairstyleSuccess(response))
       dispatch(NavigationActions.back())
-      setTimeout(() => {dispatch(navigateTo('Search'))}, 500);
+      setTimeout(() => {
+        dispatch(navigateTo('User'))
+        setTimeout(() => {dispatch(resetTab())}, 200);
+      }, 500);
       if (Platform.os === 'ios') RNFS.unlink(data.uri);
     }).catch(err => {
       console.log(err);
@@ -54,6 +57,7 @@ export function sendHairstyle(data) {
 
 const sendHairstyleSuccess = (data) => {return {type: c.SEND_HAIRSTYLE_SUCCESS, data}};
 const sendHairstyleTry = () => {return {type: c.SEND_HAIRSTYLE_TRY}};
+const resetTab = () => {return {type: c.RESET_TAB}};
 const sendHairstyleFail = () => {return {type: c.SEND_HAIRSTYLE_FAIL}}
 
 

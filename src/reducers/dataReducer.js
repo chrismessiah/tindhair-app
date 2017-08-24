@@ -20,6 +20,7 @@ initialState = {
     hairstyleIndex: null,
     user: null,
     uploading: false,
+    tab: null,
 };
 
 export default function dataReducer (state = initialState, action) {
@@ -95,6 +96,7 @@ export default function dataReducer (state = initialState, action) {
         ...state,
         myHairstyles: myHairstyles,
         uploading: false,
+        tab: 2,
       }
     case c.STORE_ME:
       console.log(action.data);
@@ -122,6 +124,11 @@ export default function dataReducer (state = initialState, action) {
         ...state,
         hairstyles: hairstyles,
         likedHairstyles: likedHairstyles,
+      }
+    case c.RESET_TAB:
+      return {
+        ...state,
+        tab: null,
       }
     case c.REMOVE_LIKE_SUCCESS:
       likedHairstyles = _.filter(state.likedHairstyles, o => {return o.id !== action.data.haristyle_id})

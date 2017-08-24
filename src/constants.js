@@ -6,6 +6,8 @@ export const START_SCREEN = 'Splash';
 
 export const STORE_ME = 'STORE_ME';
 
+export const RESET_TAB = 'RESET_TAB';
+
 export const FETCHING_DATA = 'FETCHING_DATA'
 export const FETCHING_DATA_SUCCESS = 'FETCHING_DATA_SUCCESS'
 export const FETCHING_DATA_FAILURE = 'FETCHING_DATA_FAILURE'
