@@ -1,6 +1,14 @@
 import axios from 'axios';
 import { API_URL } from './constants';
 
+export function deleteLike(data) {
+  return DELETE(`like/`, data);
+};
+
+export function removeHairstyle(data) {
+  return DELETE(`hairstyle/${data.id}`, data);
+};
+
 export function deleteUser(data) {
   return DELETE(`user/`, data);
 };
@@ -93,7 +101,7 @@ const request = (type, route, params) => {
     headers: {},
   }
 
-  if (params && type === 'POST') {
+  if (params && (type === 'POST' || type === 'DELETE')) {
     config.data = params;
   }
 

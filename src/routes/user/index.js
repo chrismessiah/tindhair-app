@@ -12,7 +12,15 @@ import ToggleButton from '../../components/buttons/toggle-button/';
 import TextButton from '../../components/buttons/text-button/'
 import ColorButton from '../../components/buttons/color-button/';
 import Header from '../../components/headers/main/'
-import { fetchLikedHairstyles, fetchMyHairstyles, logout, deleteAccount, changeGender } from '../../actions';
+import {
+  fetchLikedHairstyles,
+  fetchMyHairstyles,
+  logout,
+  deleteAccount,
+  changeGender,
+  deleteHairstyle,
+  removeLike,
+} from '../../actions';
 
 class User extends React.Component {
   static navigationOptions = { tabBarIcon: ({ tintColor }) => (<Image source={require('../../assets/images/user.png')} style={{width: 22, height: 22, tintColor: tintColor}} />)}
@@ -50,10 +58,10 @@ class User extends React.Component {
     this.setState({...this.state, subTab: num});
   }
   _removeLike = (hairstyleId) => {
-
+    this.props.dispatch(removeLike({hairstyle_id: hairstyleId, token: this.props.global.access_token}))
   }
   _removeHairstyle = (hairstyleId) => {
-
+    this.props.dispatch(deleteHairstyle({id: hairstyleId, token: this.props.global.access_token}))
   }
   render() {
     let activeHairstyles;

@@ -82,6 +82,12 @@ export default function dataReducer (state = initialState, action) {
         ...state,
         uploading: false,
       }
+    case c.DELETE_HAIRSTYLE_SUCCESS:
+      myHairstyles = _.filter(state.myHairstyles, o => {return o.id !== action.data.id})
+      return {
+        ...state,
+        myHairstyles: myHairstyles,
+      }
     case c.SEND_HAIRSTYLE_SUCCESS:
       myHairstyles = state.myHairstyles;
       myHairstyles.unshift(action.data);
@@ -115,6 +121,12 @@ export default function dataReducer (state = initialState, action) {
       return {
         ...state,
         hairstyles: hairstyles,
+        likedHairstyles: likedHairstyles,
+      }
+    case c.REMOVE_LIKE_SUCCESS:
+      likedHairstyles = _.filter(state.likedHairstyles, o => {return o.id !== action.data.haristyle_id})
+      return {
+        ...state,
         likedHairstyles: likedHairstyles,
       }
     case c.CLEAR_TOKENS:

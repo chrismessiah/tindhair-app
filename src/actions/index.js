@@ -14,9 +14,28 @@ import {
   getMyHairstyles,
   deleteUser,
   updateGender,
+  removeHairstyle,
+  deleteLike,
 } from '../api/'
 
 // **************** HAIRSTYLES ***************
+export function deleteHairstyle(data) {
+  return (dispatch) => {
+    dispatch(deleteHairstyleTry())
+    return removeHairstyle(data)
+    .then(response => {
+      dispatch(deleteHairstyleSuccess(data))
+    }).catch(err => {
+      console.log(err);
+      dispatch(deleteHairstyleFail())
+    })
+  }
+}
+
+const deleteHairstyleSuccess = (data) => {return {type: c.DELETE_HAIRSTYLE_SUCCESS, data}};
+const deleteHairstyleTry = () => {return {type: c.DELETE_HAIRSTYLE_TRY}};
+const deleteHairstyleFail = () => {return {type: c.DELETE_HAIRSTYLE_FAIL}}
+
 export function sendHairstyle(data) {
   return (dispatch) => {
     dispatch(sendHairstyleTry())
@@ -72,6 +91,23 @@ export function fetchLikedHairstyles(data) {
 const fetchLikedHairstylesSuccess = (data) => {return {type: c.FETCH_LIKED_HAIRSTYLES_SUCCESS, data}};
 const fetchLikedHairstylesTry = () => {return {type: c.FETCH_LIKED_HAIRSTYLES_TRY}};
 const fetchLikedHairstylesFail = () => {return {type: c.FETCH_LIKED_HAIRSTYLES_FAIL}};
+
+export function removeLike(data) {
+  return (dispatch) => {
+    dispatch(removeLikeTry())
+    return deleteLike(data)
+    .then(response => {
+      dispatch(removeLikeSuccess(data))
+    }).catch(err => {
+      console.log(err);
+      dispatch(removeLikeFail())
+    })
+  }
+}
+
+const removeLikeSuccess = (data) => {return {type: c.REMOVE_LIKE_SUCCESS, data}};
+const removeLikeTry = () => {return {type: c.REMOVE_LIKE_TRY}};
+const removeLikeFail = () => {return {type: c.REMOVE_LIKE_FAIL}}
 
 export function likeHairstyle(data) {
   return (dispatch) => {
