@@ -163,19 +163,25 @@ const fetchHairstylesFail = () => {return {type: c.FETCH_HAIRSTYLES_FAIL}};
 
 export function logout(firstScreenKey) {
   return (dispatch) => {
+    dispatch(logoutTry())
     return AsyncStorage.clear()
     .then(() => {
       dispatch(clearTokens())
       dispatch(clearStore())
       return goBackToScreen(dispatch, firstScreenKey)
     }).then(() => {
-
+      dispatch(logoutSuccess())
     }).catch(err => {
       console.log(err);
+      dispatch(logoutFail())
       if (firstScreenKey) goBackToScreen(dispatch, firstScreenKey);
     })
   }
 }
+
+const logoutTry = () => {return {type: c.LOGOUT_TRY}};
+const logoutSuccess = () => {return {type: c.LOGOUT_SUCCESS}};
+const logoutFail = () => {return {type: c.LOGOUT_FAIL}};
 const clearStore = () => {return {type: c.CLEAR_STORE}};
 const clearTokens = () => {return {type: c.CLEAR_TOKENS}};
 
@@ -232,10 +238,13 @@ export function checkIfLoggedIn(data, backToScreenKey) {
       dispatch(storeMe(response));
       dispatch(navigateTo('Main'));
     }).catch(err => {
+      dispatch(notLoggedIn());
       dispatch(navigateTo('LoginSelection'));
     })
   }
 }
+
+const notLoggedIn = () => {return {type: c.NOT_LOGGED_IN}};
 
 export function loginUser(data, backToScreenKey) {
   let accessToken;

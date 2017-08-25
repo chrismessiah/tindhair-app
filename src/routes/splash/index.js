@@ -10,6 +10,11 @@ class Splash extends React.Component {
   componentDidMount() {
     this.props.dispatch(checkIfLoggedIn());
   }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.global.loggedOut === true) {
+      this.props.dispatch(checkIfLoggedIn());
+    }
+  }
   render() {
     return (
       <View style={[globalStyles.coverBackground, globalStyles.centerChildrenBoth, styles.background]}>

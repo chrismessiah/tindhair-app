@@ -22,6 +22,7 @@ initialState = {
     uploading: false,
     tab: null,
     mainRoute: null,
+    loggedOut: null,
 };
 
 export default function dataReducer (state = initialState, action) {
@@ -209,10 +210,22 @@ export default function dataReducer (state = initialState, action) {
         ...state,
         isLoading: true,
       }
+    case c.LOGOUT_SUCCESS:
+      return {
+        ...state,
+        loggedOut: true,
+      }
+    case c.NOT_LOGGED_IN: {
+      return {
+        ...state,
+        loggedOut: false,
+      }
+    }
     case c.LOGIN_SUCCESS:
       return {
         ...state,
         isLoading: false,
+        loggedOut: false,
       }
     case c.LOGIN_FAIL:
       return {

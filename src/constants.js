@@ -8,6 +8,11 @@ export const STORE_ME = 'STORE_ME';
 
 export const RESET_TAB = 'RESET_TAB';
 
+export const LOGOUT_TRY = 'LOGOUT_TRY';
+export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
+export const LOGOUT_FAIL = 'LOGOUT_FAIL';
+export const NOT_LOGGED_IN = 'NOT_LOGGED_IN';
+
 export const UPDATE_INDEX_TRY = 'UPDATE_INDEX_TRY';
 export const UPDATE_INDEX_SUCCESS = 'UPDATE_INDEX_SUCCESS';
 

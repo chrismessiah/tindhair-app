@@ -100,7 +100,7 @@ class User extends React.Component {
                   <Text>Women</Text>
                 </View>
               </View>
-              <ColorButton style={{marginTop: 30}} value={'Log out'} onPress={() => this.props.dispatch(logout(this.props.global.screenKeys[1]))} color={'#F26D4D'} />
+              <ColorButton style={{marginTop: 30}} value={'Log out'} onPress={() => this.props.dispatch(logout(this.props.global.screenKeys[0]))} color={'#F26D4D'} />
               <ColorButton value={'Delete account'} onPress={() => this.props.dispatch(deleteAccount({token: this.props.global.access_token}, this.props.global.screenKeys[1]))} color={'#ff4e4e'} />
             </View>
           : null}
