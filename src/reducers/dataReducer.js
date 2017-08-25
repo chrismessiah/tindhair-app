@@ -21,6 +21,7 @@ initialState = {
     user: null,
     uploading: false,
     tab: null,
+    mainRoute: null,
 };
 
 export default function dataReducer (state = initialState, action) {
@@ -40,7 +41,8 @@ export default function dataReducer (state = initialState, action) {
       nextScreenKeys.push(lastRouteKey);
       return {
         ...tempState,
-        screenKeys: nextScreenKeys
+        screenKeys: nextScreenKeys,
+        mainRoute: action.routeName,
       }
     case "Navigation/BACK":
       tempState = AppNavigator.router.getStateForAction(action, state);
@@ -126,11 +128,12 @@ export default function dataReducer (state = initialState, action) {
       }
     case c.LIKE_SUCCESS:
       let index = _.findIndex(state.hairstyles, el => {return el.id == action.data.haristyle_id});
-      let hairstyles = state.hairstyles;
+      let hairstyles = _.cloneDeep(state.hairstyles || []);
       hairstyles[index].likes += 1;
 
-      likedHairstyles = state.likedHairstyles;
+      likedHairstyles = _.cloneDeep(state.likedHairstyles || []);
       likedHairstyles.unshift(hairstyles[index])
+      hairstyles.splice(index, 1);
       return {
         ...state,
         hairstyles: hairstyles,
@@ -142,7 +145,7 @@ export default function dataReducer (state = initialState, action) {
         tab: null,
       }
     case c.REMOVE_LIKE_SUCCESS:
-      likedHairstyles = _.filter(state.likedHairstyles, o => {return o.id !== action.data.haristyle_id})
+      likedHairstyles = _.filter(state.likedHairstyles, o => {return o.id !== action.data.hairstyle_id})
       return {
         ...state,
         likedHairstyles: likedHairstyles,
