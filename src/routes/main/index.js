@@ -23,10 +23,15 @@ class Main extends React.Component {
     }
   }
   componentDidMount() {
+    if (!this.props.global.preventFetch) {
+      this.props.dispatch(fetchHairstyles({token: this.props.global.access_token}));
+    }
+  }
+  _handleLoop = () => {
     this.props.dispatch(fetchHairstyles({token: this.props.global.access_token}));
   }
   componentWillReceiveProps(nextProps) {
-    if (nextProps.global.isLoading === false && this.state.messageText != null && nextProps.global.hairstyleIndex < nextProps.global.hairstyles.length-1) {
+    if (nextProps.global.isLoading === false && this.state.messageText != null) {
       this.setState({...this.state, messageText: null})
     }
   }
@@ -40,7 +45,7 @@ class Main extends React.Component {
     this.props.navigation.navigate('Upload');
   }
   render() {
-    let {hairstyles, hairstyleIndex} = this.props.global;
+    let { hairstyles } = this.props.global;
     return (
       <View style={[globalStyles.coverBackground, styles.background]}>
         <Header bgColor={'#FAFAFA'} androidBarBgColor={'#F0F0F0'} style={styles.header} translucent={false}>
@@ -53,7 +58,7 @@ class Main extends React.Component {
             <Text>{this.state.messageText}</Text>
           </View>
         :
-          <SwipeCards style={{flex: 1}} cards={hairstyles} callbackYes={this._callbackYes} callbackNo={this._callbackNo}/>
+          <SwipeCards style={{flex: 1}} startIndex={this.props.global.hairstyleIndex} handleLoop={this._handleLoop} cards={hairstyles} callbackYes={this._callbackYes} callbackNo={this._callbackNo}/>
         }
       </View>
     )

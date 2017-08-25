@@ -19,6 +19,19 @@ import {
 } from '../api/'
 
 // **************** HAIRSTYLES ***************
+export function updateIndex(hairstyleId) {
+  return (dispatch) => {
+    dispatch(updateIndexTry(hairstyleId))
+    dispatch(navigateTo('Main'))
+    setTimeout(() => {
+      dispatch(updateIndexSuccess())
+    }, 200)
+  }
+}
+
+const updateIndexTry = (data) => {return {type: c.UPDATE_INDEX_TRY, data}};
+const updateIndexSuccess = () => {return {type: c.UPDATE_INDEX_SUCCESS}};
+
 export function deleteHairstyle(data) {
   return (dispatch) => {
     dispatch(deleteHairstyleTry())

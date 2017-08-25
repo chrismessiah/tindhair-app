@@ -24,7 +24,7 @@ initialState = {
 };
 
 export default function dataReducer (state = initialState, action) {
-  let tempState, nextState, nextScreenKeys, likedHairstyles, myHairstyles;
+  let tempState, nextState, nextScreenKeys, likedHairstyles, myHairstyles, hairstyleIndex;
 
   console.log('state');
   console.log(state);
@@ -63,6 +63,17 @@ export default function dataReducer (state = initialState, action) {
 
 
     // ****************** DATA ************************
+    case c.UPDATE_INDEX_TRY:
+      hairstyleIndex = _.findIndex(state.hairstyles, o => {return o.id === action.data});
+      return {
+        ...state,
+        hairstyleIndex: hairstyleIndex,
+      }
+    case c.UPDATE_INDEX_SUCCESS:
+      return {
+        ...state,
+        hairstyleIndex: null,
+      }
     case c.CHANGE_GENDER_SUCCESS:
       return {
         ...state,
@@ -159,7 +170,6 @@ export default function dataReducer (state = initialState, action) {
         ...state,
         isLoading: false,
         hairstyles: action.data.hairstyles,
-        hairstyleIndex: 0,
       }
     case c.STORE_ACCESS_TOKEN:
       return {

@@ -1,10 +1,10 @@
 import React from 'react';
-import { View, ScrollView, Image, Text, Dimensions } from 'react-native';
+import { View, ScrollView, Image, Text, Dimensions, TouchableHighlight } from 'react-native';
 import { connect } from 'react-redux'
 var _ = require('lodash');
 
 import Header from '../../components/headers/main/';
-import { fetchHairstyles } from '../../actions/';
+import { fetchHairstyles, updateIndex } from '../../actions/';
 
 import styles from './styles';
 import globalStyles from '../../styles';
@@ -27,6 +27,9 @@ class Settings extends React.Component {
   componentDidMount() {
     this.props.dispatch(fetchHairstyles({token: this.props.global.access_token}));
   }
+  _onHairstylePress = (hairstyleId) => {
+    this.props.dispatch(updateIndex(hairstyleId));
+  }
   _buildGridArray = () => {
     let hairstyles = this._getShowedHairstyles(this.state.showedRows);
     if (!hairstyles) {return(<Text>Loading</Text>)}
@@ -44,7 +47,14 @@ class Settings extends React.Component {
         } else if (i2 === 2) {
           marginStyle = {marginLeft: 5};
         }
-        tempSum.push(<Image key={`im-${i}-${i2}`} source={{uri: hairstyleArray[i2].image.tiny}} style={[styles.image, marginStyle]} />);
+        tempSum.push(
+          <RowElement
+            onPress={this._onHairstylePress}
+            hairstyle={hairstyleArray[i2]}
+            marginStyle={marginStyle}
+            key={`element-${i}-${i2}`}
+          />
+        );
       }
       sum.push(<View key={`vi-${i}`} style={styles.row}>{tempSum}</View>);
     }
@@ -85,6 +95,16 @@ class Settings extends React.Component {
     )
   }
 };
+
+class RowElement extends React.Component {
+  render() {
+    return(
+      <TouchableHighlight onPress={() => {this.props.onPress(this.props.hairstyle.id)}} style={[styles.image, this.props.marginStyle]}>
+        <Image source={{uri: this.props.hairstyle.image.tiny}} style={styles.image} />
+      </TouchableHighlight>
+    )
+  }
+}
 
 function mapStateToProps(state) {
   return {
