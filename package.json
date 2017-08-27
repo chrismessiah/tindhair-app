@@ -9,8 +9,8 @@
   "scripts": {
     "start": "react-native start",
     "android": "react-native run-android",
-    "build-android": "cd android && ./gradlew assembleRelease",
-    "build-ios": "react-native run-ios --configuration Release",
+    "build-android": "cd android && ./gradlew assembleRelease && cd .. && cp android/app/outputs/apk/app-release.apk builds/release.apk",
+    "build-ios": "react-native run-ios --configuration Release && cd ios/build/Build/Products/Release-iphonesimulator/ && zip -r tindhair.zip tindhair.app &&  cd ../../../../.. && cp ios/build/Build/Products/Release-iphonesimulator/tindhair.zip builds/release.ipa",
     "start-emulator": "source ~/.bashrc && emulator -avd Nexus",
     "ios": "react-native run-ios",
     "ios-log": "react-native log-ios",
