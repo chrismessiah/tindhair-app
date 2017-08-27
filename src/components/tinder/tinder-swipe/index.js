@@ -22,12 +22,16 @@ export default React.createClass({
     return {cards: this.props.cards};
   },
   componentWillReceiveProps(nextProps) {
-    if (this.props.startIndex) {
-      let cards = _.cloneDeep(this.props.cards);
-      let element = _.cloneDeep(cards[this.props.startIndex]);
-      cards.splice(this.props.startIndex, 1);
+    if (nextProps.startIndex !== null && nextProps.startIndex >= 0) {
+      let cards = _.cloneDeep(nextProps.cards);
+      let element = _.cloneDeep(cards[nextProps.startIndex]);
+      cards.splice(nextProps.startIndex, 1);
       cards.unshift(element);
       this.setState({...this.state, cards: cards})
+    } else if (this.props.startIndex !== null && this.props.startIndex >= 0 && nextProps.startIndex === null) {
+      return; // don't update state if startIndex is just being reset
+    } else {
+      this.setState({...this.state, cards: nextProps.cards})
     }
   },
   render() {
