@@ -10,6 +10,7 @@
     "start": "react-native start",
     "android": "react-native run-android",
     "build-android": "cd android && ./gradlew assembleRelease",
+    "build-ios": "react-native run-ios --configuration Release",
     "start-emulator": "source ~/.bashrc && emulator -avd Nexus",
     "ios": "react-native run-ios",
     "ios-log": "react-native log-ios",
