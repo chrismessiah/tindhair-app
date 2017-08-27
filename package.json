@@ -10,7 +10,6 @@
     "start": "react-native start",
     "android": "react-native run-android",
     "build-android": "cd android && ./gradlew assembleRelease && cd .. && cp android/app/build/outputs/apk/app-release.apk builds/release.apk",
-    "build-ios": "react-native run-ios --configuration Release && cd ios/build/Build/Products/Release-iphonesimulator/ && rm -rf Payload && mkdir Payload && cp -r tindhair.app Payload/tindhair.app && zip -r Payload.zip Payload &&  cd ../../../../.. && cp ios/build/Build/Products/Release-iphonesimulator/Payload.zip builds/release.ipa",
     "start-emulator": "source ~/.bashrc && emulator -avd Nexus",
     "ios": "react-native run-ios",
     "ios-log": "react-native log-ios",
