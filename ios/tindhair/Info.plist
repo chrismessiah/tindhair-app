@@ -31,18 +31,18 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
-	<!-- REMOVE THIS FOR PRODUCTION -->
 	<dict>
 		<key>NSExceptionDomains</key>
 		<dict>
+			<!-- REMOVE THIS FOR PRODUCTION -->
 			<key>localhost</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
 				<true/>
 			</dict>
+			<!-- REMOVE THIS FOR PRODUCTION -->
 		</dict>
 	</dict>
-	<!-- REMOVE THIS FOR PRODUCTION -->
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
 	<key>UILaunchStoryboardName</key>
