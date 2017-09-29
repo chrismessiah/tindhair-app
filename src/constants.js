@@ -1,4 +1,4 @@
-export const API_URL = 'https://tindhair-api.christianabdelmassih.com/api';
+export const API_URL = 'https://tindhair.christianabdelmassih.com/api';
 //export const API_URL = 'http://localhost:3000/api';
 
 export const START_SCREEN = 'Splash';
