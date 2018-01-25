@@ -57,4 +57,4 @@ node_modules/
 npm-debug.*
 *.DS_Store
 .DS_Store
-builds/release.*
+!builds/release.*
