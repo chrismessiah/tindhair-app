@@ -4,6 +4,8 @@
 
 Tindhair is build with **React Native** and **Redux**. The project was initialized with [create-react-native-app](https://facebook.github.io/react-native/blog/2017/03/13/introducing-create-react-native-app.html).
 
+![Preview of Tindhair](docs/Preview2.jpeg)
+
 ## License
 
 Tindhair is licensed under a custom [Educational Public License](https://github.com/chrismessiah/tindhair-app/blob/master/LICENSE).
