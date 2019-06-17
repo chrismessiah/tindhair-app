@@ -1,4 +1,14 @@
-# tindhair
+# Tindhair
+
+**Tindhair is a mobile application which allows you to quickly find you a new hairstyle.** It uses a recognizable interface and allows a user to create an account, like hairstyles to save them and upload their own hairstyle for others. I built this app while taking a course in interaction design at KTH, Royal Institute of Technology and set the goal to learn some relatively new techniques of building mobile apps.
+
+Tindhair is build with **React Native** and **Redux**. The project was initialized with [create-react-native-app](https://facebook.github.io/react-native/blog/2017/03/13/introducing-create-react-native-app.html) which placed a nice foundation for starting off the project. Besides that a handful of libraries were added for notifications, accessing the camera app, making requests etc.
+
+**I have learn a lot** from creating the app, particularly in UX for mobile apps. Since I have a web-developer background most of the thinking was just how the elements should be placed to make most sense for a mobile app instead of a website. Besides that Redux brought pattern changes with regard to how state is being handled compared to MVC.
+
+## License
+
+Tindhair is licensed under a custom [Educational Public License](https://github.com/chrismessiah/tindhair-app/blob/master/LICENSE).
 
 ## Running locally
 
