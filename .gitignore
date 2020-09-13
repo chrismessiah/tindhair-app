@@ -1,6 +1,6 @@
 # OSX
 #
-.DS_Store
+*.DS_Store
 
 # Xcode
 #
@@ -58,3 +58,4 @@ npm-debug.*
 *.DS_Store
 .DS_Store
 !builds/release.*
+.DS_Store
